@@ -33,11 +33,10 @@ Then, generate simple diagram for IP grammar:
 Authors
 -------
 
-Tomasz Zurkowski, Piotr Slatala, Marek Kuzora, Anna Ferster
-
-Idea & Specification of graph view & requirements invented and specified by Bartosz Alchimowicz.
+	See AUTHORS file.
 
 Licence
 -------
 
 Syntax Diagram Generator is released under the MIT license.
+
