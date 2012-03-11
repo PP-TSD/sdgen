@@ -1,0 +1,45 @@
+Syntax Diagram Generator
+========================
+
+Installation
+------------
+
+    python setup.py install
+
+Getting started
+---------------
+
+First, execute some examples:
+
+    python examples/http.py [directory] > http.svg
+    python examples/isbn.py [directory] > isbn.svg
+
+Then, generate simple diagram for IP grammar:
+
+    import sdgen.svg
+    data = {
+      "children": [
+        {"value": "0..255", "view": "Terminal"},
+        {"value": "0..255", "view": "Terminal"},
+        {"value": "0..255", "view": "Terminal"},
+        {"value": "0..255", "view": "Terminal"}
+      ],
+      "view": "Group",
+      "name": "IP address"
+    }
+
+    # Generate all images to directory given by argument
+    as_svg(data, argv[1])
+
+Authors
+-------
+
+Tomasz Zurkowski, Piotr Slatala, Marek Kuzora, Anna Ferster,
+Mariano Calderon Arenas, Pawel Radzikowski, Jakub Rojek
+
+Idea & Specification of graph view & requirements invented and specified by Bartosz Alchimowicz.
+
+Licence
+-------
+
+Syntax Diagram Generator is released under the MIT license.

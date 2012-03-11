@@ -36,6 +36,9 @@ class Text(object):
             font.style = 'roman'
         tk_font = tkFont.Font(family=font.family, size=font.size, weight=font.weight, slant=font.style)
         (w, h) = (tk_font.measure(content), tk_font.metrics("linespace"))
+	# That's the result of tk_font.measure function which gives
+	# too wide width value
+	w *= 0.825;
         return (w, h)
 
     def render(self, svg, x, y):
@@ -47,10 +50,26 @@ class Text(object):
         t.set_fill(self.color)
         svg.addElement(t)
 
+    def renderHeader(self, svg, x, y):
+	h1 = self.height * 0.71;
+        t = text(self.content, x, y + h1 * 3 / 4)
+        t.set_font_size(self.font.size)
+        t.set_font_family(self.font.family)
+        t.set_font_style(self.font.style)
+        t.set_font_weight(self.font.weight)
+        t.set_fill(self.color)
+        svg.addElement(t)
+
+    def getWidth(self):
+	return self.width;
+
+    def getHeight(self):
+	return self.height;
+
 class PrettyText(Text):
     def __init__(self, content, font, color='black'):
         if content == " ":
-            content = "spacja"
+            content = "Space"
             font.style = "italic"
             font.family = "Times New Roman"
         content = content.replace(" ", u'\u02FD')
@@ -93,6 +112,7 @@ class Arrow(g):
         self._attributes['refX'] = '0'
         self._attributes['refY'] = '10'
         self._attributes['orient'] = 'auto'
+	self._attributes['markerUnits'] = 'strokeWidth'
         self._attributes['markerWidth'] = width
         self._attributes['markerHeight'] = 2 * width
         self.addElement(path("M 0 0 L 20 10 L 0 20 z"))

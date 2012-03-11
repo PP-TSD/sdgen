@@ -29,7 +29,7 @@ def wrap_xml(self, xml, encoding='utf-8', standalone='no'):
     header = header.encode("utf-8")
     return header + xml
 
-def save(self, filename, encoding='ISO-8859-1', standalone='no'):
+def save(self, filename, encoding='utf-8', standalone='no'):
     """
     Stores any element in a svg file (including header).
     Calling this method only makes sense if the root element is an svg elemnt

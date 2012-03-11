@@ -22,14 +22,33 @@ class ElementCreator(object):
 
 def create_diagram(data, conf):
     diagram = Group(data, conf)
-    s = svg()
+    s = svg(width = str(diagram.get_content_width()), height = str(diagram.get_content_height()))
+    m = metadata()
+
+    #creating metadata elements
+    dctitle = dctitleEl()
+    dctype = dctypeEl()
+    dcformat = dcformatEl()
+    cc = ccEl()
+    cc.addElement(dcformat)
+    cc.addElement(dctype)
+    cc.addElement(dctitle)  
+    rdf = rdfEl()
+    rdf.addElement(cc)
+    m.addElement(rdf)
+
+    s.addElement(m)
+    sn = sodipodiNamedViewEl()
+    s.addElement(sn)
     d = defs()
     d.addElement(Arrow("small-right-arrow", 3))
     d.addElement(Arrow("normal-right-arrow", 5))
     d.addElement(Arrow("large-right-arrow", 7))
     s.addElement(d)
     diagram.render_content(s, 0, 0)
-    return s.getXML()
+
+    xml = s.getXML()
+    return s.wrap_xml(xml)
 
 class QuantityAbove(object):
     def __init__(self, data, conf):
@@ -39,7 +58,7 @@ class QuantityAbove(object):
         self.width = self.content.width
         self.height = self.content.height + self.text.height
         self.connect_y = self.content.connect_y + self.text.height
-
+	
     def render(self, svg, x, y):
         self.text.render(svg, x + self.content.width / 2 - self.text.width / 2, y)
         self.content.render(svg, x, y + self.text.height)
@@ -62,6 +81,7 @@ class SimpleArrows(object):
 
 class Terminal(SimpleArrows):
     def __init__(self, data, conf):
+	assert data["value"] != ''
         self.text = PrettyText(data["value"], Font(conf.terminal.font))
         self.padding = conf.terminal.padding
         self.content_width = self.text.width + 2 * self.padding
@@ -175,10 +195,17 @@ class Group(SimpleArrows):
         frame = shape_builder.createRect(x, y, self.content_width, self.content_height, strokewidth=self.conf.group.thickness)
         svg.addElement(frame)
 
-        header_box = shape_builder.createRect(x, y, self.header_width, self.header_height, fill='black', strokewidth=self.conf.group.thickness)
+        #header_box = shape_builder.createRect(x, y, self.header_width, self.header_height, fill='black', strokewidth=self.conf.group.thickness)
+	header_box = shape_builder.createRect(x, y, self.header_text.getWidth(), self.header_text.getHeight(), fill='black', strokewidth=self.conf.group.thickness)
         svg.addElement(header_box)
 
-        self.header_text.render(svg, x + self.header_padding, y + self.header_padding)
+        self.header_text.renderHeader(svg, x + self.header_padding, y + self.header_padding)
+
+    def get_content_width(self):
+	return self.content_width
+
+    def get_content_height(self):
+	return self.content_height
 
 class Sequence(object):
     def __init__(self, data, conf):
@@ -260,7 +287,17 @@ class Detour(object):
         connect_y = y + self.connect_y
         bottom_y = y + self.content.height + 10
 
-        self.content.render(svg, x + 20, y)
+	tmp = 0
+
+        if isinstance(self.content.children[0], QuantityAbove):
+            t = self.content.height - self.content.children[0].content.height
+            tmp = t / 2
+        elif isinstance(self.content.children[0], Sequence):
+            if isinstance(self.content.children[0].children[0], QuantityAbove):
+                t = self.content.height - self.content.children[0].children[0].content.height
+                tmp = t / 2
+
+        self.content.render(svg, x + 20, y - tmp)
 
         path_data = "m {0},{1} c 10,0 10,{3} {2},{3}".format(x, connect_y, 20, bottom_y - connect_y)
         svg.addElement(path(path_data, stroke = "black", fill = "none", stroke_width=stroke_width))

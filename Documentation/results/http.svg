@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"  >
+<defs  >
+<marker refY="10" refX="0" orient="auto" viewBox="0 0 20 20" markerWidth="3" id="small-right-arrow" markerHeight="6"  >
+<path d="M 0 0 L 20 10 L 0 20 z "  />
+</marker>
+<marker refY="10" refX="0" orient="auto" viewBox="0 0 20 20" markerWidth="5" id="normal-right-arrow" markerHeight="10"  >
+<path d="M 0 0 L 20 10 L 0 20 z "  />
+</marker>
+<marker refY="10" refX="0" orient="auto" viewBox="0 0 20 20" markerWidth="7" id="large-right-arrow" markerHeight="14"  >
+<path d="M 0 0 L 20 10 L 0 20 z "  />
+</marker>
+</defs>
+<rect style="stroke:black; stroke-width:2; fill:none; " height="193" width="1283" y="0" x="0"  />
+<rect style="stroke:black; stroke-width:2; fill:black; " height="34" width="140" y="0" x="0"  />
+<text font-size="16" font-weight="bold" font-style="italic" y="23" x="5" font-family="Times New Roman" fill="white"  >
+HTTP Address</text>
+<line y1="116" x2="15" style="stroke:black; stroke-width:2; " x1="5" y2="116"  />
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="1268" y1="116" x1="1268"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="62" y="99" x="25"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="122" x="31" font-family="Courier New" fill="black"  >
+http</text>
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="15" y1="116" x1="15"  />
+<line y1="116" x2="97" style="stroke:black; stroke-width:2; " x1="87" y2="116"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="35" y="99" x="127"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="122" x="138" font-family="Courier New" fill="black"  >
+s</text>
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="117" y1="116" x1="117"  />
+<line y1="116" x2="172" style="stroke:black; stroke-width:2; " x1="162" y2="116"  />
+<path stroke="black" stroke-width="2" d="m 97,116 c 10,0 10,28 20,28 " fill="none"  />
+<path stroke="black" stroke-width="2" d="m 172,144 c 10,0 10,-28 20,-28 " fill="none"  />
+<line style="stroke:black; stroke-width:2; " y2="144" marker-end="url(#normal-right-arrow)" x2="144" y1="144" x1="144"  />
+<line y1="144" x2="172" style="stroke:black; stroke-width:2; " x1="117" y2="144"  />
+<line y1="116" x2="117" style="stroke:black; stroke-width:2; " x1="97" y2="116"  />
+<line y1="116" x2="192" style="stroke:black; stroke-width:2; " x1="172" y2="116"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="49" y="99" x="202"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="122" x="208" font-family="Courier New" fill="black"  >
+://</text>
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="192" y1="116" x1="192"  />
+<line y1="116" x2="261" style="stroke:black; stroke-width:2; " x1="251" y2="116"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " height="104" width="304" y="64" x="291"  />
+<rect style="stroke:black; stroke-width:2; fill:black; " height="34" width="136" y="64" x="291"  />
+<text font-size="16" font-weight="bold" font-style="italic" y="87" x="296" font-family="Times New Roman" fill="white"  >
+Phrase with at</text>
+<line y1="145" x2="306" style="stroke:black; stroke-width:2; " x1="296" y2="145"  />
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="580" y1="145" x1="580"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="121" x="328" font-family="Courier New" fill="black"  >
+1..</text>
+<rect style="stroke:black; stroke-width:2; fill:black; " rx="16" ry="16" height="35" width="62" y="128" x="316"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="151" x="321" font-family="Courier New" fill="white"  >
+a..z</text>
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="306" y1="145" x1="306"  />
+<line y1="145" x2="388" style="stroke:black; stroke-width:2; " x1="378" y2="145"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="35" y="128" x="398"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="151" x="409" font-family="Courier New" fill="black"  >
+:</text>
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="388" y1="145" x1="388"  />
+<line y1="145" x2="443" style="stroke:black; stroke-width:2; " x1="433" y2="145"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="121" x="465" font-family="Courier New" fill="black"  >
+1..</text>
+<rect style="stroke:black; stroke-width:2; fill:black; " rx="16" ry="16" height="35" width="62" y="128" x="453"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="151" x="458" font-family="Courier New" fill="white"  >
+a..z</text>
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="443" y1="145" x1="443"  />
+<line y1="145" x2="525" style="stroke:black; stroke-width:2; " x1="515" y2="145"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="35" y="128" x="535"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="151" x="546" font-family="Courier New" fill="black"  >
+@</text>
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="525" y1="145" x1="525"  />
+<line y1="145" x2="580" style="stroke:black; stroke-width:2; " x1="570" y2="145"  />
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="281" y1="116" x1="281"  />
+<line y1="116" x2="605" style="stroke:black; stroke-width:2; " x1="595" y2="116"  />
+<path stroke="black" stroke-width="2" d="m 261,116 c 10,0 10,62 20,62 " fill="none"  />
+<path stroke="black" stroke-width="2" d="m 605,178 c 10,0 10,-62 20,-62 " fill="none"  />
+<line style="stroke:black; stroke-width:2; " y2="178" marker-end="url(#normal-right-arrow)" x2="443" y1="178" x1="443"  />
+<line y1="178" x2="605" style="stroke:black; stroke-width:2; " x1="281" y2="178"  />
+<line y1="116" x2="281" style="stroke:black; stroke-width:2; " x1="261" y2="116"  />
+<line y1="116" x2="625" style="stroke:black; stroke-width:2; " x1="605" y2="116"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="57" x="699" font-family="Courier New" fill="black"  >
+1..</text>
+<rect style="stroke:black; stroke-width:2; fill:none; " height="104" width="167" y="64" x="635"  />
+<rect style="stroke:black; stroke-width:2; fill:black; " height="34" width="147" y="64" x="635"  />
+<text font-size="16" font-weight="bold" font-style="italic" y="87" x="640" font-family="Times New Roman" fill="white"  >
+Phrase with dot</text>
+<line y1="145" x2="650" style="stroke:black; stroke-width:2; " x1="640" y2="145"  />
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="787" y1="145" x1="787"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="121" x="672" font-family="Courier New" fill="black"  >
+1..</text>
+<rect style="stroke:black; stroke-width:2; fill:black; " rx="16" ry="16" height="35" width="62" y="128" x="660"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="151" x="665" font-family="Courier New" fill="white"  >
+a..z</text>
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="650" y1="145" x1="650"  />
+<line y1="145" x2="732" style="stroke:black; stroke-width:2; " x1="722" y2="145"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="35" y="128" x="742"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="151" x="753" font-family="Courier New" fill="black"  >
+.</text>
+<line style="stroke:black; stroke-width:2; " y2="145" marker-end="url(#normal-right-arrow)" x2="732" y1="145" x1="732"  />
+<line y1="145" x2="787" style="stroke:black; stroke-width:2; " x1="777" y2="145"  />
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="625" y1="116" x1="625"  />
+<line y1="116" x2="812" style="stroke:black; stroke-width:2; " x1="802" y2="116"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="92" x="834" font-family="Courier New" fill="black"  >
+2..</text>
+<rect style="stroke:black; stroke-width:2; fill:black; " rx="16" ry="16" height="35" width="62" y="99" x="822"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="122" x="827" font-family="Courier New" fill="white"  >
+a..z</text>
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="812" y1="116" x1="812"  />
+<line y1="116" x2="894" style="stroke:black; stroke-width:2; " x1="884" y2="116"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " height="79" width="219" y="77" x="924"  />
+<rect style="stroke:black; stroke-width:2; fill:black; " height="34" width="47" y="77" x="924"  />
+<text font-size="16" font-weight="bold" font-style="italic" y="100" x="929" font-family="Times New Roman" fill="white"  >
+End</text>
+<line y1="133" x2="939" style="stroke:black; stroke-width:2; " x1="929" y2="133"  />
+<line style="stroke:black; stroke-width:2; " y2="133" marker-end="url(#normal-right-arrow)" x2="1128" y1="133" x1="1128"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="35" y="116" x="949"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="139" x="960" font-family="Courier New" fill="black"  >
+:</text>
+<line style="stroke:black; stroke-width:2; " y2="133" marker-end="url(#normal-right-arrow)" x2="939" y1="133" x1="939"  />
+<line y1="133" x2="994" style="stroke:black; stroke-width:2; " x1="984" y2="133"  />
+<rect style="stroke:black; stroke-width:2; fill:black; " rx="16" ry="16" height="35" width="114" y="116" x="1004"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="139" x="1009" font-family="Courier New" fill="white"  >
+0..65535</text>
+<line style="stroke:black; stroke-width:2; " y2="133" marker-end="url(#normal-right-arrow)" x2="994" y1="133" x1="994"  />
+<line y1="133" x2="1128" style="stroke:black; stroke-width:2; " x1="1118" y2="133"  />
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="914" y1="116" x1="914"  />
+<line y1="116" x2="1153" style="stroke:black; stroke-width:2; " x1="1143" y2="116"  />
+<path stroke="black" stroke-width="2" d="m 894,116 c 10,0 10,50 20,50 " fill="none"  />
+<path stroke="black" stroke-width="2" d="m 1153,166 c 10,0 10,-50 20,-50 " fill="none"  />
+<line style="stroke:black; stroke-width:2; " y2="166" marker-end="url(#normal-right-arrow)" x2="1033" y1="166" x1="1033"  />
+<line y1="166" x2="1153" style="stroke:black; stroke-width:2; " x1="914" y2="166"  />
+<line y1="116" x2="914" style="stroke:black; stroke-width:2; " x1="894" y2="116"  />
+<line y1="116" x2="1173" style="stroke:black; stroke-width:2; " x1="1153" y2="116"  />
+<rect style="stroke:black; stroke-width:2; fill:none; " rx="16" ry="16" height="35" width="35" y="99" x="1203"  />
+<text font-size="16" font-weight="bold" font-style="roman" y="122" x="1214" font-family="Courier New" fill="black"  >
+/</text>
+<line style="stroke:black; stroke-width:2; " y2="116" marker-end="url(#normal-right-arrow)" x2="1193" y1="116" x1="1193"  />
+<line y1="116" x2="1248" style="stroke:black; stroke-width:2; " x1="1238" y2="116"  />
+<path stroke="black" stroke-width="2" d="m 1173,116 c 10,0 10,28 20,28 " fill="none"  />
+<path stroke="black" stroke-width="2" d="m 1248,144 c 10,0 10,-28 20,-28 " fill="none"  />
+<line style="stroke:black; stroke-width:2; " y2="144" marker-end="url(#normal-right-arrow)" x2="1220" y1="144" x1="1220"  />
+<line y1="144" x2="1248" style="stroke:black; stroke-width:2; " x1="1193" y2="144"  />
+<line y1="116" x2="1193" style="stroke:black; stroke-width:2; " x1="1173" y2="116"  />
+<line y1="116" x2="1268" style="stroke:black; stroke-width:2; " x1="1248" y2="116"  />
+</svg>
+

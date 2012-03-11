@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
+import cairosvg
 from sdgen.fixes import *
 from sdgen.views import *
 from sdgen.configuration import *
@@ -31,9 +33,13 @@ def as_svg(data, path=None, conf=None):
     if path != None:
         for image in result:
             file_name = os.path.join(path, image[0] + ".svg")
-            if os.path.exists(file_name):
-                raise Exception, "File already exists!"
+            #if os.path.exists(file_name):
+            #    raise Exception, "File already exists!"
             with open(file_name, 'w') as f:
                 f.write(image[1].encode('utf-8'))
+
+ 	    #command = 'python CairoSVG-0.3.1//cairosvg.py file_name -f png -o ' + os.path.join(path, image[0] + ".png"
+	    #os.system(command);
+	    cairosvg.main(file_name, 'png', 96, os.path.join(path, image[0] + ".png"))
 
     return result
