@@ -1,0 +1,32 @@
+======================
+Running an application
+======================
+   
+To get diagrams, an appriopriate Python file should be prepared:
+
+::
+
+	# -*- coding: utf-8 -*-
+	import sys
+	sys.path.append('.')
+	from sdgen.svg import *
+
+	#definition of diagram
+	#examples will appear in the next chapter
+	data = {
+	    ...
+	}
+
+	#a second parameter tells about directory
+	#to write all diagrams
+	result = as_svg(data, argv[1])
+	#printing resulting main image
+	#first index - number of image
+	#second index - 0 for name, 1 for data
+	print result[0][1].encode('utf-8')
+
+Then generating a image (or images) is executing a command:
+
+:literal:`python examples/inputfile.py directory > outputimage.svg`
+
+All images will be deployed into the specified directory and the main image into :literal:`outputimage.svg` file.
