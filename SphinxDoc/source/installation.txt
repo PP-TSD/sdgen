@@ -1,0 +1,14 @@
+============
+Installation
+============
+   
+Before start using Syntax Diagram Generator, user should assure that specific libraries and packages have been installed in a operation system:
+
+* setuptools (http://pypi.python.org/pypi/setuptools)
+* pysvg (http://pypi.python.org/pypi/pysvg/0.2.1)
+* CairoSVG (http://cairosvg.org/)
+* python-tk (http://wiki.python.org/moin/TkInter)
+
+After satisfy these assumptions, installation of Syntax Diagram Generator is executing the command:
+
+:literal:`python setup.py install`

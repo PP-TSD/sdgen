@@ -1,0 +1,5 @@
+=================
+Short description
+=================
+   
+Syntax Diagram Generator is an application written in Python which converts definition of diagram (in structured form) to SVG and PNG image(s). 

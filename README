@@ -11,8 +11,8 @@ Getting started
 
 First, execute some examples:
 
-    python examples/http.py [directory] > http.svg
-    python examples/isbn.py [directory] > isbn.svg
+    python examples/http.py > http.svg
+    python examples/isbn.py > isbn.svg
 
 Then, generate simple diagram for IP grammar:
 
@@ -28,8 +28,8 @@ Then, generate simple diagram for IP grammar:
       "name": "IP address"
     }
 
-    # Generate all images to directory given by argument
-    as_svg(data, argv[1])
+    # Generate all images to 'out' directory
+    as_svg(data, "out")
 
 Authors
 -------
