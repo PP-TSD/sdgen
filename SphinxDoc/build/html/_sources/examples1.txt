@@ -1,0 +1,74 @@
+========
+Examples
+========
+   
+Below there are some examples of using Syntax Diagram Generator to generate images.
+
+Terminal example
+================
+
+.. include:: examples/ex01.py
+   :literal:
+
+.. image:: images/Simple_A->B.png
+
+Sequence example
+================
+
+.. include:: examples/ex05.py
+   :literal:
+
+.. image:: images/Example_of_Sequence.png
+
+Return example
+==============
+
+.. include:: examples/ex07.py
+   :literal:
+
+.. image:: images/Example_of_Return.png
+
+Alternation example
+===================
+
+.. include:: examples/ex06.py
+   :literal:
+
+.. image:: images/Example_of_Alternation.png
+
+Detour example
+==============
+
+.. include:: examples/ex05.py
+   :literal:
+
+.. image:: images/Example_of_Detour_element.png
+
+Inverse Terminal example
+========================
+
+.. include:: examples/ex04.py
+   :literal:
+
+.. image:: images/Example_of_Inverse_Terminal.png
+
+Nonterminal example
+===================
+
+.. include:: examples/ex03.py
+   :literal:
+
+.. image:: images/Example_of_NonTerminal.png
+
+.. image:: images/Non_Terminal_C.png
+
+Nested groups example
+=====================
+
+.. include:: examples/ex09.py
+   :literal:
+
+.. image:: images/Example_of_nested_groups.png
+
+
+

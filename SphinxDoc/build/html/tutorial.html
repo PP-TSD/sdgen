@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial &mdash; Syntax Diagram Generator 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Syntax Diagram Generator 2.0 documentation" href="index.html" />
+    <link rel="prev" title="Intro" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Intro"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Syntax Diagram Generator 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><img src="_images/ExampleofReturn.svg" /><img alt="_images/ExampleofReturn.png" src="_images/ExampleofReturn.png" />
+<dl class="function">
+<dt id="io.open">
+<tt class="descclassname">io.</tt><tt class="descname">open</tt><big>(</big><big>)</big><a class="headerlink" href="#io.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open file and return a stream.  Raise IOError upon failure.</p>
+<p>file is either a text or byte string giving the name (and the path
+if the file isn&#8217;t in the current working directory) of the file to
+be opened or an integer file descriptor of the file to be
+wrapped. (If a file descriptor is given, it is closed when the
+returned I/O object is closed, unless closefd is set to False.)</p>
+<p>mode is an optional string that specifies the mode in which the file
+is opened. It defaults to &#8216;r&#8217; which means open for reading in text
+mode.  Other common values are &#8216;w&#8217; for writing (truncating the file if
+it already exists), and &#8216;a&#8217; for appending (which on some Unix systems,
+means that all writes append to the end of the file regardless of the
+current seek position). In text mode, if encoding is not specified the
+encoding used is platform dependent. (For reading and writing raw
+bytes use binary mode and leave encoding unspecified.) The available
+modes are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Character</td>
+<td>Meaning</td>
+</tr>
+<tr class="row-even"><td>&#8216;r&#8217;</td>
+<td>open for reading (default)</td>
+</tr>
+<tr class="row-odd"><td>&#8216;w&#8217;</td>
+<td>open for writing, truncating the file first</td>
+</tr>
+<tr class="row-even"><td>&#8216;a&#8217;</td>
+<td>open for writing, appending to the end of the file if it exists</td>
+</tr>
+<tr class="row-odd"><td>&#8216;b&#8217;</td>
+<td>binary mode</td>
+</tr>
+<tr class="row-even"><td>&#8216;t&#8217;</td>
+<td>text mode (default)</td>
+</tr>
+<tr class="row-odd"><td>&#8216;+&#8217;</td>
+<td>open a disk file for updating (reading and writing)</td>
+</tr>
+<tr class="row-even"><td>&#8216;U&#8217;</td>
+<td>universal newline mode (for backwards compatibility; unneeded
+for new code)</td>
+</tr>
+</tbody>
+</table>
+<p>The default mode is &#8216;rt&#8217; (open for reading text). For binary random
+access, the mode &#8216;w+b&#8217; opens and truncates the file to 0 bytes, while
+&#8216;r+b&#8217; opens the file without truncation.</p>
+<p>Python distinguishes between files opened in binary and text modes,
+even when the underlying operating system doesn&#8217;t. Files opened in
+binary mode (appending &#8216;b&#8217; to the mode argument) return contents as
+bytes objects without any decoding. In text mode (the default, or when
+&#8216;t&#8217; is appended to the mode argument), the contents of the file are
+returned as strings, the bytes having been first decoded using a
+platform-dependent encoding or using the specified encoding if given.</p>
+<p>buffering is an optional integer used to set the buffering policy.
+Pass 0 to switch buffering off (only allowed in binary mode), 1 to select
+line buffering (only usable in text mode), and an integer &gt; 1 to indicate
+the size of a fixed-size chunk buffer.  When no buffering argument is
+given, the default buffering policy works as follows:</p>
+<ul class="simple">
+<li>Binary files are buffered in fixed-size chunks; the size of the buffer
+is chosen using a heuristic trying to determine the underlying device&#8217;s
+&#8220;block size&#8221; and falling back on <cite>io.DEFAULT_BUFFER_SIZE</cite>.
+On many systems, the buffer will typically be 4096 or 8192 bytes long.</li>
+<li>&#8220;Interactive&#8221; text files (files for which isatty() returns True)
+use line buffering.  Other text files use the policy described above
+for binary files.</li>
+</ul>
+<p>encoding is the name of the encoding used to decode or encode the
+file. This should only be used in text mode. The default encoding is
+platform dependent, but any encoding supported by Python can be
+passed.  See the codecs module for the list of supported encodings.</p>
+<p>errors is an optional string that specifies how encoding errors are to
+be handled&#8212;this argument should not be used in binary mode. Pass
+&#8216;strict&#8217; to raise a ValueError exception if there is an encoding error
+(the default of None has the same effect), or pass &#8216;ignore&#8217; to ignore
+errors. (Note that ignoring encoding errors can lead to data loss.)
+See the documentation for codecs.register for a list of the permitted
+encoding error strings.</p>
+<p>newline controls how universal newlines works (it only applies to text
+mode). It can be None, &#8216;&#8217;, &#8216;n&#8217;, &#8216;r&#8217;, and &#8216;rn&#8217;.  It works as
+follows:</p>
+<ul class="simple">
+<li>On input, if newline is None, universal newlines mode is
+enabled. Lines in the input can end in &#8216;n&#8217;, &#8216;r&#8217;, or &#8216;rn&#8217;, and
+these are translated into &#8216;n&#8217; before being returned to the
+caller. If it is &#8216;&#8217;, universal newline mode is enabled, but line
+endings are returned to the caller untranslated. If it has any of
+the other legal values, input lines are only terminated by the given
+string, and the line ending is returned to the caller untranslated.</li>
+<li>On output, if newline is None, any &#8216;n&#8217; characters written are
+translated to the system default line separator, os.linesep. If
+newline is &#8216;&#8217;, no translation takes place. If newline is any of the
+other legal values, any &#8216;n&#8217; characters written are translated to
+the given string.</li>
+</ul>
+<p>If closefd is False, the underlying file descriptor will be kept open
+when the file is closed. This does not work when a file name is given
+and must be True in that case.</p>
+<p>open() returns a file object whose type depends on the mode, and
+through which the standard file operations such as reading and writing
+are performed. When open() is used to open a file in a text mode (&#8216;w&#8217;,
+&#8216;r&#8217;, &#8216;wt&#8217;, &#8216;rt&#8217;, etc.), it returns a TextIOWrapper. When used to open
+a file in a binary mode, the returned class varies: in read binary
+mode, it returns a BufferedReader; in write binary and append binary
+modes, it returns a BufferedWriter, and in read/write mode, it returns
+a BufferedRandom.</p>
+<p>It is also possible to use a string or bytearray as a file for both
+reading and writing. For strings StringIO can be used like a file
+opened in a text mode, and for bytes a BytesIO can be used like a file
+opened in a binary mode.</p>
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Intro</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/tutorial.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Intro"
+             >previous</a> |</li>
+        <li><a href="index.html">Syntax Diagram Generator 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Bartosz Alchimowicz.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
