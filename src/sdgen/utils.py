@@ -72,7 +72,7 @@ class PrettyText(Text):
             content = "Space"
             font.style = "italic"
             font.family = "Times New Roman"
-        content = content.replace(" ", u'\u02FD')
+        #content = content.replace(" ", u'\u02FD')
         Text.__init__(self, content, font, color)
 
 class Line(object):

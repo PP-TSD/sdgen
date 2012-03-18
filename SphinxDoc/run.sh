@@ -1,5 +1,4 @@
-cd SphinxDoc
-mkdir source/examples
+mkdir -p source/examples
 cp ../examples/*.py source/examples
 
 touch source/examples.txt
@@ -132,8 +131,4 @@ echo "
 .. image:: images/Example_of_nested_groups.png
 
 " >> source/examples.txt
-
-make $1
-rm -r source/examples
-rm source/examples.txt
 
