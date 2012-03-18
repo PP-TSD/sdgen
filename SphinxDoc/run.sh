@@ -1,3 +1,4 @@
+mkdir -p source/images
 mkdir -p source/examples
 cp ../examples/*.py source/examples
 
