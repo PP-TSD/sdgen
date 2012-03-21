@@ -36,9 +36,9 @@ class Text(object):
             font.style = 'roman'
         tk_font = tkFont.Font(family=font.family, size=font.size, weight=font.weight, slant=font.style)
         (w, h) = (tk_font.measure(content), tk_font.metrics("linespace"))
-	# That's the result of tk_font.measure function which gives
-	# too wide width value
-	w *= 0.825;
+        # That's the result of tk_font.measure function which gives
+        # too wide width value
+        w *= 0.825;
         return (w, h)
 
     def render(self, svg, x, y):
@@ -51,7 +51,7 @@ class Text(object):
         svg.addElement(t)
 
     def renderHeader(self, svg, x, y):
-	h1 = self.height * 0.71;
+        h1 = self.height * 0.71;
         t = text(self.content, x, y + h1 * 3 / 4)
         t.set_font_size(self.font.size)
         t.set_font_family(self.font.family)
@@ -61,10 +61,10 @@ class Text(object):
         svg.addElement(t)
 
     def getWidth(self):
-	return self.width;
+        return self.width;
 
     def getHeight(self):
-	return self.height;
+        return self.height;
 
 class PrettyText(Text):
     def __init__(self, content, font, color='black'):
