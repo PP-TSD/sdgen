@@ -32,7 +32,7 @@ def as_svg(data, path=None, conf=None):
 
     if path != None:
         for image in result:
-	    # replace spaces to underscores
+            # replace spaces to underscores
             fstr = image[0].replace(" ", "_")
 
             file_name = os.path.join(path, fstr + ".svg")

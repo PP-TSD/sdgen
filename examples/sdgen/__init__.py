@@ -1,1 +1,0 @@
-from sdgen.svg import *
