@@ -195,16 +195,16 @@ class Group(SimpleArrows):
         svg.addElement(frame)
 
         #header_box = shape_builder.createRect(x, y, self.header_width, self.header_height, fill='black', strokewidth=self.conf.group.thickness)
-	header_box = shape_builder.createRect(x, y, self.header_text.getWidth(), self.header_text.getHeight(), fill='black', strokewidth=self.conf.group.thickness)
+        header_box = shape_builder.createRect(x, y, self.header_text.getWidth(), self.header_text.getHeight(), fill='black', strokewidth=self.conf.group.thickness)
         svg.addElement(header_box)
 
         self.header_text.renderHeader(svg, x + self.header_padding, y + self.header_padding)
 
     def get_content_width(self):
-	return self.content_width
+        return self.content_width
 
     def get_content_height(self):
-	return self.content_height
+        return self.content_height
 
 class Sequence(object):
     def __init__(self, data, conf):

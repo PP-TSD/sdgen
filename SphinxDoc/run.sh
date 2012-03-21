@@ -1,4 +1,4 @@
-mkdir -p source/images
+mkdir -p source/_generated
 mkdir -p source/examples
 cp ../examples/*.py source/examples
 
@@ -19,12 +19,15 @@ echo "Terminal example
 
 " >> source/examples.txt
 
-python ../examples/ex01.py source/images > /dev/null
+cp ../examples/ex01.py ../src/
+python ../src/ex01.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Simple_A->B.png
+.. image:: _generated/Simple_A->B.png
 
 " >> source/examples.txt
+
+rm ../src/ex01.py
 
 echo "Sequence example
 ================
@@ -34,12 +37,15 @@ echo "Sequence example
 
 " >> source/examples.txt
 
-python ../examples/ex05.py source/images > /dev/null
+cp ../examples/ex05.py ../src/
+python ../src/ex05.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_Sequence.png
+.. image:: _generated/Example_of_Sequence.png
 
 " >> source/examples.txt
+
+rm ../src/ex05.py
 
 echo "Return example
 ==============
@@ -49,12 +55,15 @@ echo "Return example
 
 " >> source/examples.txt
 
-python ../examples/ex07.py source/images > /dev/null
+cp ../examples/ex07.py ../src/
+python ../src/ex07.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_Return.png
+.. image:: _generated/Example_of_Return.png
 
 " >> source/examples.txt
+
+rm ../src/ex07.py
 
 echo "Alternation example
 ===================
@@ -64,12 +73,15 @@ echo "Alternation example
 
 " >> source/examples.txt
 
-python ../examples/ex06.py source/images > /dev/null
+cp ../examples/ex06.py ../src/
+python ../src/ex06.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_Alternation.png
+.. image:: _generated/Example_of_Alternation.png
 
 " >> source/examples.txt
+
+rm ../src/ex06.py
 
 echo "Detour example
 ==============
@@ -79,12 +91,35 @@ echo "Detour example
 
 " >> source/examples.txt
 
-python ../examples/ex02.py source/images > /dev/null
+cp ../examples/ex02.py ../src/
+python ../src/ex02.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_Detour_element.png
+.. image:: _generated/Example_of_Detour_element.png
 
 " >> source/examples.txt
+
+rm ../src/ex02.py
+
+echo "Another detour example
+======================
+
+.. include:: examples/ex10.py
+   :literal:
+
+" >> source/examples.txt
+
+cp ../examples/ex10.py ../src/
+python ../src/ex10.py source/_generated > /dev/null
+
+echo "
+.. image:: _generated/Complex_detour_diagram.png
+
+.. image:: _generated/B_C.png
+
+" >> source/examples.txt
+
+rm ../src/ex10.py
 
 echo "Inverse Terminal example
 ========================
@@ -94,12 +129,15 @@ echo "Inverse Terminal example
 
 " >> source/examples.txt
 
-python ../examples/ex04.py source/images > /dev/null
+cp ../examples/ex04.py ../src/
+python ../src/ex04.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_Inverse_Terminal.png
+.. image:: _generated/Example_of_Inverse_Terminal.png
 
 " >> source/examples.txt
+
+rm ../src/ex04.py
 
 echo "Nonterminal example
 ===================
@@ -109,14 +147,17 @@ echo "Nonterminal example
 
 " >> source/examples.txt
 
-python ../examples/ex03.py source/images > /dev/null
+cp ../examples/ex03.py ../src/
+python ../src/ex03.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_NonTerminal.png
+.. image:: _generated/Example_of_NonTerminal.png
 
-.. image:: images/Non_Terminal_C.png
+.. image:: _generated/Non_Terminal_C.png
 
 " >> source/examples.txt
+
+rm ../src/ex03.py
 
 echo "Nested groups example
 =====================
@@ -126,10 +167,12 @@ echo "Nested groups example
 
 " >> source/examples.txt
 
-python ../examples/ex09.py source/images > /dev/null
+cp ../examples/ex09.py ../src/
+python ../src/ex09.py source/_generated > /dev/null
 
 echo "
-.. image:: images/Example_of_nested_groups.png
+.. image:: _generated/Example_of_nested_groups.png
 
 " >> source/examples.txt
 
+rm ../src/ex09.py
