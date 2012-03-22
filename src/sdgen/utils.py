@@ -36,9 +36,16 @@ class Text(object):
             font.style = 'roman'
         tk_font = tkFont.Font(family=font.family, size=font.size, weight=font.weight, slant=font.style)
         (w, h) = (tk_font.measure(content), tk_font.metrics("linespace"))
+
+        # this is a perfect workaround!
+        tk_comparing_font = tkFont.Font(family='Courier New', size=font.size, weight=font.weight, slant=font.style)
+        h1 = tk_comparing_font.metrics("linespace")
+        if h1 <> h:
+            h = h1
         # That's the result of tk_font.measure function which gives
         # too wide width value
-        w *= 0.825;
+        if w > 70:
+            w *= 0.825
         return (w, h)
 
     def render(self, svg, x, y):
