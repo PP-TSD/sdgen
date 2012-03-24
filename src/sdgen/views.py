@@ -129,7 +129,7 @@ class InvTerminal(SimpleArrows):
 
 class NonTerminal(SimpleArrows):
     def __init__(self, data, conf):
-        self.text = PrettyText(data["name"], Font(conf.nonterminal.font))
+        self.text = PrettyText(data["name"], Font(conf.nonterminal.font), Font(conf.default.font))
         self.padding = conf.nonterminal.padding
         self.data = data
         self.conf = conf
