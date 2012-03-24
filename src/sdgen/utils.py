@@ -25,23 +25,25 @@ class Font(object):
             self.weight = "normal"
 
 class Text(object):
-    def __init__(self, content, font, color='black'):
+    def __init__(self, content, font, color='black', default_font=None):
         self.content = content
         self.font = font
         self.color = color
-        (self.width, self.height) = self.calculate_text_size(self.content, self.font)
+        (self.width, self.height) = self.calculate_text_size(self.content, self.font, default_font)
 
-    def calculate_text_size(self, content, font):
+    def calculate_text_size(self, content, font, default_font=None):
         if font.style == 'normal':
             font.style = 'roman'
         tk_font = tkFont.Font(family=font.family, size=font.size, weight=font.weight, slant=font.style)
         (w, h) = (tk_font.measure(content), tk_font.metrics("linespace"))
 
-        # this is a perfect workaround!
-        tk_comparing_font = tkFont.Font(family='Courier New', size=font.size, weight=font.weight, slant=font.style)
-        h1 = tk_comparing_font.metrics("linespace")
-        if h1 <> h:
-            h = h1
+        if not default_font is None:
+           # this is a perfect workaround!
+           tk_comparing_font = tkFont.Font(family=default_font.family, size=font.size, weight=font.weight, slant=font.style)
+           h1 = tk_comparing_font.metrics("linespace")
+           if h1 <> h:
+               h = h1
+
         # That's the result of tk_font.measure function which gives
         # too wide width value
         if w > 70:
@@ -74,13 +76,13 @@ class Text(object):
         return self.height;
 
 class PrettyText(Text):
-    def __init__(self, content, font, color='black'):
+    def __init__(self, content, font, default_font=None, color='black'):
         if content == " ":
             content = "Space"
             font.style = "italic"
             font.family = "Times New Roman"
         #content = content.replace(" ", u'\u02FD')
-        Text.__init__(self, content, font, color)
+        Text.__init__(self, content, font, color, default_font)
 
 class Line(object):
     def __init__(self, x_diff, y_diff, conf, arrow=False):
