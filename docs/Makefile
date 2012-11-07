@@ -158,6 +158,6 @@ dep-examples:
 	./run.sh
 
 dep-clean:
-	rm -rf source/generated
+	rm -rf source/_generated
 	rm -rf source/examples
 	rm -f source/examples.txt

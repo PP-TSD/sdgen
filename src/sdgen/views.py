@@ -31,7 +31,7 @@ def create_diagram(data, conf):
     cc = ccEl()
     cc.addElement(dcformat)
     cc.addElement(dctype)
-    cc.addElement(dctitle)  
+    cc.addElement(dctitle)
     rdf = rdfEl()
     rdf.addElement(cc)
     m.addElement(rdf)
@@ -57,7 +57,7 @@ class QuantityAbove(object):
         self.width = self.content.width
         self.height = self.content.height + self.text.height
         self.connect_y = self.content.connect_y + self.text.height
-	
+
     def render(self, svg, x, y):
         self.text.render(svg, x + self.content.width / 2 - self.text.width / 2, y)
         self.content.render(svg, x, y + self.text.height)
@@ -80,7 +80,7 @@ class SimpleArrows(object):
 
 class Terminal(SimpleArrows):
     def __init__(self, data, conf):
-	assert data["value"] != ''
+        assert data["value"] != ''
         self.text = PrettyText(data["value"], Font(conf.terminal.font))
         self.padding = conf.terminal.padding
         self.content_width = self.text.width + 2 * self.padding
@@ -129,7 +129,7 @@ class InvTerminal(SimpleArrows):
 
 class NonTerminal(SimpleArrows):
     def __init__(self, data, conf):
-        self.text = PrettyText(data["name"], Font(conf.nonterminal.font))
+        self.text = PrettyText(data["name"], Font(conf.nonterminal.font), Font(conf.default.font))
         self.padding = conf.nonterminal.padding
         self.data = data
         self.conf = conf
@@ -195,16 +195,16 @@ class Group(SimpleArrows):
         svg.addElement(frame)
 
         #header_box = shape_builder.createRect(x, y, self.header_width, self.header_height, fill='black', strokewidth=self.conf.group.thickness)
-	header_box = shape_builder.createRect(x, y, self.header_text.getWidth(), self.header_text.getHeight(), fill='black', strokewidth=self.conf.group.thickness)
+        header_box = shape_builder.createRect(x, y, self.header_text.getWidth(), self.header_text.getHeight(), fill='black', strokewidth=self.conf.group.thickness)
         svg.addElement(header_box)
 
         self.header_text.renderHeader(svg, x + self.header_padding, y + self.header_padding)
 
     def get_content_width(self):
-	return self.content_width
+        return self.content_width
 
     def get_content_height(self):
-	return self.content_height
+        return self.content_height
 
 class Sequence(object):
     def __init__(self, data, conf):
@@ -286,7 +286,7 @@ class Detour(object):
         connect_y = y + self.connect_y
         bottom_y = y + self.content.height + 10
 
-	tmp = 0
+        tmp = 0
 
         if isinstance(self.content.children[0], QuantityAbove):
             t = self.content.height - self.content.children[0].content.height
