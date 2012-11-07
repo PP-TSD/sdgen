@@ -1,7 +1,10 @@
+#!/usr/bin/env
+
 # -*- coding: utf-8 -*-
+
 import sys
-sys.path.append('.')
-from sdgen.svg import *
+sys.path.append('../src/') # remove this if sdgen is accessible in your os
+from sdgen import *
 
 data = {
     "view": "Group",
@@ -9,7 +12,7 @@ data = {
     "children": [
         {"view": "Terminal", "value": "A"},
         {
-            "view": "Detour",
+            "view": u"Detour",
             "children": [
                 {
                     "children": [
