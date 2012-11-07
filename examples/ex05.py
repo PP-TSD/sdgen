@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python
 
 # -*- coding: utf-8 -*-
 
@@ -24,5 +24,5 @@ data = {
     ]
 }
 
-result = as_png(data, sys.argv[1])
+result = to_png(data, sys.argv[1])
 print result[0][1].encode('utf-8')

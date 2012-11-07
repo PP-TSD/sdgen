@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
+
 import sys
-sys.path.append('.')
-from sdgen.svg import *
+sys.path.append('../src/') # remove this if sdgen is accessible in your os
+from sdgen import *
 
 data = {
     "view": "Group",
@@ -32,5 +35,5 @@ data = {
     ]
 }
 
-result = as_png(data, sys.argv[1])
+result = to_png(data, sys.argv[1])
 print result[0][1].encode('utf-8')

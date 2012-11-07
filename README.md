@@ -11,24 +11,25 @@ Getting started
 
 First, execute some examples:
 
-    python examples/example1.py > example1.svg
+    python examples/ip.py > ip.svg
 
 Then, generate simple diagram for IP grammar:
 
-    import sdgen.svg
+    from sdgen import as_svg
+
     data = {
+        "view": "Group",
+        "name": "IP address",
         "children": [
             {"value": "0..255", "view": "Terminal"},
             {"value": "0..255", "view": "Terminal"},
             {"value": "0..255", "view": "Terminal"},
             {"value": "0..255", "view": "Terminal"}
-        ],
-        "view": "Group",
-        "name": "IP address"
+        ]
     }
 
-    # Generate all images to 'out' directory
-    as_svg(data, "out")
+    retval = to_svg(data)
+    print retval[0][1]
 
 Authors
 -------
@@ -38,4 +39,4 @@ Authors
 Licence
 -------
 
-Syntax Diagram Generator is released under the MIT license.
+Syntax Diagram Generator is released under the MIT license. See LICENSE file.

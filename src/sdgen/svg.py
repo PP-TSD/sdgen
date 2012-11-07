@@ -15,7 +15,7 @@ def find_non_terminals(data):
             result.extend(find_non_terminals(child))
     return result
 
-def as_png(data, path=None, conf=None):
+def to_png(data, path=None, conf=None):
     '''
     Generate a svg image(s). This function can generate multiple images.
     @param data: input data
@@ -41,13 +41,13 @@ def as_png(data, path=None, conf=None):
             with open(file_name, 'w') as f:
                 f.write(image[1].encode('utf-8'))
 
- 	    #command = 'python CairoSVG-0.3.1//cairosvg.py file_name -f png -o ' + os.path.join(path, image[0] + ".png"
-	    #os.system(command);
-	    cairosvg.main(file_name, 'png', 300, os.path.join(path, fstr + ".png"))
+            #command = 'python CairoSVG-0.3.1//cairosvg.py file_name -f png -o ' + os.path.join(path, image[0] + ".png"
+            #os.system(command);
+            cairosvg.main(file_name, 'png', 300, os.path.join(path, fstr + ".png"))
 
     return result
 
-def as_svg(data, path=None, conf=None):
+def to_svg(data, path=None, conf=None):
     '''
     Generate a svg image(s). This function can generate multiple images.
     @param data: input data
