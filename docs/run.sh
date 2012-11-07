@@ -1,15 +1,22 @@
-mkdir -p source/images
-mkdir -p source/examples
-cp ../examples/*.py source/examples
+#!/bin/bash
 
-touch source/examples.txt
+SOURCEDIR=source
+EXAMPLES=../examples
+
+GENERATED=${SOURCEDIR}/generated
+
+mkdir -p ${GENERATED}
+mkdir -p ${SOURCEDIR}/examples
+cp ${EXAMPLES}/*.py ${SOURCEDIR}/examples
+
+touch ${SOURCEDIR}/examples.txt
 echo "========
 Examples
 ========
-   
+
 Below there are some examples of using Syntax Diagram Generator to generate images.
 
-" > source/examples.txt
+" > ${SOURCEDIR}/examples.txt
 
 echo "Terminal example
 ================
@@ -17,14 +24,14 @@ echo "Terminal example
 .. include:: examples/ex01.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex01.py source/images > /dev/null
+python ${EXAMPLES}/ex01.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Simple_A->B.png
+.. image:: generated/Terminal_example.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Sequence example
 ================
@@ -32,14 +39,14 @@ echo "Sequence example
 .. include:: examples/ex05.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex05.py source/images > /dev/null
+python ${EXAMPLES}/ex05.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_Sequence.png
+.. image:: generated/Sequence_example.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Return example
 ==============
@@ -47,14 +54,14 @@ echo "Return example
 .. include:: examples/ex07.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex07.py source/images > /dev/null
+python ${EXAMPLES}/ex07.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_Return.png
+.. image:: generated/Return_example.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Alternation example
 ===================
@@ -62,14 +69,14 @@ echo "Alternation example
 .. include:: examples/ex06.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex06.py source/images > /dev/null
+python ${EXAMPLES}/ex06.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_Alternation.png
+.. image:: generated/Alternation_example.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Detour example
 ==============
@@ -77,14 +84,14 @@ echo "Detour example
 .. include:: examples/ex02.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex02.py source/images > /dev/null
+python ${EXAMPLES}/ex02.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_Detour_element.png
+.. image:: generated/Detour_example.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Inverse Terminal example
 ========================
@@ -92,14 +99,14 @@ echo "Inverse Terminal example
 .. include:: examples/ex04.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex04.py source/images > /dev/null
+python ${EXAMPLES}/ex04.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_Inverse_Terminal.png
+.. image:: generated/Inverse_example.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Nonterminal example
 ===================
@@ -107,16 +114,16 @@ echo "Nonterminal example
 .. include:: examples/ex03.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex03.py source/images > /dev/null
+python ${EXAMPLES}/ex03.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_NonTerminal.png
+.. image:: generated/Nonterminal_example.png
 
-.. image:: images/Non_Terminal_C.png
+.. image:: generated/Non_Terminal_C.png
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
 echo "Nested groups example
 =====================
@@ -124,12 +131,11 @@ echo "Nested groups example
 .. include:: examples/ex09.py
    :literal:
 
-" >> source/examples.txt
+" >> ${SOURCEDIR}/examples.txt
 
-python ../examples/ex09.py source/images > /dev/null
+python ${EXAMPLES}/ex09.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: images/Example_of_nested_groups.png
+.. image:: generated/Nested_groups_example.png
 
-" >> source/examples.txt
-
+" >> ${SOURCEDIR}/examples.txt
