@@ -12,7 +12,7 @@ data = {
     "children": [
         {"view": "Terminal", "value": "A"},
         {
-            "view": u"Detour",
+            "view": "Detour",
             "children": [
                 {
                     "children": [
