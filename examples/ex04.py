@@ -5,20 +5,20 @@ from sdgen.svg import *
 
 data = {
     "view": "Group",
-    "name": "Example of Inverse Terminal",
+    "name": "Inverse Terminal example",
     "children": [
         {"view": "Terminal", "value": "A"},
-	{
-		'children': [
-			{"view": "Terminal", "value": "B"},
-			{"view": "Terminal", "value": "C"},
-			{"view": "Terminal", "value": "D"}
-		],
-		"name": "Inv Terminal BCD",
-		"view": "InvTerminal"
-	},
-	{"view": "Terminal", "value": "E"}
-     ]
+        {
+            'children': [
+                {"view": "Terminal", "value": "B"},
+                {"view": "Terminal", "value": "C"},
+                {"view": "Terminal", "value": "D"}
+            ],
+            "name": "Inv Terminal BCD",
+            "view": "InvTerminal"
+        },
+        {"view": "Terminal", "value": "E"}
+    ]
 }
 
 result = as_svg(data, sys.argv[1])
