@@ -4,13 +4,13 @@ from sdgen.svg import *
 
 data = {
     "view": "Group",
-    "name": "Simple A->B",
+    "name": "Terminal example",
     "children": [
-	{"view": "Terminal", "value": "A"},
-	{"view": "Terminal", "value": "B"},
-	{"view": "Terminal", "value": "C"},
-	{"view": "Terminal", "value": " "}
-     ]
+        {"view": "Terminal", "value": "A"},
+        {"view": "Terminal", "value": "B"},
+        {"view": "Terminal", "value": "C"},
+        {"view": "Terminal", "value": " "}
+    ]
 }
 
 result = as_svg(data, sys.argv[1])

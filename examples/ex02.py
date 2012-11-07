@@ -5,24 +5,24 @@ from sdgen.svg import *
 
 data = {
     "view": "Group",
-    "name": "Example of Detour element",
+    "name": "Detour example",
     "children": [
         {"view": "Terminal", "value": "A"},
-	{
-		"view": "Detour",
-		"children": [
-			{
-		 		"children": [
-					{"view": "Terminal", "value": "B"}
-				],
-				"name": "Quantity Above B",
-				"view": "QuantityAbove",
-				"value": "0..2"
-			},
-		]
-	},
-	{"view": "Terminal", "value": "C"}
-     ]
+        {
+            "view": "Detour",
+            "children": [
+                {
+                    "children": [
+                        {"view": "Terminal", "value": "B"}
+                    ],
+                    "name": "Quantity Above B",
+                    "view": "QuantityAbove",
+                    "value": "0..2"
+                },
+            ]
+        },
+        {"view": "Terminal", "value": "C"}
+    ]
 }
 
 result = as_svg(data, sys.argv[1])

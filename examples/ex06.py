@@ -5,19 +5,19 @@ from sdgen.svg import *
 
 data = {
     "view": "Group",
-    "name": "Example of Alternation",
+    "name": "Alternation example",
     "children": [
         {"view": "Terminal", "value": "A"},
-	{
-		'children': [
-			{"view": "Terminal", "value": "B"},
-			{"view": "Terminal", "value": "C"}
-		],
-		"name": "Alternation BC",
-		"view": "Alternation"
-	},
-	{"view": "Terminal", "value": "D"}
-     ]
+        {
+            'children': [
+                 {"view": "Terminal", "value": "B"},
+                 {"view": "Terminal", "value": "C"}
+            ],
+            "name": "Alternation BC",
+            "view": "Alternation"
+        },
+        {"view": "Terminal", "value": "D"}
+    ]
 }
 
 result = as_svg(data, sys.argv[1])
