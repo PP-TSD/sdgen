@@ -143,8 +143,8 @@ def draw_marker(surface, node, position="mid"):
         next_point, markers = node.pending_markers.pop(0)
         angle1 = node.tangents.pop(0)
         angle2 = node.tangents.pop(0)
-	angle1 = 0.0
-	angle2 = 0.0
+        angle1 = 0.0
+        angle2 = 0.0
 
         for active_marker in markers:
             if not active_marker.startswith("#"):
@@ -176,15 +176,15 @@ def draw_marker(surface, node, position="mid"):
                 viewbox_width = viewbox[2] - viewbox[0]
                 viewbox_height = viewbox[3] - viewbox[1]
    
-		# This is a kind of magic (tralala)
- 		viewbox_height *= 2
+                # This is a kind of magic (tralala)
+                viewbox_height *= 2
 
-		# if direction is from right to left (not,
-		# as always, from left to right)...
-		# magic!
-		if node.has_key('x1') and node.has_key('x2'):
-			if float(node['x1']) > float(node['x2']):
-				scale_x *= -1
+                # if direction is from right to left (not,
+                # as always, from left to right)...
+                # magic!
+                if node.has_key('x1') and node.has_key('x2'):
+                    if float(node['x1']) > float(node['x2']):
+                        scale_x *= -1
 
                 surface.context.new_path()
                 for child in marker_node.children:

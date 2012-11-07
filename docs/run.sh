@@ -3,7 +3,7 @@
 SOURCEDIR=source
 EXAMPLES=../examples
 
-GENERATED=${SOURCEDIR}/generated
+GENERATED=${SOURCEDIR}/_generated
 
 mkdir -p ${GENERATED}
 mkdir -p ${SOURCEDIR}/examples
@@ -29,7 +29,7 @@ echo "Terminal example
 python ${EXAMPLES}/ex01.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Terminal_example.png
+.. image:: _generated/Terminal_Terminal_example.png
 
 " >> ${SOURCEDIR}/examples.txt
 
@@ -44,7 +44,7 @@ echo "Sequence example
 python ${EXAMPLES}/ex05.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Sequence_example.png
+.. image:: _generated/Sequence_example.png
 
 " >> ${SOURCEDIR}/examples.txt
 
@@ -59,7 +59,7 @@ echo "Return example
 python ${EXAMPLES}/ex07.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Return_example.png
+.. image:: _generated/Return_example.png
 
 " >> ${SOURCEDIR}/examples.txt
 
@@ -74,7 +74,7 @@ echo "Alternation example
 python ${EXAMPLES}/ex06.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Alternation_example.png
+.. image:: _generated/Alternation_example.png
 
 " >> ${SOURCEDIR}/examples.txt
 
@@ -89,9 +89,29 @@ echo "Detour example
 python ${EXAMPLES}/ex02.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Detour_example.png
+.. image:: _generated/Detour_example.png
 
 " >> ${SOURCEDIR}/examples.txt
+
+echo "Complex detour diagram
+======================
+
+.. include:: examples/ex10.py
+   :literal:
+
+" >> source/examples.txt
+
+cp ../examples/ex10.py ../src/
+python ../src/ex10.py source/_generated > /dev/null
+
+echo "
+.. image:: _generated/Complex_detour_diagram.png
+
+.. image:: _generated/B_C.png
+
+" >> source/examples.txt
+
+rm ../src/ex10.py
 
 echo "Inverse Terminal example
 ========================
@@ -104,7 +124,7 @@ echo "Inverse Terminal example
 python ${EXAMPLES}/ex04.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Inverse_example.png
+.. image:: _generated/Inverse_example.png
 
 " >> ${SOURCEDIR}/examples.txt
 
@@ -119,9 +139,9 @@ echo "Nonterminal example
 python ${EXAMPLES}/ex03.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Nonterminal_example.png
+.. image:: _generated/Nonterminal_example.png
 
-.. image:: generated/Non_Terminal_C.png
+.. image:: _generated/Non_Terminal_C.png
 
 " >> ${SOURCEDIR}/examples.txt
 
@@ -136,6 +156,6 @@ echo "Nested groups example
 python ${EXAMPLES}/ex09.py ${GENERATED} > /dev/null
 
 echo "
-.. image:: generated/Nested_groups_example.png
+.. image:: _generated/Nested_groups_example.png
 
 " >> ${SOURCEDIR}/examples.txt
