@@ -25,20 +25,29 @@ class Font(object):
             self.weight = "normal"
 
 class Text(object):
-    def __init__(self, content, font, color='black'):
+    def __init__(self, content, font, color='black', default_font=None):
         self.content = content
         self.font = font
         self.color = color
-        (self.width, self.height) = self.calculate_text_size(self.content, self.font)
+        (self.width, self.height) = self.calculate_text_size(self.content, self.font, default_font)
 
-    def calculate_text_size(self, content, font):
+    def calculate_text_size(self, content, font, default_font=None):
         if font.style == 'normal':
             font.style = 'roman'
         tk_font = tkFont.Font(family=font.family, size=font.size, weight=font.weight, slant=font.style)
         (w, h) = (tk_font.measure(content), tk_font.metrics("linespace"))
-	# That's the result of tk_font.measure function which gives
-	# too wide width value
-	w *= 0.825;
+
+        if not default_font is None:
+           # this is a perfect workaround!
+           tk_comparing_font = tkFont.Font(family=default_font.family, size=font.size, weight=font.weight, slant=font.style)
+           h1 = tk_comparing_font.metrics("linespace")
+           if h1 <> h:
+               h = h1
+
+        # That's the result of tk_font.measure function which gives
+        # too wide width value
+        if w > 70:
+            w *= 0.825
         return (w, h)
 
     def render(self, svg, x, y):
@@ -51,7 +60,7 @@ class Text(object):
         svg.addElement(t)
 
     def renderHeader(self, svg, x, y):
-	h1 = self.height * 0.71;
+        h1 = self.height * 0.71;
         t = text(self.content, x, y + h1 * 3 / 4)
         t.set_font_size(self.font.size)
         t.set_font_family(self.font.family)
@@ -61,19 +70,19 @@ class Text(object):
         svg.addElement(t)
 
     def getWidth(self):
-	return self.width;
+        return self.width;
 
     def getHeight(self):
-	return self.height;
+        return self.height;
 
 class PrettyText(Text):
-    def __init__(self, content, font, color='black'):
+    def __init__(self, content, font, default_font=None, color='black'):
         if content == " ":
             content = "Space"
             font.style = "italic"
             font.family = "Times New Roman"
         #content = content.replace(" ", u'\u02FD')
-        Text.__init__(self, content, font, color)
+        Text.__init__(self, content, font, color, default_font)
 
 class Line(object):
     def __init__(self, x_diff, y_diff, conf, arrow=False):
@@ -112,7 +121,7 @@ class Arrow(g):
         self._attributes['refX'] = '0'
         self._attributes['refY'] = '10'
         self._attributes['orient'] = 'auto'
-	self._attributes['markerUnits'] = 'strokeWidth'
+        self._attributes['markerUnits'] = 'strokeWidth'
         self._attributes['markerWidth'] = width
         self._attributes['markerHeight'] = 2 * width
         self.addElement(path("M 0 0 L 20 10 L 0 20 z"))
