@@ -1,2 +1,14 @@
-*.swp
-*.pyc
+*.py[co]
+
+.*
+!.gitignore
+
+*.egg
+*.egg-info
+*.png
+dist
+build
+
+*.svg
+
+/docs/build
