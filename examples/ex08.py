@@ -8,7 +8,7 @@ from sdgen import *
 
 data = {
     "view": "Group",
-    "name": "Example of QuantityAbove",
+    "name": "QuantityAbove example",
     "children": [
         {"view": "Terminal", "value": "A"},
         {
@@ -23,5 +23,6 @@ data = {
     ]
 }
 
-result = to_png(data, sys.argv[1])
-print result[0][1].encode('utf-8')
+if __name__ == '__main__':
+    result = to_png(data, sys.argv[1])
+    print result[0][1].encode('utf-8')

@@ -14,5 +14,4 @@ Contents:
    _static/intro.txt
    _static/installation.txt
    _static/running.txt
-   examples.txt
-
+   _generated/examples.txt

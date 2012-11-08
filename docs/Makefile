@@ -155,9 +155,7 @@ doctest: dep-examples
 #####################
 
 dep-examples: 
-	./run.sh
+	python examples.py
 
 dep-clean:
-	rm -rf source/_generated
-	rm -rf source/examples
-	rm -f source/examples.txt
+	rm -rf source/_generated/*

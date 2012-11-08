@@ -17,5 +17,6 @@ data = {
     ]
 }
 
-retval = as_svg(data)
-print retval[0][1].encode('utf-8')
+if __name__ == '__main__':
+    retval = as_svg(data)
+    print retval[0][1].encode('utf-8')
