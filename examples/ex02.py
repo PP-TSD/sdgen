@@ -29,5 +29,6 @@ data = {
 }
 
 if __name__ == '__main__':
-    result = to_png(data, sys.argv[1])
+    path = sys.argv[1] if len(sys.argv) == 2 else "."
+    result = to_png(data, path)
     print result[0][1].encode('utf-8')
