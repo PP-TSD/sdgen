@@ -40,3 +40,7 @@ Licence
 -------
 
 Syntax Diagram Generator is released under the MIT license. See LICENSE file.
+
+Syntax Diagram Generator includes the following libraries which are released under their own license:
+- pysvg (BSD, see: http://http://codeboje.de/pysvg/)
+- cairosvg (LGPL version 3, see: http://cairosvg.org/)
