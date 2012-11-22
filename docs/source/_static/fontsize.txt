@@ -1,0 +1,130 @@
+=======================
+Troubles with font size
+=======================
+
+There is a problem with measuring the size of a text.
+Currently TK with additional scaling is used for that.
+This library uses *point* units for measuring thus obtained results may vary between OSs (only Linux was used for testing).
+Moreover, there is no checking against resolution of svg files
+(if such a thing exists).
+
+TK - applied solution
+=====================
+
+Code
+----
+
+::
+
+    import Tkinter as tk
+    import tkFont
+
+    tk.Tk()
+
+    tk_font = tkFont.Font(family=font.family, size=font.size, weight=font.weight, slant=font.style)
+    print tk_font.actual()
+    (w, h) = (tk_font.measure(content), tk_font.metrics("linespace"))
+
+Notes
+-----
+
+Get platform:
+
+::
+
+    >>> root.tk.call('tk', 'windowingsystem')
+    'x11'
+
+Get scaling
+
+::
+
+    >>> root.tk.call('tk', 'scaling')
+    1.557088122605364
+
+Change scaling:
+
+::
+
+    >>> root.tk.call('tk', 'scaling', '-displayof', '.', 1.55) # it doesnot affect fonts
+
+Get default root:
+
+::
+
+    root = tk._default_root
+
+API for Font's class init:
+::
+
+    def __init__(self, root=None, font=None, name=None, exists=False, **options):
+
+
+Get list of available fonts in TK (NOT fonts available in OS!):
+::
+
+    tk._default_root.tk.call("font", "names")
+
+
+Get font that is available in TK:
+::
+
+    tk_font = tkFont.Font(name = "Times New Roman", exists = True)
+
+
+Get font's properties:
+::
+
+    tk_font.measure == tk_font._call("font", "measure", tk_font.name, "Non Terminal C")
+
+
+::
+
+    >>> tk_font = tkFont.Font(family="times", size="16", weight="bold", slant="italic")
+    >>> tk_font.actual()
+    {'family': 'Nimbus Roman No9 L', 'weight': 'bold', 'slant': 'italic', 'overstrike': 0, 'underline': 0, 'size': 16}
+    >>> tk_font.config()
+    {'family': 'times', 'weight': 'bold', 'slant': 'italic', 'overstrike': 0, 'underline': 0, 'size': 16}
+    >>> (tk_font.measure("Non Terminal C"), tk_font.metrics("linespace"))
+    (144, 28)
+
+::
+
+    >>> tk_font = tkFont.Font(family="Times New Roman", size=16, weight="bold", slant="italic")
+    >>> tk_font.actual()
+    {'family': 'Times New Roman', 'weight': 'bold', 'slant': 'italic', 'overstrike': 0, 'underline': 0, 'size': 16}
+    >>> (tk_font.measure("Non Terminal C"), tk_font.metrics("linespace"))
+    (144, 24)
+
+::
+
+    >>> tk_font = tkFont.Font(font=("Times New Roman", 16, "bold italic"), exist = True)
+    >>> tk_font.actual()
+    {'family': 'Times New Roman', 'weight': 'bold', 'slant': 'italic', 'overstrike': 0, 'underline': 0, 'size': 16}
+    >>> (tk_font.measure("Non Terminal C"), tk_font.metrics("linespace"))
+    (144, 24)
+
+
+PyGame
+======
+
+::
+
+    import pygame as pg
+
+    pg.init()
+
+    pg_font = pg.font.SysFont('Times New Roman', 16, bold=True, italic=True)
+    text = pg_font.render(content, 0, (10, 10, 10))
+    print text.get_rect()
+    w = text.get_rect().w
+    h = text.get_rect().h
+
+PIL
+===
+
+::
+
+    import ImageFont, ImageDraw, Image
+    font = ImageFont.truetype("/path/to/trutype/Times_New_Roman_Bold_Italic.ttf", 16)
+    w, h = font.getsize(content)

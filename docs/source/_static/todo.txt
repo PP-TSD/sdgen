@@ -3,4 +3,6 @@ TODO
 
 * svg files are not necessary for to_png
 * problems with text width (function calculate_text_size in sdgen.utils)
-* propably generation of examples won't work in Windows (/ are hardcoded)
+* or optimize usage of tk
+* probably generation of examples won't work in Windows (/ are hardcoded)
+* depend on cairosvg (remove it from src)

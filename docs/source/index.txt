@@ -15,4 +15,5 @@ Contents:
    _static/installation.txt
    _static/running.txt
    _static/todo.txt
+   _static/fontsize.txt
    _generated/examples.txt
