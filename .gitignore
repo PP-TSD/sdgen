@@ -6,6 +6,8 @@
 *.egg
 *.egg-info
 *.png
+*.sublime-project
+*.sublime-workspace
 dist
 build
 

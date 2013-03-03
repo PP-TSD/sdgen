@@ -4,7 +4,7 @@
 
 import sys
 sys.path.append('../src/') # remove this if sdgen is accessible in your os
-from sdgen import as_svg
+from sdgen import to_svg
 
 data = {
     "view": "Group",
@@ -18,5 +18,5 @@ data = {
 }
 
 if __name__ == '__main__':
-    retval = as_svg(data)
+    retval = to_svg(data)
     print retval[0][1].encode('utf-8')
