@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
-from pysvg.builders import *
-from sdgen.utils import *
+# from pysvg.builders import svg, dctitleEl, dctypeEl, dcformatEl, ccEl, rdfEl, \
+#     metadata, sodipodiNamedViewEl, defs, ShapeBuilder, path
+
+from pysvg.structure import svg, metadata, defs, dctypeEl, dctitleEl, \
+    dcformatEl, sodipodiNamedViewEl, ccEl, rdfEl
+from pysvg.builders import ShapeBuilder
+from pysvg.shape import path
+
+from .utils import Font, Text, PrettyText, Line, Arrow
 
 class ElementCreator(object):
     def __init__(self):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pysvg.core import *
+from pysvg.core import BaseElement
 
 def getXML(self):
     """

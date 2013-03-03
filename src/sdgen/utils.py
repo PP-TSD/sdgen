@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
-from pysvg.builders import *
-from pysvg.structure import *
-from pysvg.text import *
-from pysvg.shape import *
+# from pysvg.builders import *
+# from pysvg.structure import *
+# from pysvg.text import *
+# from pysvg.shape import *
 import Tkinter as tk
 import tkFont
+
+from pysvg.text import text
+from pysvg.builders import ShapeBuilder
+from pysvg.core import BaseElement
+from pysvg.structure import g
+from pysvg.shape import path
 
 # required for calculating size of the text
 tk.Tk()

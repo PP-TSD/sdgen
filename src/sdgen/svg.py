@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-import sys
+
 import cairosvg
-from sdgen.fixes import *
-from sdgen.views import *
-from sdgen.configuration import *
+
+from .views import create_diagram
+from .configuration import Configuration
 
 def find_non_terminals(data):
     result = []
