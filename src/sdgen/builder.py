@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class Builder(object):
     """
     Abstract builder for syntax diagrams.
