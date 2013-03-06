@@ -1,1 +1,1 @@
-from sdgen.svg import to_svg, to_png
+from .svg import to_svg, to_png
