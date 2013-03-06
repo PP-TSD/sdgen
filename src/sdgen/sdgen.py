@@ -48,5 +48,5 @@ def main():
         else:
             os.mkdir(args.output)
 
-    builder = builders[args.format]
+    builder = builders[args.format]()
     builder.generate(data=data, path=args.output, config=config)
