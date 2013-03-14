@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class Field(object):
+class View(object):
     """
     Base class for all fields in sdgen.
     """
