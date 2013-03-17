@@ -18,13 +18,15 @@ class Character(Field):
         """Get font with given parameters.
         """
         font_type = font_type.lower()
-        for directory in config['fonts']['directories']:
+        for directory in config.get('fonts', 'directories').split():
             for (dirpath, dirnames, filenames) in os.walk(directory):
                 files = [name for name in filenames
                          if font_type in name.lower()]
                 #TODO: bold, italic, normal
                 if files:
-                    path = os.path.join((dirpath, dirnames, files[0]))
+                    path = os.path.join(dirpath,
+                                        dirnames[0] if dirnames else '',
+                                        files[0])
                     return ImageFont.truetype(path, size)
         return ImageFont.load_default()
     
@@ -44,7 +46,7 @@ class Character(Field):
         """
         font = self._get_font(font_type, size, typeface)
         image_size = font.getsize(text)
-        image = Image('RGBA', image_size)
+        image = Image.new('RGBA', image_size)
         draw = ImageDraw.Draw(image)
         draw.text((0, 0), text, font=font)
         return image
