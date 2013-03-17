@@ -24,8 +24,6 @@ import os
 import sys
 import optparse
 
-import pdb;pdb.set_trace()
-
 from . import surface
 
 
