@@ -8,5 +8,5 @@ dir_up = lambda path, level: (path if not level else
 
 config = ConfigParser.SafeConfigParser()
 # ./src/sdgen/config.py -> ./var/config.ini
-file_path = os.path.join(dir_up(__file__, 2), 'var', 'config.ini')
+file_path = os.path.join(dir_up(os.path.abspath(__file__), 3), 'var', 'config.ini')
 config.read(file_path)

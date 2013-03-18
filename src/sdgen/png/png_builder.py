@@ -5,7 +5,7 @@ class PNGBuilder(Builder):
     """
     PNG syntax diagrams generator.
     """
-    def generate(self, *args, *kwargs):
+    def generate(self, *args, **kwargs):
         """
         Generate png image with given data and configuration.
 
@@ -20,3 +20,4 @@ class PNGBuilder(Builder):
         Returns:
             Image. Rendered image.
         """
+        super(PNGBuilder, self).generate(*args, **kwargs)

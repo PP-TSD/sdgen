@@ -15,11 +15,5 @@ class View(object):
     def add_child(self, child):
         self.subfields.append(child)
 
-    def get_png(self):
-        """
-        Implements png generation with all subfields of this field.
-        """
-        raise NotImplementedError()
-
-    def get_svg(self):
+    def get_fields_representation(self):
         raise NotImplementedError()
