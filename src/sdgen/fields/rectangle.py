@@ -27,6 +27,6 @@ class Rectangle(Field):
         image = Image.new('RGBA', self.size)
         draw = ImageDraw.Draw(image)
         fill = self.fill if not self.fill=="transparent" else (0, 0, 0, 0)
-        draw.rectangle((0, 0, self.size(0) - 1, self.size(1) - 1),
+        draw.rectangle((0, 0, self.size[0] - 1, self.size[1] - 1),
                        fill=fill, outline=self.outline)
         return ImageWrapper(image, *self.size)
