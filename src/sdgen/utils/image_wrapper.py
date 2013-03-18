@@ -23,19 +23,18 @@ class ImageWrapper(object):
         self.image = image
         self.width = width
         self.height = height
-        if handlers is not None:
-            self.handlers = handlers
-        else:
-            self.handlers = {
-                             "left": (0, height/2),
-                             "right": (width, height/2),
-                             "top": (width/2, 0),
-                             "bottom": (width/2, height),
-                             "left-top": (0, 0),
-                             "left-bottom": (0, height),
-                             "right-top": (width, 0),
-                             "right-bottom": (width, height),
-                            }
+        self.handlers = {
+                         "left": (0, height/2),
+                         "right": (width, height/2),
+                         "top": (width/2, 0),
+                         "bottom": (width/2, height),
+                         "left-top": (0, 0),
+                         "left-bottom": (0, height),
+                         "right-top": (width, 0),
+                         "right-bottom": (width, height),
+                        }
+        if isinstance(handlers, dict):
+            self.handlers.update(handlers)
 
     def get_size(self):
         """
