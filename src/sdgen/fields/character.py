@@ -7,6 +7,7 @@ import ImageDraw
 
 from _field import Field
 from sdgen.config import config
+from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Character(Field):
@@ -47,4 +48,4 @@ class Character(Field):
         image = Image.new('RGBA', image_size)
         draw = ImageDraw.Draw(image)
         draw.text((0, 0), self.text, font=font)
-        return image
+        return ImageWrapper(image, *self.size)
