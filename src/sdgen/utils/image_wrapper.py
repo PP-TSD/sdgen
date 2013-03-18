@@ -65,3 +65,12 @@ class ImageWrapper(object):
         if not handler in self.handlers:
             raise KeyError, "Invalid handler name."
         return self.handlers[handler]
+    
+    def get_image(self):
+        """
+        Get wrapper's content.
+        
+        Returns:
+            object: return wrapper's content.
+        """
+        return self.image
