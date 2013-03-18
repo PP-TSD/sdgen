@@ -11,7 +11,8 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Character(Field):
-    def __init__(self, text, font_type='Arial', size=10, typeface='normal'):
+    def __init__(self, text, font_type='Arial', size=10, typeface='normal',
+                 color="black", background="transparent"):
         """Render text (without paddings).
     
         Args:
@@ -21,11 +22,15 @@ class Character(Field):
             font_type (str): Name of font type, ex. 'arial'.
             size (int): Font size in points.
             typeface (str): Font typeface, ex. 'bold italic'.
+            color (str): Font color.
+            background (str): Background color.
         """
         self.text = text
         self.font_type = font_type
         self.size = size
         self.typeface = typeface
+        self.color = color
+        self.background = background
 
     def _get_font(self, font_type, size, typeface):
         """Get font with given parameters."""
@@ -45,7 +50,9 @@ class Character(Field):
     def to_png(self):
         font = self._get_font(self.font_type, self.size, self.typeface)
         image_size = font.getsize(self.text)
-        image = Image.new('RGBA', image_size)
+        background = (self.background if not self.background=="transparent"
+                      else (0, 0, 0, 0))
+        image = Image.new('RGBA', image_size, background)
         draw = ImageDraw.Draw(image)
-        draw.text((0, 0), self.text, font=font)
-        return ImageWrapper(image, *self.size)
+        draw.text((0, 0), self.text, font=font, fill=self.color)
+        return ImageWrapper(image, *image_size)
