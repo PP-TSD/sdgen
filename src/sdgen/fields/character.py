@@ -20,9 +20,6 @@ class Character(Field):
             font_type (str): Name of font type, ex. 'arial'.
             size (int): Font size in points.
             typeface (str): Font typeface, ex. 'bold italic'.
-    
-        Returns:
-            Image. Rendered image.
         """
         self.text = text
         self.font_type = font_type
