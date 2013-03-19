@@ -12,8 +12,8 @@ class Terminal(View):
         text = Character(self.value).to_png()
         border = RoundedRectangle((text.get_size()[0] + self.text_x_offset * 2, text.get_size()[1] + self.text_y_offset * 2)).to_png()
 
-        terminal = set([(text, (self.text_x_offset, self.text_y_offset)),
-                        (border, (0, 0))
-                        ])
+        text.set_position(self.text_x_offset, self.text_y_offset)
+        border.set_position(0, 0)
 
+        terminal = set([text, border])
         return terminal

@@ -3,8 +3,8 @@ import argparse
 import json
 import os
 
-from .builder import Builder as SVGBuilder # change to proper import when svg package will be modified
-from .png.png_builder import PNGBuilder
+from sdgen.builder import Builder as SVGBuilder  # change to proper import when svg package will be modified
+from sdgen.png.png_builder import PNGBuilder
 
 
 def main():

@@ -18,9 +18,9 @@ class SimpleArrow(Arrow):
 
         image = Image.new('RGBA', self.size)
         draw = ImageDraw.Draw(image)
-        
+
         end_x, end_y = self.end
-        draw.line([self.start, self.end], width=self.thickness, color=self.fill)
+        draw.line([self.start, self.end], width=self.thickness, fill=self.fill)
         draw.polygon([self.end, (end_x - arrow, end_y - arrow/2),
                       (end_x - arrow, end_y + arrow/2)], fill=self.fill,
                      outline=self.fill)
