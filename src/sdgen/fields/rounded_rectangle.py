@@ -26,6 +26,7 @@ class RoundedRectangle(Field):
         """
         self.size = (max(size), size[1])
         self.thickness = thickness
+        assert self.thickness <= min(self.size)/2, 'Thickness is too large'
         self.fill = fill
         self.outline = outline
 

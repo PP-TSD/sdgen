@@ -3,16 +3,11 @@ from itertools import tee, izip
 
 from ._view import View
 from .connection import Connection
+from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.fields.character import Character
 from sdgen.fields.rectangle import Rectangle
 from sdgen.fields.simple_arrow import SimpleArrow
-
-
-def pairwise(iterable):
-    "s -> (s0,s1), (s1,s2), (s2, s3), ..."
-    a, b = tee(iterable)
-    next(b, None)
-    return izip(a, b)
+from sdgen.fields.flattener import Flattener
 
 
 class Group(View):
@@ -25,7 +20,7 @@ class Group(View):
         arrow.set_position(x_offset, y_offset)
         return arrow
 
-    def get_representation(self):
+    def render(self):
 #        fields = []
 #        max_y = 0
 #
@@ -71,7 +66,7 @@ class Group(View):
 #        layer.append(border)
 
         # render ImageWrappers of fields
-        fields = [subfield.render for subfield in self.subfields]
+        fields = [subfield.render() for subfield in self.subfields]
 
         connections = []
         # add connections
@@ -80,12 +75,26 @@ class Group(View):
                 connection = Connection(fields[i], fields[i+1])
                 connections.append((connection, i+1))
 
-        for connection, position in connections:
+        padding = 10
+        
+        for connection, position in reversed(connections):
             fields.insert(position, connection.render())
 
-        header = self.render(Character(self.name))
+        header = self.render_image(Character(self.name, color="white", background="black"))
         header_height = header.height + self.border_size
+        
+        max_height = max(map(lambda f: f.get_height(), fields))
+        
+        def next_field():
+            x = padding
+            for field in fields:
+                yield field, (x, header_height + padding + (max_height - field.get_height())/2)
+                x += field.get_width()
+        
+        width = sum(map(lambda f: f.get_width(), fields)) + 2*padding
+        height = max_height + header_height + 2*padding
 
-        fields = [subfield.render() for subfield in self.subfields]
+        background = self.render_image(Rectangle((width, height)))
+        field = Flattener(background, [(header, (0,0)),] + list(next_field()))
 
-        return layer
+        return self.render_image(field)

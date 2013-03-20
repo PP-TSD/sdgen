@@ -15,9 +15,9 @@ class Arrow(Field):
             marker (str): size of arrowhead (normal|large|small)
             fill (str): color (default black).
         """
-        self.end = (max(size[0], 0), max(size[0], 0))
-        self.start = (max(-size[0], 0), max(-size[1], 0))
-        self.size = size
+        self.size = [max(size[0], -size[0], 1), max(size[1], -size[1], 1)]
+        self.end = [max(size[0], 1), max(size[1], 1)]
+        self.start = [max(-size[0], 1), max(-size[1], 1)]
         self.thickness = thickness
         self.marker = marker
         self.fill = fill
