@@ -3,8 +3,8 @@ import ConfigParser
 import os
 import json
 
-config = None
-render_config = {}
+config = None  # application config from .ini file
+render_config = {}  # render config from .json file
 
 
 def dir_up(path, level):
@@ -18,6 +18,20 @@ def file_path(depth, names):
     return os.path.join(dir_up(os.path.abspath(__file__), depth), *names)
 
 
+def safeget(d, path):
+    """
+    Returns value from dict d with keys from path, separeted by dot.
+    If key-path is not in dict, returns None.
+    """
+    tmp = d
+    for key in path.split("."):
+        if isinstance(tmp, dict) and key in tmp:
+            tmp = tmp[key]
+        else:
+            return None
+    return tmp
+
+
 def load_config():
     global config
 
@@ -25,20 +39,19 @@ def load_config():
         config = ConfigParser.SafeConfigParser()
         # ./src/sdgen/config.py -> ./var/config.ini
         config_path = ('var', 'config.ini')
+        # try to load from two different levels
         config.read(file_path(2, config_path))
         config.read(file_path(3, config_path))
 
 
-def load_render_config(data=None):
+def load_render_config(data):
+    """
+    Loads render config to render_config variable
+    """
     global render_config
 
     if not render_config:
-        default_config_path = ('var', 'render_config.json')
-        if data:
-            json_data = data
-        else:
-            json_data = open(file_path(3, default_config_path))
-        render_config = json.load(json_data)
+        render_config.update(json.load(data))
 
 
 def load(render_config_path):
@@ -46,5 +59,6 @@ def load(render_config_path):
     load_render_config(render_config_path)
 
 
+# try to load application config by default
 if not config:
     load_config()

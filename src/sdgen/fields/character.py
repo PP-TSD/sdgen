@@ -11,8 +11,10 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Character(Field):
-    def __init__(self, text, font_type='Arial', size=20, typeface='normal',
-                 color="black", background="transparent"):
+    render_config_key = "character"
+
+    def __init__(self, text, font_type=None, size=None, typeface=None,
+                 color=None, background=None, *args, **kwargs):
         """Render text (without paddings).
 
         Args:
@@ -25,12 +27,13 @@ class Character(Field):
             color (str): Font color.
             background (str): Background color.
         """
+        super(Character, self).__init__(*args, **kwargs)
         self.text = text
-        self.font_type = font_type
-        self.size = size
-        self.typeface = typeface
-        self.color = color
-        self.background = background
+        self.font_type = font_type or self.from_render_config("font.name") or "Arial"
+        self.size = size or self.from_render_config("font.size") or 12
+        self.typeface = typeface or self.from_render_config("font.typeface") or "normal"
+        self.color = color or self.from_render_config("font.color") or "black"
+        self.background = background or self.from_render_config("background") or "transparent"
 
     def _get_font(self, font_type, size, typeface):
         """Get font with given parameters."""
