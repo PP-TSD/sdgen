@@ -75,22 +75,24 @@ class Group(View):
                 connection = Connection(fields[i], fields[i+1])
                 connections.append((connection, i+1))
 
+        padding = 10
+        
         for connection, position in reversed(connections):
             fields.insert(position, connection.render())
-        
-        def next_field():
-            x = 10
-            for field in fields:
-                yield field, (x, 10)
-                x += field.get_size()[0]
 
-        header = self.render_image(Character(self.name))
+        header = self.render_image(Character(self.name, color="white", background="black"))
         header_height = header.height + self.border_size
         
-        width = sum(map(lambda f: f.get_size()[0], fields)) + 10
-        height = max(map(lambda f: f.get_size()[1], fields)) + header_height
+        def next_field():
+            x = padding
+            for field in fields:
+                yield field, (x, header_height + padding)
+                x += field.get_size()[0]
+        
+        width = sum(map(lambda f: f.get_size()[0], fields)) + 2*padding
+        height = max(map(lambda f: f.get_size()[1], fields)) + header_height + 2*padding
 
         background = self.render_image(Rectangle((width, height)))
-        field = Flattener(background, list(next_field()))
+        field = Flattener(background, [(header, (0,0)),] + list(next_field()))
 
         return self.render_image(field)

@@ -17,7 +17,7 @@ def main():
         },
         {
             "view": "Terminal",
-            "value": "C"
+            "value": "Ccccccccccccc"
         },
         {
             "view": "Terminal",
