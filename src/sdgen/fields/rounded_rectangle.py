@@ -46,22 +46,23 @@ class RoundedRectangle(Field):
         fill = self.fill if not self.fill=="transparent" else (0, 0, 0, 0)
 
         width, height = self.size
-
+        half_height = int(height / 2)
         # outline
-        draw.pieslice((0, 0, height, height), 90, 270,
+        draw.pieslice((0, 0, height - 1, height - 1), 90, 270,
                       fill=self.outline, outline=self.outline)
-        draw.pieslice((width - height, 0, width, height), 270, 90,
+        draw.pieslice((width - height, 0, width - 1, height - 1), 270, 90,
                       fill=self.outline, outline=self.outline)
-        draw.rectangle((height, 0, width - height - 1, height - 1),
+        draw.rectangle((half_height, 0, width - half_height - 1, height - 1),
                        fill=self.outline, outline=self.outline)
         #fill
         draw.pieslice((0 + self.thickness, 0 + self.thickness,
-                       height - self.thickness, height - self.thickness), 90,
+                       height - self.thickness - 1, height - self.thickness - 1), 90,
                       270, fill=fill, outline=fill)
         draw.pieslice((width - height + self.thickness, 0 + self.thickness,
-                       width - self.thickness, height - self.thickness), 270,
+                       width - self.thickness - 1, height - self.thickness - 1), 270,
                       90, fill=fill, outline=fill)
-        draw.rectangle((height, 0 + self.thickness, width - height - 1,
-                        height - self.thickness - 1), fill=fill, outline=fill)
+        draw.rectangle((half_height, 0 + self.thickness,
+                        width - half_height - 1, height - self.thickness - 1),
+                       fill=fill, outline=fill)
 
         return ImageWrapper(image, width, height, self.handlers)

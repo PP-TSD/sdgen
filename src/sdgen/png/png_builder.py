@@ -3,6 +3,7 @@ import Image
 import ImageDraw
 
 from ..builder import Builder
+from ..views._view import View
 
 
 class PNGBuilder(Builder):
@@ -24,12 +25,8 @@ class PNGBuilder(Builder):
         Returns:
             Image. Rendered image.
         """
-        fields = super(PNGBuilder, self).generate(data, path, config)
+        View._fn = "to_png"
+        View.paste = lambda self, background, field, position: background.get_image().paste(field, position, field)
 
-        image = Image.new('RGBA', (500, 500))
-
-        for field in fields:
-            image.paste(field.get_image(), field.get_position())
-
-        image.save(path)
-        return image
+        field = super(PNGBuilder, self).generate(data, path, config)
+        return field.get_image()
