@@ -26,7 +26,8 @@ class PNGBuilder(Builder):
             Image. Rendered image.
         """
         View._fn = "to_png"
-        View.paste = lambda self, background, field, position: background.get_image().paste(field, position, field)
 
         field = super(PNGBuilder, self).generate(data, path, config)
-        return field.get_image()
+        raw_image = field.to_png().get_image()
+        raw_image.save(path)
+        return raw_image

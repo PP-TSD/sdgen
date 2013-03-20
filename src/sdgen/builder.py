@@ -49,6 +49,5 @@ class Builder(object):
             config (dict): diagram-specific configuration
         """
         self.data = self._parse_data(data)
-        import pdb;pdb.set_trace()
-        self.representation = self.data.render()
+        self.representation = self.data.get_representation()
         return self.representation

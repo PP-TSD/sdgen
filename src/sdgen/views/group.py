@@ -25,7 +25,7 @@ class Group(View):
         arrow.set_position(x_offset, y_offset)
         return arrow
 
-    def render(self):
+    def get_representation(self):
 #        fields = []
 #        max_y = 0
 #

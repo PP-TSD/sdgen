@@ -16,7 +16,7 @@ class View(object):
     def add_child(self, child):
         self.subfields.append(child)
 
-    def get_fields_representation(self):
+    def get_representation(self):
         raise NotImplementedError()
 
     def render_image(self, field):
@@ -26,6 +26,3 @@ class View(object):
             raise NotImplementedError('Renderer {function} is not supported\
                      for {field_name} field.'.format(function=self.renderer,
                                     field_name=field.__class__.__name__))
-
-    def paste(self, background, field, position):
-        raise NotImplementedError('Builder should insert paster here.')

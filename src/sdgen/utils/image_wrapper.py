@@ -76,6 +76,16 @@ class ImageWrapper(object):
             object: return wrapper's content.
         """
         return self.image
+    
+    def set_image(self, image):
+        """
+        Set wrapper's content.
+
+        Returns:
+            object: return wrapper's content.
+        """
+        self.image = image
+        return image
 
     def get_position(self):
         return (self.x, self.y)
