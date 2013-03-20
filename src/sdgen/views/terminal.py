@@ -15,5 +15,5 @@ class Terminal(View):
         text.set_position(self.text_x_offset, self.text_y_offset)
         border.set_position(0, 0)
 
-        terminal = set([text, border])
+        terminal = [border, text]
         return terminal

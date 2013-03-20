@@ -32,7 +32,7 @@ class Group(View):
             fields.append((field, group_max_y))
             max_y = max(max_y, group_max_y)
 
-        layer = set()
+        layer = []
         x_offset = self.border_size
 
         header = Character(self.name).to_png()
@@ -40,24 +40,24 @@ class Group(View):
         header_height = header.height + self.border_size
 
         for (field_group, group_max_y) in fields:
-            layer.add(self.get_arrow(x_offset, max_y/2))
+            layer.append(self.get_arrow(x_offset, max_y/2))
             x_offset += self.arrow_width
             group_max_x = 0
 
             for field in field_group:
                 group_max_x = max(field.x, group_max_x)
                 field.apply_offset(x_offset, (max_y - group_max_y)/2 + header_height)
-                layer.add(field)
+                layer.append(field)
 
             x_offset += group_max_x
 
         # end arrow
-        layer.add(self.get_arrow(x_offset, max_y/2))
+        layer.append(self.get_arrow(x_offset, max_y/2))
         x_offset += self.arrow_width
 
         # border
         border = Rectangle((x_offset, max_y+header_height)).to_png()
         border.set_position(0, 0)
-        layer.add(border)
+        layer.append(border)
 
         return layer

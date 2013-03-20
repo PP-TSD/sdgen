@@ -11,7 +11,7 @@ ROUND_FACTOR = 0.2928932188134524756
 
 
 class RoundedRectangle(Field):
-    def __init__(self, size, thickness=1, fill="transparent", outline="black"):
+    def __init__(self, size, thickness=1, fill="white", outline="black"):
         """Render rectangle with half-circles on sides.
 
         If width is less than height result will be circle with diameter=height
@@ -48,19 +48,19 @@ class RoundedRectangle(Field):
         width, height = self.size
 
         # outline
-        draw.pieslice((0, 0, height, height), 180, 360,
+        draw.pieslice((0, 0, height, height), 90, 270,
                       fill=self.outline, outline=self.outline)
-        draw.pieslice((width - height, 0, width, height), 0, 180,
+        draw.pieslice((width - height, 0, width, height), 270, 90,
                       fill=self.outline, outline=self.outline)
         draw.rectangle((height, 0, width - height - 1, height - 1),
                        fill=self.outline, outline=self.outline)
         #fill
         draw.pieslice((0 + self.thickness, 0 + self.thickness,
-                       height - self.thickness, height - self.thickness), 180,
-                      360, fill=fill, outline=fill)
+                       height - self.thickness, height - self.thickness), 90,
+                      270, fill=fill, outline=fill)
         draw.pieslice((width - height + self.thickness, 0 + self.thickness,
-                       width - self.thickness, height - self.thickness), 0,
-                      180, fill=fill, outline=fill)
+                       width - self.thickness, height - self.thickness), 270,
+                      90, fill=fill, outline=fill)
         draw.rectangle((height, 0 + self.thickness, width - height - 1,
                         height - self.thickness - 1), fill=fill, outline=fill)
 
