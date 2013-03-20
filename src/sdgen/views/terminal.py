@@ -9,9 +9,9 @@ class Terminal(View):
     text_x_offset = 3
     text_y_offset = 2
 
-    def get_representation(self):
+    def render(self):
         text = self.render_image(Character(self.value))
         border = self.render_image(RoundedRectangle((text.get_size()[0] + self.text_x_offset * 2, text.get_size()[1] + self.text_y_offset * 2)))
 
         terminal = Flattener(border, [(text, (self.text_x_offset, self.text_y_offset))])
-        return terminal
+        return self.render_image(terminal)

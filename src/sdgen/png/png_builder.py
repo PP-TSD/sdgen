@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-import Image
-import ImageDraw
-
 from ..builder import Builder
 from ..views._view import View
 
@@ -25,9 +22,9 @@ class PNGBuilder(Builder):
         Returns:
             Image. Rendered image.
         """
-        View._fn = "to_png"
+        View.renderer = "to_png"
 
-        field = super(PNGBuilder, self).generate(data, path, config)
-        raw_image = field.to_png().get_image()
+        image = super(PNGBuilder, self).generate(data, path, config)
+        raw_image = image.get_image()
         raw_image.save(path)
         return raw_image

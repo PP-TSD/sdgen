@@ -5,7 +5,7 @@ class View(object):
     """
     Base class for all fields in sdgen.
     """
-    renderer = "to_png"
+    renderer = None
 
     def __init__(self, name=None, type=None, value=None, marked=False, *args, **kwargs):
         self.subfields = []
@@ -16,11 +16,17 @@ class View(object):
     def add_child(self, child):
         self.subfields.append(child)
 
-    def get_representation(self):
+    def render(self):
+        """
+        Renders view with all subfields
+
+        Returns:
+            ImageWrapper object
+        """
         raise NotImplementedError()
 
     def render_image(self, field):
-        if hasattr(field, self.renderer):
+        if self.renderer and hasattr(field, self.renderer):
             return getattr(field, self.renderer)()
         else:
             raise NotImplementedError('Renderer {function} is not supported\

@@ -11,13 +11,13 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Character(Field):
-    def __init__(self, text, font_type='Arial', size=10, typeface='normal',
+    def __init__(self, text, font_type='Arial', size=20, typeface='normal',
                  color="black", background="transparent"):
         """Render text (without paddings).
-    
+
         Args:
             text (str): Text, which should be rendered.
-    
+
         Kwargs:
             font_type (str): Name of font type, ex. 'arial'.
             size (int): Font size in points.
