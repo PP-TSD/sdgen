@@ -83,14 +83,16 @@ class Group(View):
         header = self.render_image(Character(self.name, color="white", background="black"))
         header_height = header.height + self.border_size
         
+        max_height = max(map(lambda f: f.get_height(), fields))
+        
         def next_field():
             x = padding
             for field in fields:
-                yield field, (x, header_height + padding)
-                x += field.get_size()[0]
+                yield field, (x, header_height + padding + (max_height - field.get_height())/2)
+                x += field.get_width()
         
-        width = sum(map(lambda f: f.get_size()[0], fields)) + 2*padding
-        height = max(map(lambda f: f.get_size()[1], fields)) + header_height + 2*padding
+        width = sum(map(lambda f: f.get_width(), fields)) + 2*padding
+        height = max_height + header_height + 2*padding
 
         background = self.render_image(Rectangle((width, height)))
         field = Flattener(background, [(header, (0,0)),] + list(next_field()))

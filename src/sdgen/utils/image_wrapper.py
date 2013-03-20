@@ -44,6 +44,18 @@ class ImageWrapper(object):
         Get (width, height) of image.
         """
         return self.width, self.height
+    
+    def get_width(self):
+        """
+        Get width of image.
+        """
+        return self.width
+
+    def get_height(self):
+        """
+        Get height of image.
+        """
+        return self.height
 
     def get_handlers(self):
         """

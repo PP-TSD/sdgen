@@ -11,4 +11,4 @@ class Connection(View):
         self.second = second
 
     def render(self):
-        return self.render_image(SimpleArrow((40, 0)))
+        return self.render_image(SimpleArrow((20, 0)))
