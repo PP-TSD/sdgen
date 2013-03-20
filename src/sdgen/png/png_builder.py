@@ -30,6 +30,6 @@ class PNGBuilder(Builder):
         image = super(PNGBuilder, self).generate(data, path)
         raw_image = image.get_image()
         # save as running script name with png extension
-        path = os.path.join(path, os.extsep.join((os.path.splitext(sys.argv[0])[0], 'png')))
+        path = os.path.join(path, os.extsep.join((os.path.splitext(os.path.basename(sys.argv[0]))[0], 'png')))
         raw_image.save(path)
         return raw_image
