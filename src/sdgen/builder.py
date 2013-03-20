@@ -39,7 +39,7 @@ class Builder(object):
                     view.add_child(child_view)
         return view
 
-    def generate(self, data, path, config):
+    def generate(self, data, path):
         """
         Builds data structure represented by views.
 

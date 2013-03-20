@@ -1,0 +1,38 @@
+{
+    "default": {
+        "thickness": 1,
+        "padding": 10,
+        "font": {
+            "name": "Courier",
+            "size": 12,
+            "typeface": "bold"
+        },
+        "name": {
+            "padding": 10,
+            "font": {
+                "name": "Times",
+                "size": 12,
+                "typeface": "bold italic"
+            }
+        },
+        "highlight": {
+            "foreground": "red",
+            "background": "yellow"
+        }
+    },
+    "nonterminal": {
+        "font": {
+            "name": "Times",
+            "size": 12,
+            "typeface": "bold italic"
+        }
+    },
+    "connection": {
+        "thickness": 1,
+        "marker": "normal"
+    },
+    "png": {
+        "ppi": 300,
+        "scale": 1
+    }
+}

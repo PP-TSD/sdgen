@@ -30,7 +30,7 @@ def main():
         "value": "KUBKED"
     }
     b = PNGBuilder()
-    b.generate(data2, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test.png'), None)
+    b.generate(data2, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test.png'))
 
 
 if __name__ == '__main__':

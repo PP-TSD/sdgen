@@ -3,8 +3,9 @@ import argparse
 import json
 import os
 
-from sdgen.builder import Builder as SVGBuilder  # change to proper import when svg package will be modified
-from sdgen.png.png_builder import PNGBuilder
+from .builder import Builder as SVGBuilder  # change to proper import when svg package will be modified
+from .png.png_builder import PNGBuilder
+from . import config
 
 
 def main():
@@ -26,27 +27,31 @@ def main():
 
     data = args.input.read()
     try:
-        json.loads(data)
+        data = json.loads(data)
     except ValueError:
         print "Data file doesn't consist valid JSON."
         return -1
 
-    config = None
-    if args.config:
-        config = args.config.read()
-        try:
-            json.loads(config)
-        except ValueError:
-            print "Config file doesn't consist valid JSON."
-            return -2
+    try:
+        config.load(args.config)
+    except ValueError:
+        print "Config file doesn't consist valid JSON."
+        return -2
+    except IOError:
+        print "Config file doesn't exists."
+        return -3
 
     if not os.path.isdir(args.output):
         if not os.path.isdir(os.path.dirname(args.output)) or\
                 os.path.exists(args.output):
-            print "Path to the output is not corrected"
-            return -3
+            print "Path to the output is not correct"
+            return -4
         else:
             os.mkdir(args.output)
 
     builder = builders[args.format]()
-    builder.generate(data=data, path=args.output, config=config)
+    builder.generate(data=data, path=args.output)
+
+
+if __name__ == '__main__':
+    main()
