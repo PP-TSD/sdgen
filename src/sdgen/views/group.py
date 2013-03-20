@@ -3,16 +3,11 @@ from itertools import tee, izip
 
 from ._view import View
 from .connection import Connection
+from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.fields.character import Character
 from sdgen.fields.rectangle import Rectangle
 from sdgen.fields.simple_arrow import SimpleArrow
-
-
-def pairwise(iterable):
-    "s -> (s0,s1), (s1,s2), (s2, s3), ..."
-    a, b = tee(iterable)
-    next(b, None)
-    return izip(a, b)
+from sdgen.fields.flattener import Flattener
 
 
 class Group(View):
@@ -25,7 +20,7 @@ class Group(View):
         arrow.set_position(x_offset, y_offset)
         return arrow
 
-    def get_representation(self):
+    def render(self):
 #        fields = []
 #        max_y = 0
 #
@@ -71,7 +66,7 @@ class Group(View):
 #        layer.append(border)
 
         # render ImageWrappers of fields
-        fields = [subfield.render for subfield in self.subfields]
+        fields = [subfield.render() for subfield in self.subfields]
 
         connections = []
         # add connections
@@ -80,12 +75,22 @@ class Group(View):
                 connection = Connection(fields[i], fields[i+1])
                 connections.append((connection, i+1))
 
-        for connection, position in connections:
+        for connection, position in reversed(connections):
             fields.insert(position, connection.render())
+        
+        def next_field():
+            x = 10
+            for field in fields:
+                yield field, (x, 10)
+                x += field.get_size()[0]
 
-        header = self.render(Character(self.name))
+        header = self.render_image(Character(self.name))
         header_height = header.height + self.border_size
+        
+        width = sum(map(lambda f: f.get_size()[0], fields)) + 10
+        height = max(map(lambda f: f.get_size()[1], fields)) + header_height
 
-        fields = [subfield.render() for subfield in self.subfields]
+        background = self.render_image(Rectangle((width, height)))
+        field = Flattener(background, list(next_field()))
 
-        return layer
+        return self.render_image(field)

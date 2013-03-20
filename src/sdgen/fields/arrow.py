@@ -15,6 +15,7 @@ class Arrow(Field):
             marker (str): size of arrowhead (normal|large|small)
             fill (str): color (default black).
         """
+        size = size[0], size[1] + 10  #FIXME: marker size
         self.end = (max(size[0], 0), max(size[0], 0))
         self.start = (max(-size[0], 0), max(-size[1], 0))
         self.size = size
