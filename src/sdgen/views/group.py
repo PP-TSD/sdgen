@@ -2,7 +2,7 @@
 from itertools import tee, izip
 
 from ._view import View
-from .connection import Connection
+from .connections.connection import Connection
 from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.fields.character import Character
 from sdgen.fields.rectangle import Rectangle

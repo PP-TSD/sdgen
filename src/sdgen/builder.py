@@ -33,10 +33,13 @@ class Builder(object):
             return None
         view = views_classes[data['view']](**data)
         if data.get('children'):
+            children = []
             for child in data['children']:
                 child_view = self._parse_data(child)
                 if child_view:
-                    view.add_child(child_view)
+                    children.append(child_view)
+            if children:
+                view.add_children(children)
         return view
 
     def generate(self, data, path):

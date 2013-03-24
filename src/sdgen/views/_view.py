@@ -18,6 +18,21 @@ class View(ConfigurableMixin):
     def add_child(self, child):
         self.subfields.append(child)
 
+    def add_children(self, children):
+        self.subfields.extend(children)
+
+    def _pairs(self, list_):
+        """
+        Iterator for list, returning pair elements (i, i+1).
+        None sentinel is returned for element before first and after last.
+        """
+        list_ = [None] + list_ + [None]
+        i = iter(list_)
+        prev = i.next()
+        for item in i:
+            yield prev, item
+            prev = item
+
     def render(self):
         """
         Renders view with all subfields
