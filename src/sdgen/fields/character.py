@@ -17,11 +17,12 @@ class Character(Field):
         "font.size": 12,
         "font.typeface": "normal",
         "font.color": "black",
+        "padding": 0,
         "background": "transparent"
     }
 
     def __init__(self, text, *args, **kwargs):
-        """Render text (without paddings).
+        """Render text.
 
         Args:
             text (str): Text, which should be rendered.
@@ -31,15 +32,11 @@ class Character(Field):
             font_size (int): Font size in points.
             font_typeface (str): Font typeface, ex. 'bold italic'.
             font_color (str): Font color.
+            padding (int): text padding (in points).
             background (str): Background color.
         """
         super(Character, self).__init__(*args, **kwargs)
         self.text = text
-        # self.font_type = font_type or self.from_render_config("font.name") or "Arial"
-        # self.size = size or self.from_render_config("font.size") or 12
-        # self.typeface = typeface or self.from_render_config("font.typeface") or "normal"
-        # self.color = color or self.from_render_config("font.color") or "black"
-        # self.background = background or self.from_render_config("background") or "transparent"
 
     def _get_font(self, font_type, size, typeface):
         """Get font with given parameters."""
@@ -58,7 +55,8 @@ class Character(Field):
 
     def to_png(self):
         font = self._get_font(self.font_name, self.font_size, self.font_typeface)
-        image_size = font.getsize(self.text)
+        image_size = [x + 2 * self.pt_to_px(self.padding)
+                            for x in font.getsize(self.text)]
         background = (self.background if not self.background == "transparent"
                       else (0, 0, 0, 0))
         image = Image.new('RGBA', image_size, background)
