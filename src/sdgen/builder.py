@@ -31,7 +31,8 @@ class Builder(object):
         """
         if not data.get('view') or data['view'] not in views_classes:
             return None
-        view = views_classes[data['view']](**data)
+        view_name = data.get('view') or data.get('type')
+        view = views_classes[view_name](**data)
         if data.get('children'):
             children = []
             for child in data['children']:

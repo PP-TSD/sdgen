@@ -26,7 +26,7 @@ class View(ConfigurableMixin):
         Iterator for list, returning pair elements (i, i+1).
         None sentinel is returned for element before first and after last.
         """
-        list_ = [None] + list_ + [None]
+        list_ = list_ + [None]
         i = iter(list_)
         prev = i.next()
         for item in i:

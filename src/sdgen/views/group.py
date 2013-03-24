@@ -25,6 +25,21 @@ class Group(View):
         arrow.set_position(x_offset, y_offset)
         return arrow
 
+    def add_children(self, children):
+        extended_children = []
+        if children and not isinstance(children[0], Connection):
+            extended_children.append(Connection())
+        for el1, el2 in self._pairs(children):
+            el1_conn = isinstance(el1, Connection)
+            el2_conn = isinstance(el2, Connection)
+            if (el1_conn ^ el2_conn):
+                extended_children.append(el1)
+            elif not (el1_conn or el2_conn):
+                extended_children.append(el1)
+                extended_children.append(Connection())
+        import pdb; pdb.set_trace()
+        super(Group, self).add_children(extended_children)
+
     def render(self):
         # render ImageWrappers of fields
         padding = self.pt_to_px(self.padding)
@@ -32,15 +47,15 @@ class Group(View):
         border_size = self.pt_to_px(self.border_size)
 
         header = self.render_image(Character(self.name, font_color="white", background="black", padding=self.header_padding))
-        
+
         def get_height(fields):
             top_max_height = max([max(x.get_handlers().values()) for x in fields])
             bottom_max_height = max([x.get_height() - max(x.get_handlers().values()) for x in fields])
             return header.height + top_max_height + bottom_max_height + 2 * (padding + border_size)
-        
+
         width = sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size)
         height = get_height()
-        
+
         def next_field():
             x = padding + border_size
             for field in fields:
