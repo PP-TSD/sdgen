@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
+from sdgen._configurable_mixin import ConfigurableMixin
 
 
-class View(object):
+class View(ConfigurableMixin):
     """
     Base class for all fields in sdgen.
     """
     renderer = None
 
     def __init__(self, name=None, type=None, value=None, marked=False, *args, **kwargs):
+        super(View, self).__init__(*args, **kwargs)
         self.subfields = []
         self.name = name
         self.value = value
