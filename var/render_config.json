@@ -29,7 +29,8 @@
     },
     "connection": {
         "thickness": 1,
-        "marker": "normal"
+        "marker": "normal",
+        "length": 20
     },
     "png": {
         "ppi": 300,
