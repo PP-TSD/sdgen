@@ -8,11 +8,17 @@ ANTIALIASING = 4
 
 
 def antialiasing(klass):
-    def pt_to_px(self, *args, **kwargs):
-        return ANTIALIASING * self._original_pt_to_px(*args, **kwargs)
+    def pt_to_px(self, points):
+        return ANTIALIASING * self._original_pt_to_px(points)
 
     klass._original_pt_to_px = klass.pt_to_px
     klass.pt_to_px = pt_to_px
+    
+    def px_to_pt(self, pixels):
+        return self._original_px_to_pt(pixels) / ANTIALIASING
+
+    klass._original_px_to_pt = klass.px_to_pt
+    klass.px_to_pt = px_to_pt
 
     def to_png(self, *args, **kwargs):
         image_wrapper = self._original_to_png(*args, **kwargs)
@@ -38,4 +44,7 @@ class Field(ConfigurableMixin):
         raise NotImplementedError()
 
     def pt_to_px(self, points):
+        return int(points)
+    
+    def px_to_pt(self, points):
         return int(points)

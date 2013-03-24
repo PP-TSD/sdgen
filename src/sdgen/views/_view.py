@@ -52,3 +52,6 @@ class View(ConfigurableMixin):
 
     def pt_to_px(self, points):
         return points
+
+    def px_to_pt(self, points):
+        return int(points)

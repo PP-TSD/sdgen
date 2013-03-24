@@ -6,14 +6,13 @@ from ..fields.flattener import Flattener
 
 
 class Terminal(View):
-    text_x_offset = 3
-    text_y_offset = 2
+    padding = 3
 
     def render(self):
         if self.value == ' ':
             self.value = "Space"
         text = self.render_image(Character(self.value))
-        border = self.render_image(RoundedRectangle((text.get_size()[0] + self.text_x_offset * 2, text.get_size()[1] + self.text_y_offset * 2)))
+        border = self.render_image(RoundedRectangle(tuple(self.px_to_pt(p) + self.padding * 2 for p in text.get_size())))
 
-        terminal = Flattener(border, [(text, (self.text_x_offset, self.text_y_offset))])
+        terminal = Flattener(border, [(text, (self.pt_to_px(self.padding),) * 2)])
         return self.render_image(terminal)
