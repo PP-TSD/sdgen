@@ -19,7 +19,7 @@ def antialiasing(klass):
         image = image_wrapper.get_image()
         new_width = image_wrapper.get_width() / ANTIALIASING
         new_height = image_wrapper.get_height() / ANTIALIASING
-        image.resize((new_width, new_height), Image.ANTIALIAS)
+        image_wrapper.image = image.resize((new_width, new_height), Image.ANTIALIAS)
         image_wrapper.scale_parameters(1.0/ANTIALIASING)
         return image_wrapper
 

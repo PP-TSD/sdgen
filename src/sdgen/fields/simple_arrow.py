@@ -9,17 +9,18 @@ from arrow import Arrow
 
 @antialiasing
 class SimpleArrow(Arrow):
-    length = 10
+    length = 20
 
     """ Arrow from left to right. """
     def to_png(self):
         width, height = map(self.pt_to_px, (self.length, self.marker * 2.0 / 3))
+        marker = self.pt_to_px(self.marker)
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
         draw.line((0, height/2, width, height/2), width=self.pt_to_px(self.thickness), fill=self.fill)
         draw.polygon([(width, height / 2),
-                      (width - self.marker, height / 2 - self.marker / 3),
-                     (width - self.marker, height / 2 + self.marker / 3)],
+                      (width - marker, height / 2 - marker / 3),
+                     (width - marker, height / 2 + marker / 3)],
                      fill=self.fill,
                      )
         return ImageWrapper(image, width, height)
