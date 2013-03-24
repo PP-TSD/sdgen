@@ -8,11 +8,12 @@ class View(ConfigurableMixin):
     """
     renderer = None
 
-    def __init__(self, name=None, type=None, value=None, mark=False, *args, **kwargs):
+    def __init__(self, name=None, type_=None, value=None, mark=False, *args, **kwargs):
         super(View, self).__init__(*args, **kwargs)
         self.subfields = []
         self.name = name
         self.value = value
+        self.type = type_
         self.marked = True if mark in (True, 'yes') else False
 
     def add_child(self, child):

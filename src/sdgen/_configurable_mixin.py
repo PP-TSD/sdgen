@@ -12,6 +12,7 @@ class ConfigurableMixin(object):
         # overwrite default class value for this instance
         if render_config_key:
             self.render_config_key = render_config_key
+        self._passed_config = kwargs
         self._parse_args(**kwargs)
 
     def _parse_args(self, **kwargs):
