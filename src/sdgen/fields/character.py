@@ -54,6 +54,7 @@ class Character(Field):
         return ImageFont.load_default()
 
     def to_png(self):
+        padding = self.pt_to_px(self.padding)
         font = self._get_font(self.font_name, self.font_size, self.font_typeface)
         image_size = [x + 2 * self.pt_to_px(self.padding)
                             for x in font.getsize(self.text)]
@@ -61,5 +62,5 @@ class Character(Field):
                       else (0, 0, 0, 0))
         image = Image.new('RGBA', image_size, background)
         draw = ImageDraw.Draw(image)
-        draw.text((0, 0), self.text, font=font, fill=self.font_color)
+        draw.text((padding,) * 2, self.text, font=font, fill=self.font_color)
         return ImageWrapper(image, *image_size)

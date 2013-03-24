@@ -49,3 +49,6 @@ class View(ConfigurableMixin):
             raise NotImplementedError('Renderer {function} is not supported\
                      for {field_name} field.'.format(function=self.renderer,
                                     field_name=field.__class__.__name__))
+
+    def pt_to_px(self, points):
+        return points
