@@ -11,9 +11,13 @@ from sdgen.fields.flattener import Flattener
 
 
 class Group(View):
-    arrow_height = 1
-    arrow_width = 10
-    border_size = 1
+    render_config_key = "group"
+    default_render_config = {
+        "padding": 10,
+        "arrow.height": 1,
+        "arrow.width": 10,
+        "border.size": 1
+    }
 
     def get_arrow(self, x_offset, y_offset):
         arrow = SimpleArrow((self.arrow_width, self.arrow_height)).to_png()
@@ -75,8 +79,6 @@ class Group(View):
                 connection = Connection(fields[i], fields[i+1])
                 connections.append((connection, i+1))
 
-        padding = 10
-
         for connection, position in reversed(connections):
             fields.insert(position, connection.render())
 
@@ -86,15 +88,15 @@ class Group(View):
         max_height = max(map(lambda f: f.get_height(), fields))
 
         def next_field():
-            x = padding
+            x = self.padding
             for field in fields:
-                yield field, (x, header_height + padding + (max_height - field.get_height())/2)
+                yield field, (x, header_height + self.padding + (max_height - field.get_height())/2)
                 x += field.get_width()
 
-        width = sum(map(lambda f: f.get_width(), fields)) + 2*padding
-        height = max_height + header_height + 2*padding
+        width = sum(map(lambda f: f.get_width(), fields)) + 2*self.padding
+        height = max_height + header_height + 2*self.padding
 
         background = self.render_image(Rectangle((width, height)))
-        field = Flattener(background, [(header, (0,0)),] + list(next_field()))
+        field = Flattener(background, [(header, (0, 0))] + list(next_field()))
 
         return self.render_image(field)
