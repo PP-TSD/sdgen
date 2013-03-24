@@ -33,17 +33,17 @@ class Group(View):
 #        for connection, position in reversed(connections):
 #            fields.insert(position, connection.render())
 
-        header = self.render_image(Character(self.name, color="white", background="black"))
+        header = self.render_image(Character(self.name, font_color="white", background="black"))
         header_height = header.height + self.border_size
-        
+
         max_height = max(map(lambda f: f.get_height(), fields))
-        
+
         def next_field():
             x = padding
             for field in fields:
                 yield field, (x, header_height + padding + (max_height - field.get_height())/2)
                 x += field.get_width()
-        
+
         width = sum(map(lambda f: f.get_width(), fields)) + 2*padding
         height = max_height + header_height + 2*padding
 

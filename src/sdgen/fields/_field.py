@@ -3,6 +3,7 @@ import Image
 
 from sdgen.config import render_config, safeget
 from sdgen.utils.image_wrapper import ImageWrapper
+from sdgen._configurable_mixin import ConfigurableMixin
 
 
 ANTIALIASING = 4
@@ -23,19 +24,8 @@ def antialiasing(klass):
     klass.to_png = to_png
 
 
-class Field(object):
+class Field(ConfigurableMixin):
     """ Base field class. """
-    render_config_key = "default"
-    _render_config_default_key = "default"
-
-    def __init__(self, render_config_key=None, *args, **kwargs):
-        # overwrite default class value for this instance
-        if render_config_key:
-            self.render_config_key = render_config_key
-
-    def from_render_config(self, key):
-        return (safeget(render_config, ".".join((self.render_config_key, key))) or
-                safeget(render_config, ".".join((self._render_config_default_key, key))))
 
     def to_png(self):
         raise NotImplementedError()
@@ -45,3 +35,4 @@ class Field(object):
 
     def pt_to_px(self, points):
         return points
+
