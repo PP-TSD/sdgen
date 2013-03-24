@@ -14,6 +14,7 @@ class Group(View):
     render_config_key = "group"
     default_render_config = {
         "padding": 10,
+        "header.padding": 5,
         "arrow.height": 1,
         "arrow.width": 10,
         "border.size": 1
@@ -25,78 +26,28 @@ class Group(View):
         return arrow
 
     def render(self):
-#        fields = []
-#        max_y = 0
-#
-#        for subfield in self.subfields:
-#            # image
-#            field = subfield.render()
-#            group_max_y = 0
-#
-#            # calculate max y
-#            for f in field:
-#                group_max_y = max(group_max_y, f.y + f.height)
-#
-#            # add field group to set
-#            fields.append((field, group_max_y))
-#            max_y = max(max_y, group_max_y)
-#
-#        layer = []
-#        x_offset = self.border_size
-#
-#        header = Character(self.name).to_png()
-#        header.set_position(self.border_size, self.border_size)
-#        header_height = header.height + self.border_size
-#
-#        for (field_group, group_max_y) in fields:
-#            layer.append(self.get_arrow(x_offset, max_y/2))
-#            x_offset += self.arrow_width
-#            group_max_x = 0
-#
-#            for field in field_group:
-#                group_max_x = max(field.x, group_max_x)
-#                field.apply_offset(x_offset, (max_y - group_max_y)/2 + header_height)
-#                layer.append(field)
-#
-#            x_offset += group_max_x
-#
-#        # end arrow
-#        layer.append(self.get_arrow(x_offset, max_y/2))
-#        x_offset += self.arrow_width
-#
-#        # border
-#        border = Rectangle((x_offset, max_y+header_height)).to_png()
-#        border.set_position(0, 0)
-#        layer.append(border)
-
         # render ImageWrappers of fields
+        padding = self.pt_to_px(self.padding)
         fields = [subfield.render() for subfield in self.subfields]
+        border_size = self.pt_to_px(self.border_size)
 
-        connections = []
-        # add connections
-        for i in range(len(fields) - 1):
-            if not isinstance(self.subfields[i], Connection) and not isinstance(self.subfields[i+1], Connection):
-                connection = Connection(fields[i], fields[i+1])
-                connections.append((connection, i+1))
-
-        for connection, position in reversed(connections):
-            fields.insert(position, connection.render())
-
-        header = self.render_image(Character(self.name, font_color="white", background="black"))
-        header_height = header.height + self.border_size
-
-        max_height = max(map(lambda f: f.get_height(), fields))
-
+        header = self.render_image(Character(self.name, font_color="white", background="black", padding=self.header_padding))
+        
+        def get_height(fields):
+            top_max_height = max([max(x.get_handlers().values()) for x in fields])
+            bottom_max_height = max([x.get_height() - max(x.get_handlers().values()) for x in fields])
+            return header.height + top_max_height + bottom_max_height + 2 * (padding + border_size)
+        
+        width = sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size)
+        height = get_height()
+        
         def next_field():
-            x = self.padding
+            x = padding + border_size
             for field in fields:
-                yield field, (x, header_height + self.padding + (max_height - field.get_height())/2)
+                yield field, (x, border_size + header.height + self.padding + (height - field.get_height())/2)
                 x += field.get_width()
 
-        width = sum(map(lambda f: f.get_width(), fields)) + 2*self.padding
-        height = max_height + header_height + 2*self.padding
-
-        background = self.render_image(Rectangle((width, height)))
-        field = Flattener(background, [(header, (0, 0))] + list(next_field()))
+        background = self.render_image(Rectangle((width, height), thickness=self.border_size))
+        field = Flattener(background, [(header, (border_size, ) * 2)] + list(next_field()))
 
         return self.render_image(field)

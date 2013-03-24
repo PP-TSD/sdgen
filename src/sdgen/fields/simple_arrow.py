@@ -2,37 +2,22 @@
 import Image
 import ImageDraw
 
+from sdgen.fields._field import antialiasing
 from sdgen.utils.image_wrapper import ImageWrapper
 from arrow import Arrow
 
 
+@antialiasing
 class SimpleArrow(Arrow):
+    """ Arrow from left to right. """
     def to_png(self):
-        arrowhead_ratio = {
-                           "small": 1,
-                           "normal": 2,
-                           "large": 3
-                           }[self.marker]
-
-        arrow = 5 * arrowhead_ratio
-        width, height = self.size
-        if width < arrow:
-            width = arrow
-            self.end[0] += width
-            self.size[0] += width
-        
-        if height < arrow:
-            height = arrow
-            self.start[1] += arrow/2
-            self.end[1] += arrow/2
-            self.size[1] += arrow
-
+        width, height = map(self.pt_to_px, (self.length, self.marker * 2.0 / 3))
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
-
-        end_x, end_y = self.end
-        draw.line(tuple(self.start + self.end), width=self.thickness, fill=self.fill)
-        draw.polygon([tuple(self.end), (end_x - arrow, end_y - arrow/3),
-                     (end_x - arrow, end_y + arrow/3)], fill=self.fill,
-                     outline=self.fill)
-        return ImageWrapper(image, *self.size)
+        draw.line((0, height/2, width, height/2), width=self.pt_to_px(self.thickness), fill=self.fill)
+        draw.polygon([(width, height / 2),
+                      (width - self.marker, height / 2 - self.marker / 3),
+                     (width - self.marker, height / 2 + self.marker / 3)],
+                     fill=self.fill,
+                     )
+        return ImageWrapper(image, width, height)

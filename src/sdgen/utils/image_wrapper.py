@@ -20,21 +20,12 @@ class ImageWrapper(object):
         Kwargs:
             handlers (dict): dictionary with relative handlers positions.
         '''
-        self.x = 0
-        self.y = 0
-
         self.image = image
         self.width = width
         self.height = height
         self.handlers = {
-            "left": (0, height/2),
-            "right": (width, height/2),
-            "top": (width/2, 0),
-            "bottom": (width/2, height),
-            "left-top": (0, 0),
-            "left-bottom": (0, height),
-            "right-top": (width, 0),
-            "right-bottom": (width, height),
+            "left": height/2,
+            "right": height/2,
         }
         if isinstance(handlers, dict):
             self.handlers.update(handlers)
@@ -62,7 +53,7 @@ class ImageWrapper(object):
         Get handlers.
 
         Returns:
-            dict: (x, y) of all handlers.
+            dict: y coordinate of all handlers.
         """
         return self.handlers
 
@@ -74,7 +65,7 @@ class ImageWrapper(object):
             handler (str): Name of handler.
 
         Returns:
-            tuple: (x, y) of concrete handlers.
+            int: y coordinate of concrete handler.
         """
         if not handler in self.handlers:
             raise KeyError("Invalid handler name.")
@@ -98,16 +89,15 @@ class ImageWrapper(object):
         """
         self.image = image
         return image
-
-    def get_position(self):
-        return (self.x, self.y)
-
-    def set_position(self, x=None, y=None):
-        if x is not None:
-            self.x = x
-        if y is not None:
-            self.y = y
-
-    def apply_offset(self, x=0, y=0):
-        self.x += x
-        self.y += y
+    
+    def scale_parameters(self, scale):
+        """
+        Scale width, height and handlers with given scale.
+        
+        Args:
+            scale (float): scale, (0,1) makes image smaller, (1,..) larger.
+        """
+        self.width = int(self.width * scale)
+        self.height = int(self.height * scale)
+        for handler in self.handlers:
+            self.handlers[handler] = int(self.handlers * scale)

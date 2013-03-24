@@ -7,7 +7,7 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Flattener(Field):
-    def __init__(self, background, images):
+    def __init__(self, background, images, padding=0):
         """Merge list of images.
     
         Insert i-th image into (i-1)-th on specified position,
@@ -21,6 +21,7 @@ class Flattener(Field):
         """
         self.background = background
         self.images = images
+        self.padding = padding
 
     def to_png(self):
         background_image = self.background.get_image()

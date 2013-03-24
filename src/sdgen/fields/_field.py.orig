@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 import Image
 
 from sdgen.config import render_config, safeget
 from sdgen.utils.image_wrapper import ImageWrapper
-from sdgen._configurable_mixin import ConfigurableMixin
 
 
 ANTIALIASING = 4
@@ -22,6 +22,9 @@ def antialiasing(klass):
         return image_wrapper
     
     klass.to_png = to_png
+=======
+from sdgen._configurable_mixin import ConfigurableMixin
+>>>>>>> 4ac5751df5bb4bf3f2d2bceaf8b29f6d5979f50c
 
 
 class Field(ConfigurableMixin):
@@ -35,4 +38,3 @@ class Field(ConfigurableMixin):
 
     def pt_to_px(self, points):
         return points
-
