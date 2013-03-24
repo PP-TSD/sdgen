@@ -26,6 +26,10 @@
         {
             "view": "Terminal",
             "value": " "
+        },
+        {
+            "type": "Connection",
+            "mark": "yes"
         }
     ]
 }

@@ -8,13 +8,11 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 class Rectangle(Field):
     render_config_key = "rectangle"
-    default_render_config = {
-        "thickness": 1,
-        "fill": "transparent",
-        "outline": "black"
-    }
+    thickness = 1
+    fill = "transparent"
+    outline = "black"
 
-    def __init__(self, size, thickness=None, fill=None, outline=None, *args, **kwargs):
+    def __init__(self, size, *args, **kwargs):
         """Render rectangle.
 
         Args:
@@ -31,7 +29,7 @@ class Rectangle(Field):
     def to_png(self):
         image = Image.new('RGBA', self.size)
         draw = ImageDraw.Draw(image)
-        fill = self.fill if not self.fill=="transparent" else (0, 0, 0, 0)
+        fill = self.fill if not self.fill == "transparent" else (0, 0, 0, 0)
         width, height = self.size
         thickness = self.pt_to_px(self.thickness)
 

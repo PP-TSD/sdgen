@@ -9,6 +9,8 @@ from arrow import Arrow
 
 @antialiasing
 class SimpleArrow(Arrow):
+    length = 10
+
     """ Arrow from left to right. """
     def to_png(self):
         width, height = map(self.pt_to_px, (self.length, self.marker * 2.0 / 3))

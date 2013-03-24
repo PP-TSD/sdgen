@@ -35,7 +35,7 @@ class ImageWrapper(object):
         Get (width, height) of image.
         """
         return self.width, self.height
-    
+
     def get_width(self):
         """
         Get width of image.
@@ -79,7 +79,7 @@ class ImageWrapper(object):
             object: return wrapper's content.
         """
         return self.image
-    
+
     def set_image(self, image):
         """
         Set wrapper's content.
@@ -89,15 +89,15 @@ class ImageWrapper(object):
         """
         self.image = image
         return image
-    
+
     def scale_parameters(self, scale):
         """
         Scale width, height and handlers with given scale.
-        
+
         Args:
             scale (float): scale, (0,1) makes image smaller, (1,..) larger.
         """
         self.width = int(self.width * scale)
         self.height = int(self.height * scale)
-        for handler in self.handlers:
-            self.handlers[handler] = int(self.handlers * scale)
+        for (k, v) in self.handlers.items():
+            self.handlers[k] = int(v * scale)

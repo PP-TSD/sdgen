@@ -8,12 +8,12 @@ class View(ConfigurableMixin):
     """
     renderer = None
 
-    def __init__(self, name=None, type=None, value=None, marked=False, *args, **kwargs):
+    def __init__(self, name=None, type=None, value=None, mark=False, *args, **kwargs):
         super(View, self).__init__(*args, **kwargs)
         self.subfields = []
         self.name = name
         self.value = value
-        self.marked = marked
+        self.marked = True if mark in (True, 'yes') else False
 
     def add_child(self, child):
         self.subfields.append(child)
@@ -49,3 +49,6 @@ class View(ConfigurableMixin):
             raise NotImplementedError('Renderer {function} is not supported\
                      for {field_name} field.'.format(function=self.renderer,
                                     field_name=field.__class__.__name__))
+
+    def pt_to_px(self, points):
+        return points

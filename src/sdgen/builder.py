@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from views import alternation, connection, group, inv_terminal, non_terminal, quantity, quantity_above, quantity_detour, quantity_return, sequence, terminal
+from views import alternation, group, inv_terminal, non_terminal, quantity, quantity_above, quantity_detour, quantity_return, sequence, terminal
+from views.connections import connection
 
 # classes for views names
 views_classes = {
@@ -29,9 +30,9 @@ class Builder(object):
         Parse data and returns View subclass corresponding to top-level data
         entity
         """
-        if not data.get('view') or data['view'] not in views_classes:
-            return None
         view_name = data.get('view') or data.get('type')
+        if not view_name or view_name not in views_classes:
+            return None
         view = views_classes[view_name](**data)
         if data.get('children'):
             children = []

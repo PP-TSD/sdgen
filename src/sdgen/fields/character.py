@@ -12,14 +12,12 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 class Character(Field):
     render_config_key = "character"
-    default_render_config = {
-        "font.name": "Arial",
-        "font.size": 12,
-        "font.typeface": "normal",
-        "font.color": "black",
-        "padding": 0,
-        "background": "transparent"
-    }
+    font_name = "Arial"
+    font_size = 12
+    font_typeface = "normal"
+    font_color = "black"
+    padding = 0
+    background = "transparent"
 
     def __init__(self, text, *args, **kwargs):
         """Render text.
@@ -54,6 +52,7 @@ class Character(Field):
         return ImageFont.load_default()
 
     def to_png(self):
+        padding = self.pt_to_px(self.padding)
         font = self._get_font(self.font_name, self.font_size, self.font_typeface)
         image_size = [x + 2 * self.pt_to_px(self.padding)
                             for x in font.getsize(self.text)]
@@ -61,5 +60,5 @@ class Character(Field):
                       else (0, 0, 0, 0))
         image = Image.new('RGBA', image_size, background)
         draw = ImageDraw.Draw(image)
-        draw.text((0, 0), self.text, font=font, fill=self.font_color)
+        draw.text((padding,) * 2, self.text, font=font, fill=self.font_color)
         return ImageWrapper(image, *image_size)
