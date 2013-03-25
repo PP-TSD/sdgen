@@ -29,15 +29,30 @@ class ConfigurableMixin(object):
         class_config = self._flat_dict(deepcopy(safeget(render_config, self._render_config_key)) or {})
 
         # update by class variables
-        default_config.update(self.__dict__)
+        default_config.update(self._get_self_attributes())
         # update by config for this class
         default_config.update(class_config)
         # update by params passed to __init__
         default_config.update(kwargs)
 
+        import pdb; pdb.set_trace()
         for (key, value) in default_config.items():
             if not key.startswith('_'):
                 setattr(self, key, value)
+
+    def _get_self_attributes(self):
+        """
+        Returns dict of all instance attributes (not stating with _)
+        """
+        attrs = {}
+        for key in dir(self):
+            if key.startswith('_'):
+                continue
+            attr = getattr(self, key)
+            # check for not functions
+            if not hasattr(attr, '__call__'):
+                attrs[key] = attr
+        return attrs
 
     def _flat_dict(self, d):
         """
