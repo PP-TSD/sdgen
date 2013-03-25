@@ -34,9 +34,12 @@ class Builder(object):
         if not view_name or view_name not in views_classes:
             return None
         view = views_classes[view_name](**data)
+        mark_child = 'mark' in data and data['mark'] in (True, 'yes')
         if data.get('children'):
             children = []
             for child in data['children']:
+                if mark_child and not 'mark' in child:
+                    child['mark'] = mark_child
                 child_view = self._parse_data(child)
                 if child_view:
                     children.append(child_view)
@@ -54,5 +57,6 @@ class Builder(object):
             config (dict): diagram-specific configuration
         """
         self.data = self._parse_data(data)
+        import pdb; pdb.set_trace()
         result = self.data.render()
         return result
