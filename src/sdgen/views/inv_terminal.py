@@ -6,8 +6,6 @@ from .inv_terminal_child import InvTerminalChild
 
 
 class InvTerminal(View):
-    render_config_key = "inv_terminal"
-
     def add_children(self, children):
         """
         Replace all Terminal children instances to InvTerminalChild instances

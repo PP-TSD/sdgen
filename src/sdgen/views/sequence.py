@@ -6,7 +6,6 @@ from sdgen.fields.flattener import Flattener
 
 
 class Sequence(View):
-    render_config_key = "sequence"
     padding = 10
     arrow_height = 1
     arrow_width = 10
@@ -44,7 +43,7 @@ class Sequence(View):
                 diff += field.get_handler('right') - field.get_handler('left')
                 x += field.get_width()
         positioned_fields = list(next_field())
-        
+
         # get y coordinate of last fields and add it's right handler
         right_handler = positioned_fields[-1][1][1] + positioned_fields[-1][0].get_handler('right')
         background = self.render_image(Rectangle((width, height), thickness=0))
