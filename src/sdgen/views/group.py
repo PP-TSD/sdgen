@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-from itertools import tee, izip
-
 from ._view import View
+from sequence import Sequence
 from .connections.connection import Connection
-from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.fields.character import Character
 from sdgen.fields.rectangle import Rectangle
-from sdgen.fields.simple_arrow import SimpleArrow
 from sdgen.fields.flattener import Flattener
 
 
@@ -20,22 +17,31 @@ class Group(View):
 
     def add_children(self, children):
         extended_children = []
-        if children and not isinstance(children[0], Connection):
-            extended_children.append(Connection())
-        for el1, el2 in self._pairs(children):
-            el1_conn = isinstance(el1, Connection)
-            el2_conn = isinstance(el2, Connection)
-            if (el1_conn ^ el2_conn):
-                extended_children.append(el1)
-            elif not (el1_conn or el2_conn):
-                extended_children.append(el1)
+        if children:
+            #first connection
+            if isinstance(children[0], Connection):
+                extended_children.append(children[0])
+                children = children[1:]
+            else:
                 extended_children.append(Connection())
+            #last connection
+            if children:
+                if isinstance(children[-1], Connection):
+                    extended_children.append(children[-1])
+                    children = children[:-1]
+                else:
+                    extended_children.append(Connection())
+            sequence = Sequence()
+            sequence.add_children(children)
+            extended_children.insert(1, sequence)
         super(Group, self).add_children(extended_children)
 
     def render(self):
         # render ImageWrappers of fields
         padding = self.pt_to_px(self.padding)
-        fields = [subfield.render() for subfield in self.subfields]
+
+        # render all subviews and save this one, that should be saved to files
+        fields = map(self.render_subview, self.subfields)
         border_size = self.pt_to_px(self.border_size)
 
         header = self.render_image(Character(self.name, font_color="white", background="black", padding=self.header_padding))
@@ -60,4 +66,5 @@ class Group(View):
         background = self.render_image(Rectangle((width, height), thickness=self.border_size))
         field = Flattener(background, [(header, (border_size, ) * 2)] + list(next_field()))
 
-        return self.render_image(field)
+        # final render of this view
+        return self.render_view(field)

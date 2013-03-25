@@ -8,4 +8,4 @@ class Connection(View):
     render_config_key = "connection"
 
     def render(self):
-        return self.render_image(SimpleArrow())
+        return self.render_view(SimpleArrow())

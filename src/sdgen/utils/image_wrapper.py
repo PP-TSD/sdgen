@@ -71,6 +71,16 @@ class ImageWrapper(object):
             raise KeyError("Invalid handler name.")
         return self.handlers[handler]
 
+    def update_handlers(self, handlers):
+        """
+        Update handlers with given dict.
+        
+        Args:
+            handlers (dict): y coordinates of handlers.
+        """
+        assert isinstance(handlers, dict), "handlers must be a dict"
+        self.handlers.update(handlers)
+
     def get_image(self):
         """
         Get wrapper's content.

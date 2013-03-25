@@ -1,6 +1,5 @@
 {
-    "view": "Group",
-    "name": "Terminal example",
+    "view": "Sequence",
     "children":
     [
         {

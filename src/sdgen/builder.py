@@ -44,7 +44,7 @@ class Builder(object):
                 view.add_children(children)
         return view
 
-    def generate(self, data, path):
+    def generate(self, data, input_path, output_dir, *args, **kwargs):
         """
         Builds data structure represented by views.
 

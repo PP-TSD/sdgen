@@ -50,7 +50,7 @@ def main():
             os.mkdir(args.output)
 
     builder = builders[args.format]()
-    builder.generate(data=data, path=args.output)
+    builder.generate(data=data, input_path=args.input.name, output_dir=args.output)
 
 
 if __name__ == '__main__':

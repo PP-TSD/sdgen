@@ -8,6 +8,7 @@
 *.png
 *.sublime-project
 *.sublime-workspace
+*.orig
 dist
 build
 
