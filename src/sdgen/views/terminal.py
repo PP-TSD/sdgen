@@ -6,7 +6,6 @@ from ..fields.flattener import Flattener
 
 
 class Terminal(View):
-    render_config_key = "terminal"
     padding = 3
 
     def render(self):

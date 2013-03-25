@@ -8,7 +8,6 @@ from sdgen.fields.flattener import Flattener
 
 
 class Group(View):
-    render_config_key = "group"
     padding = 10
     header_padding = 5
     arrow_height = 1

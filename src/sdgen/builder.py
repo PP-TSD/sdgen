@@ -57,6 +57,5 @@ class Builder(object):
             config (dict): diagram-specific configuration
         """
         self.data = self._parse_data(data)
-        import pdb; pdb.set_trace()
         result = self.data.render()
         return result
