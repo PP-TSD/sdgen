@@ -21,7 +21,7 @@
         }
     },
     "terminal": {
-        "padding": 0
+        "padding": 8
     },
     "nonterminal": {
         "font": {
@@ -38,5 +38,8 @@
     "png": {
         "ppi": 300,
         "scale": 1
+    },
+    "character": {
+        "padding": 0
     }
 }
