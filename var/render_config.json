@@ -20,6 +20,9 @@
             "background": "yellow"
         }
     },
+    "terminal": {
+        "padding": 0
+    },
     "nonterminal": {
         "font": {
             "name": "Times",
