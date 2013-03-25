@@ -25,8 +25,8 @@ class Sequence(View):
 
     def render(self):
         # render ImageWrappers of fields
-        fields = [subfield.render() for subfield in self.subfields]
-       
+        fields = map(self.render_subview, self.subfields)
+
         top_max_height = max([max(x.get_handlers().values()) for x in fields])
         bottom_max_height = max([x.get_height() - min(x.get_handlers().values()) for x in fields])
 
@@ -49,7 +49,7 @@ class Sequence(View):
 
         background = self.render_image(Rectangle((width, height), thickness=0))
         field = Flattener(background, list(next_field()))
-        
+
         handlers = {
                     "left": top_max_height,
                     "right": right_handler
