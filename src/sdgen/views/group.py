@@ -44,27 +44,27 @@ class Group(View):
         fields = map(self.render_subview, self.subfields)
         border_size = self.pt_to_px(self.border_size)
 
+        # black rect with title
         header = self.render_image(Character(self.name, font_color="white", background="black", padding=self.header_padding))
 
-        top_max_height = max([max(x.get_handlers().values()) for x in fields])
-        bottom_max_height = max([x.get_height() - min(x.get_handlers().values()) for x in fields])
-
+        left_arrow, sequence, right_arrow = fields
+        # width and height of image
         width = sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size)
-        height = header.height + top_max_height + bottom_max_height + 2 * (padding + border_size)
-
-        def next_field():
-            x = padding + border_size
-            assert fields, "Empty group"
-            # previous field can have not inline handlers (eg. _[]- )
-            # it must be corrected in this field
-            diff = fields[0].get_handler('right') - fields[0].get_handler('left')
-            for field in fields:
-                yield field, (x, border_size + header.height + padding + diff + top_max_height - field.get_handler('left'))
-                diff = field.get_handler('right') - field.get_handler('left')
-                x += field.get_width()
+        height = header.get_height() + sequence.get_height() + 2 * (padding + border_size)
+        
+        # position of box with children and children 
+        subfields_y = header.get_height() + padding + border_size
+        left_arrow_x = border_size + padding
+        left_arrow_y = subfields_y + sequence.get_handler('left') - left_arrow.get_handler('right')
+        sequence_x = left_arrow_x + left_arrow.get_width()
+        right_arrow_x = sequence_x + sequence.get_width()
+        right_arrow_y = subfields_y + sequence.get_handler('right') - right_arrow.get_handler('left')
 
         background = self.render_image(Rectangle((width, height), thickness=self.border_size))
-        field = Flattener(background, [(header, (border_size, ) * 2)] + list(next_field()))
+        field = Flattener(background, [(header, (border_size, ) * 2),
+                    (left_arrow, (left_arrow_x, left_arrow_y)),
+                    (sequence, (sequence_x, subfields_y)),
+                    (right_arrow, (right_arrow_x, right_arrow_y))])
 
         # final render of this view
         return self.render_view(field)

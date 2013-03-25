@@ -33,8 +33,6 @@ class Sequence(View):
         width = sum(map(lambda f: f.get_width(), fields))
         height = top_max_height + bottom_max_height
 
-        right_handler = 0
-
         def next_field():
             x = 0
             assert fields, "Empty group"
@@ -42,11 +40,13 @@ class Sequence(View):
             # it must be corrected in this field
             diff = fields[0].get_handler('right') - fields[0].get_handler('left')
             for field in fields:
-                right_handler = diff + top_max_height
                 yield field, (x, diff + top_max_height - field.get_handler('left'))
                 diff += field.get_handler('right') - field.get_handler('left')
                 x += field.get_width()
-
+        positioned_fields = list(next_field())
+        
+        # get y coordinate of last fields and add it's right handler
+        right_handler = positioned_fields[-1][1][1] + positioned_fields[-1][0].get_handler('right')
         background = self.render_image(Rectangle((width, height), thickness=0))
         field = Flattener(background, list(next_field()))
 
