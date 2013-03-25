@@ -35,7 +35,9 @@ class Group(View):
     def render(self):
         # render ImageWrappers of fields
         padding = self.pt_to_px(self.padding)
-        fields = [subfield.render() for subfield in self.subfields]
+
+        # render all subviews and save this one, that should be saved to files
+        fields = map(self.render_subview, self.subfields)
         border_size = self.pt_to_px(self.border_size)
 
         header = self.render_image(Character(self.name, font_color="white", background="black", padding=self.header_padding))
@@ -60,4 +62,5 @@ class Group(View):
         background = self.render_image(Rectangle((width, height), thickness=self.border_size))
         field = Flattener(background, [(header, (border_size, ) * 2)] + list(next_field()))
 
-        return self.render_image(field)
+        # final render of this view
+        return self.render_view(field)
