@@ -7,9 +7,8 @@ from arrow import Arrow
 
 class DetourArrow(Arrow):
     render_config_key = "detour"
-    default_render_config = {
-        "padding": 3,
-    }
+    padding = 2
+
     def __init__(self, width, left_height, right_height, *args, **kwargs):
         super(DetourArrow, self).__init__(*args, **kwargs)
         self.width = width  # in px
@@ -23,7 +22,7 @@ class DetourArrow(Arrow):
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
         draw.line((padding, padding * 2, padding, self.left_height + padding), width=self.pt_to_px(self.thickness), fill=self.fill)
-        draw.line((width - padding, padding * 2, padding, self.right_height + padding), width=self.pt_to_px(self.thickness), fill=self.fill)
+        draw.line((width - padding, padding * 2, width - padding, self.right_height + padding), width=self.pt_to_px(self.thickness), fill=self.fill)
         draw.line((padding * 2, padding, width - padding * 2, padding), width=self.pt_to_px(self.thickness), fill=self.fill)
 
         #TODO:  thickness
