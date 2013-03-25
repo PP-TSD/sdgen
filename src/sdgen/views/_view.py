@@ -7,10 +7,12 @@ class View(ConfigurableMixin):
     Base class for all fields in sdgen.
     """
     renderer = None
+    save_as_subimage = False  # True if separate rendered image for view
 
     def __init__(self, name=None, type_=None, value=None, mark=False, *args, **kwargs):
         super(View, self).__init__(*args, **kwargs)
         self.subfields = []
+        self.rendered = []
         self.name = name
         self.value = value
         self.type = type_
@@ -34,6 +36,21 @@ class View(ConfigurableMixin):
             yield prev, item
             prev = item
 
+    def render_subview(self, view):
+        """
+        Render subview and add it (and all views that should be saved) to
+        rendered list.
+
+        This method should be called to render all subviews of view!
+        """
+        rendered = view.render()
+        # add rendered view to rendered list
+        if view.save_as_subimage:
+            self.rendered.append(rendered[0])
+        # extend rendered list by generated earlier views that should be saved
+        self.rendered.extend(rendered[1:])
+        return rendered[0]
+
     def render(self):
         """
         Renders view with all subfields
@@ -50,6 +67,16 @@ class View(ConfigurableMixin):
             raise NotImplementedError('Renderer {function} is not supported\
                      for {field_name} field.'.format(function=self.renderer,
                                     field_name=field.__class__.__name__))
+
+    def render_view(self, view):
+        """
+        Renders view and returns rendered view with all rendered subviews,
+        which was created during rendering of this view.
+
+        This method should be called at the end of view rendering to return
+        final rendered view and all subviews that should be saved.
+        """
+        return [self.render_image(view)] + self.rendered
 
     def pt_to_px(self, points):
         return points
