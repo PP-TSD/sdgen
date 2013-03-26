@@ -4,23 +4,37 @@
     "children":
     [
         {
-            "view": "Terminal",
-            "value": "A"
-        },
-        {
-            "view": "Terminal",
-            "value": "B"
-        },
-        {
             "view": "Detour",
             "children": [
-                {"view": "Terminal", "value": "H"}
+                {
+                    "view": "Sequence",
+                    "children": [
+                        {
+                            "view": "Detour",
+                            "children": [
+                                {
+                                    "view": "Sequence",
+                                    "children": [
+                                        {
+                                            "view": "Terminal",
+                                            "value": "A"
+                                        },
+                                        {
+                                            "view": "Terminal",
+                                            "value": "B"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {"view": "Terminal", "value": "C"},
+                        {
+                            "view": "Terminal",
+                            "value": " "
+                        }
+                    ]
+                }
             ]
-        },
-        {"view": "Terminal", "value": "C"},
-        {
-            "view": "Terminal",
-            "value": " "
         }
     ]
 }

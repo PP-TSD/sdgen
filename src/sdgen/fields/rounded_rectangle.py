@@ -9,7 +9,7 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 @antialiasing
 class RoundedRectangle(Field):
-    def __init__(self, size, thickness=1, fill="white", outline="black"):
+    def __init__(self, size, thickness=2, fill="white", outline="black"):
         """Render rectangle with half-circles on sides.
 
         If width is less than height result will be circle with diameter=height
