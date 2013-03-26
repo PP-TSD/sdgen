@@ -24,10 +24,41 @@ class Flattener(Field):
         self.padding = padding
 
     def to_png(self):
+        
+        def merge_pixels(pixel1, pixel2):
+            r1, g1, b1, a1 = pixel1
+            r2, g2, b2, a2 = pixel2
+            if a1 and a2:
+                sub_merge = lambda x1, x2: (x1 * a1 + x2 * a2) / (a1 + a2)
+                r3 = sub_merge(r1, r2)
+                g3 = sub_merge(g1, g2)
+                b3 = sub_merge(b1, b2)
+                a3 = max(a1, a2)
+                return r3, g3, b3, a3
+            else:
+                if not a1:
+                    return pixel2
+                else:
+                    return pixel1
+                    
+        
+        def transparent_paste(background, image, position):
+            width, height = image.size
+            for x in range(width):
+                for y in range(height):
+                    pixel = image.getpixel((x, y))
+                    background_position = position[0] + x, position[1] + y
+                    try:
+                        background_pixel = background.getpixel(background_position)
+                        background.putpixel(background_position,
+                                        merge_pixels(pixel, background_pixel))
+                    except IndexError:
+                        # end of background image
+                        break
+        
         background_image = self.background.get_image()
         for image, position in self.images:
-            background_image.paste(image.get_image(), position,
-                                   image.get_image())
+            transparent_paste(background_image, image.get_image(), position)
         self.background.set_image(background_image)
         return self.background
         
