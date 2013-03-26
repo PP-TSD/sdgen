@@ -8,7 +8,7 @@ MARKER = 5  # detaults marker length (in points)
 
 class Arrow(Field):
     render_config_key = "arrow"
-    thickness = 1,
+    thickness = 2
     marker = "normal"
     fill = "black"
 

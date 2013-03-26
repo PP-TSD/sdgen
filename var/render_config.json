@@ -1,6 +1,6 @@
 {
     "default": {
-        "thickness": 1,
+        "thickness": 4,
         "padding": 10,
         "font": {
             "name": "Arial",

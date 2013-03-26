@@ -35,7 +35,6 @@ class ConfigurableMixin(object):
         # update by params passed to __init__
         default_config.update(kwargs)
 
-        import pdb; pdb.set_trace()
         for (key, value) in default_config.items():
             if not key.startswith('_'):
                 setattr(self, key, value)

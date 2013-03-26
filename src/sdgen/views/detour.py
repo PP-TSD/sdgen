@@ -8,7 +8,7 @@ from sdgen.fields.flattener import Flattener
 class Detour(View):
     render_config_key = "detour"
     padding = 10
-    thickness = 1
+    thickness = 2
     
     def add_children(self, children):
         extended = []
@@ -30,9 +30,10 @@ class Detour(View):
         left_arrow = self.render_subview(left_arrow)
         right_arrow = self.render_subview(right_arrow)
         subfield = self.render_subview(subfield)
-        detour_arrow = self.render_image(DetourArrow(subfield.get_width(),
+
+        detour_arrow = self.render_image(DetourArrow(*map(self.px_to_pt, (subfield.get_width(),
                                                      subfield.get_handler('left'),
-                                                     subfield.get_handler('right'),
+                                                     subfield.get_handler('right'))),
                                                      marked=detour_arrow.marked))
         padding = (detour_arrow.get_width() - subfield.get_width()) / 2
         
