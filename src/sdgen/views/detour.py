@@ -13,6 +13,7 @@ class Detour(View):
 
     def add_children(self, children):
         extended = []
+        # TODO: replace hard-coded length with flexible one (dependent on character and so on)
         iterator = iter([Connection(render_config={'marker': None, 'length': 15}),  # left connection
                          View(),
                          Connection(render_config={'marker': None}),  # right connection
