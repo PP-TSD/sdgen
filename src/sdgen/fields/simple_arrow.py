@@ -13,7 +13,8 @@ class SimpleArrow(Arrow):
 
     """ Arrow from left to right. """
     def to_png(self):
-        width, height = map(self.pt_to_px, (self.length, self.marker * 2.0 / 3))
+        width = self.pt_to_px(self.length)
+        height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness)
         marker = self.pt_to_px(self.marker)
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)

@@ -1,0 +1,35 @@
+{
+    "view": "Group",
+    "name": "Detour example",
+    "children":
+    [
+        {
+            "view": "Detour",
+            "children": [
+                {
+                    "view": "Sequence",
+                    "children": [
+                        {
+                            "view": "Sequence",
+                            "children": [
+                                {
+                                    "view": "Terminal",
+                                    "value": "A"
+                                },
+                                {
+                                    "view": "Terminal",
+                                    "value": "B"
+                                }
+                            ]
+                        },
+                        {"view": "Terminal", "value": "C"},
+                        {
+                            "view": "Terminal",
+                            "value": " "
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
