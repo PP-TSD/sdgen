@@ -6,7 +6,8 @@
         {
             "children": [
                 {"view": "Terminal", "value": "B"},
-                {"view": "Terminal", "value": "C"},
+                {"view": "Terminal", "value": " "},
+                {"view": "Terminal", "value": "j"},
                 {"view": "Terminal", "value": "D"}
             ],
             "name": "Inv Terminal BCD",
