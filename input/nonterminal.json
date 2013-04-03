@@ -1,0 +1,16 @@
+{
+    "view": "Group",
+    "name": "Nonterminal example",
+    "children": [
+        {"view": "Terminal", "value": "A"},
+        {
+            "children": [
+                {"view": "Terminal", "value": "B"},
+                {"view": "Terminal", "value": "C"}
+            ],
+            "name": "Non Terminal C",
+            "view": "NonTerminal"
+        },
+        {"view": "Terminal", "value": "D"}
+    ]
+}
