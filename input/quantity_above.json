@@ -1,0 +1,28 @@
+{
+    "view": "Sequence",
+    "children":
+    [
+        {
+            "view": "Terminal",
+            "value": "A"
+        },
+        {
+            "view": "Terminal",
+            "value": "B"
+        },
+        {
+            "view": "QuantityAbove",
+            "value": "1..3",
+            "children": [
+                {
+                    "view": "Terminal",
+                    "value": "C"
+                }
+            ]
+        },
+        {
+            "view": "Terminal",
+            "value": " "
+        }
+    ]
+}
