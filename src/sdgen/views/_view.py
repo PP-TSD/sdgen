@@ -36,6 +36,14 @@ class View(ConfigurableMixin):
             yield prev, item
             prev = item
 
+    def render_subimage(self, *args, **kwargs):
+        """
+        Called when view has save_as_subimage == True
+
+        By default, generates same image as render
+        """
+        return self.render(*args, **kwargs)
+
     def render_subview(self, view):
         """
         Render subview and add it (and all views that should be saved) to
@@ -46,7 +54,7 @@ class View(ConfigurableMixin):
         rendered = view.render()
         # add rendered view to rendered list
         if view.save_as_subimage:
-            self.rendered.append(rendered[0])
+            self.rendered.append(view.render_subimage())
         # extend rendered list by generated earlier views that should be saved
         self.rendered.extend(rendered[1:])
         return rendered[0]
