@@ -31,15 +31,15 @@ class DetourArrow(Arrow):
         draw = ImageDraw.Draw(image)
 
         bezier_points_lists = [# left curve
-                  [(0, left_height + 2 * padding),
-                  (padding, left_height + 2 * padding),
-                  (0, padding),
-                  (2 * padding, padding)],
+                  [(0, 0),
+                  (padding, 0),
+                  (0, left_height + padding),
+                  (2 * padding, left_height + padding)],
                   # right curve
-                  [(width - 2 * padding, padding),
-                  (width, padding),
-                  (width - padding, right_height + 2 * padding),
-                  (width, right_height + 2 * padding)]
+                  [(width - 2 * padding, right_height + padding),
+                  (width, right_height + padding),
+                  (width - padding, 0),
+                  (width, 0)]
                   ]
         
         for bezier_points in bezier_points_lists:
@@ -54,7 +54,7 @@ class DetourArrow(Arrow):
 
         relative = lambda (x1, y1), (x2, y2): (x1 + x2, y1 + y2)
         
-        line_points = (2 * padding, padding, width - 2 * padding, padding)
+        line_points = (2 * padding, left_height + padding, width - 2 * padding, right_height + padding)
         line_center = (line_points[0] + line_points[2]) / 2, line_points[1]
         
         draw.line(line_points, width=thickness, fill=self.fill)

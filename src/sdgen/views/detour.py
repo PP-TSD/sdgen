@@ -13,7 +13,7 @@ class Detour(View):
 
     def add_children(self, children):
         extended = []
-        # TODO: replace hard-coded length with flexible one (dependent on character and so on)
+        #TODO: replace hard-coded length with flexible one (dependent on character and so on)
         iterator = iter([Connection(render_config={'length': 2 * self.padding}),  # left connection
                          View(),
                          Connection(render_config={'marker': None, 'length': 2 * self.padding}),  # right connection
@@ -37,11 +37,12 @@ class Detour(View):
         right_arrow = self.render_subview(right_arrow)
         subfield = self.render_subview(subfield)
 
-        detour_arrow = self.render_image(DetourArrow(*map(self.px_to_pt, (subfield.get_width(),
-                                                     subfield.get_handler('left'),
-                                                     subfield.get_handler('right'))),
-                                                     padding=self.padding,
-                                                     marked=detour_arrow.marked))
+        detour_arrow = self.render_image(DetourArrow(
+                *map(self.px_to_pt, (subfield.get_width(),
+                subfield.get_height() - subfield.get_handler('left'),
+                subfield.get_handler('right'))),
+                padding=self.padding,
+                marked=detour_arrow.marked))
         padding = (detour_arrow.get_width() - subfield.get_width()) / 2
 
         left_arrow_y = subfield.get_handler('left') - left_arrow.get_handler('right') + padding
@@ -49,7 +50,7 @@ class Detour(View):
 
         background = self.render_image(Rectangle((subfield.get_width() + 2 * padding, subfield.get_height() + 2 * padding),
                                        thickness=0))
-        flattener = Flattener(background, [(detour_arrow, (0, 0)),
+        flattener = Flattener(background, [(detour_arrow, (0, padding + subfield.get_handler('left'))),
                                              (left_arrow, (0, left_arrow_y)),
                                              (subfield, (padding,) * 2),
                                              (right_arrow, (subfield.get_width() + padding, right_arrow_y))])
