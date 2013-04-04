@@ -25,11 +25,12 @@ class Flattener(Field):
 
     def to_png(self):
         
-        def merge_pixels(pixel1, pixel2):
+        def paste_pixels(pixel1, pixel2):
+            """ paste pixel2 on pixel1 """
             r1, g1, b1, a1 = pixel1
             r2, g2, b2, a2 = pixel2
             if a1 and a2:
-                sub_merge = lambda x1, x2: (x1 * a1 + x2 * a2) / (a1 + a2)
+                sub_merge = lambda x1, x2: x1 + (x2 - x1) * a2 / 255
                 r3 = sub_merge(r1, r2)
                 g3 = sub_merge(g1, g2)
                 b3 = sub_merge(b1, b2)
@@ -51,7 +52,7 @@ class Flattener(Field):
                     try:
                         background_pixel = background.getpixel(background_position)
                         background.putpixel(background_position,
-                                        merge_pixels(pixel, background_pixel))
+                                        paste_pixels(background_pixel, pixel))
                     except IndexError:
                         # end of background image
                         break

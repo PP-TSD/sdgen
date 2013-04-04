@@ -46,7 +46,7 @@ class DetourArrow(Arrow):
             bezier = make_bezier(bezier_points)
             samples = max(width, height) * 3.0
             half_thickness = thickness / 2
-            
+
             for point in bezier([t/samples for t in range(int(samples))]):
                 draw.ellipse((point[0] - half_thickness, point[1] - half_thickness,
                               point[0] + half_thickness, point[1] + half_thickness),

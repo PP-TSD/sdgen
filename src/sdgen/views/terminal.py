@@ -17,5 +17,6 @@ class Terminal(View):
         text = self.render_image(Character(self.value))
         border = self.render_image(RoundedRectangle(tuple(self.px_to_pt(p) + self.padding * 2 for p in text.get_size())))
 
-        terminal = Flattener(border, [(text, (self.pt_to_px(self.padding),) * 2)])
+        terminal = Flattener(border, [(text, ((border.get_width() - text.get_width()) / 2,
+                                              self.pt_to_px(self.padding)))])
         return self.render_view(terminal)
