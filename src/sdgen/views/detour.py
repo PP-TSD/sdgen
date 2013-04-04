@@ -40,23 +40,24 @@ class Detour(View):
         detour_arrow = self.render_image(DetourArrow(
                 *map(self.px_to_pt, (subfield.get_width(),
                 subfield.get_height() - subfield.get_handler('left'),
-                subfield.get_handler('right'))),
+                subfield.get_height() - subfield.get_handler('right'))),
                 padding=self.padding,
                 marked=detour_arrow.marked))
         padding = (detour_arrow.get_width() - subfield.get_width()) / 2
 
-        left_arrow_y = subfield.get_handler('left') - left_arrow.get_handler('right') + padding
-        right_arrow_y = subfield.get_handler('right') - right_arrow.get_handler('left') + padding
+        left_arrow_y = subfield.get_handler('left') - left_arrow.get_handler('right')
+        right_arrow_y = subfield.get_handler('right') - right_arrow.get_handler('left')
 
-        background = self.render_image(Rectangle((subfield.get_width() + 2 * padding, subfield.get_height() + 2 * padding),
+        background = self.render_image(Rectangle((subfield.get_width() + 2 * padding, subfield.get_height() + padding),
                                        thickness=0))
-        flattener = Flattener(background, [(detour_arrow, (0, padding + subfield.get_handler('left'))),
+
+        flattener = Flattener(background, [(detour_arrow, (0, subfield.get_handler('left'))),
                                              (left_arrow, (0, left_arrow_y)),
-                                             (subfield, (padding,) * 2),
+                                             (subfield, (padding, 0)),
                                              (right_arrow, (subfield.get_width() + padding, right_arrow_y))])
         handlers = {
-                    "left": subfield.get_handler('left') + padding,
-                    "right": subfield.get_handler('right') + padding
+                    "left": subfield.get_handler('left'),
+                    "right": subfield.get_handler('right')
                     }
         rendered_fields = self.render_view(flattener)
         rendered_fields[0].update_handlers(handlers)
