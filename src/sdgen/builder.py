@@ -10,10 +10,7 @@ views_classes = {
     "Group": group.Group,
     "InvTerminal": inv_terminal.InvTerminal,
     "NonTerminal": non_terminal.NonTerminal,
-    "Quantity": quantity.Quantity,
     "QuantityAbove": quantity_above.QuantityAbove,
-    "QuantityDetour": quantity_detour.QuantityDetour,
-    "QuantityReturn": quantity_return.QuantityReturn,
     "Sequence": sequence.Sequence,
     "Terminal": terminal.Terminal
 }
