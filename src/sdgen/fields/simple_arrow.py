@@ -16,10 +16,11 @@ class SimpleArrow(Arrow):
         width = self.pt_to_px(self.length)
         height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness)
         marker = self.pt_to_px(self.marker)
+        thickness = self.pt_to_px(self.thickness)
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
 
-        draw.line((0, height/2, width, height/2), width=self.pt_to_px(self.thickness), fill=self.fill)
+        draw.line((0, height/2, width, height/2), width=thickness, fill=self.fill)
         draw.polygon([(width, height / 2),
                       (width - marker, height / 2 - marker / 3),
                      (width - marker, height / 2 + marker / 3)],

@@ -41,5 +41,8 @@
     },
     "character": {
         "padding": 0
+    },
+    "detour": {
+        "padding": 10
     }
 }

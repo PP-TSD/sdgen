@@ -8,15 +8,15 @@ from sdgen.fields.flattener import Flattener
 
 class Detour(View):
     render_config_key = "detour"
-    padding = 10
+    padding = 8
     thickness = 2
 
     def add_children(self, children):
         extended = []
         # TODO: replace hard-coded length with flexible one (dependent on character and so on)
-        iterator = iter([Connection(render_config={'marker': None, 'length': 15}),  # left connection
+        iterator = iter([Connection(render_config={'length': 2 * self.padding}),  # left connection
                          View(),
-                         Connection(render_config={'marker': None}),  # right connection
+                         Connection(render_config={'marker': None, 'length': 2 * self.padding}),  # right connection
                          Connection()  # detour connection
                          ])
 
@@ -40,11 +40,12 @@ class Detour(View):
         detour_arrow = self.render_image(DetourArrow(*map(self.px_to_pt, (subfield.get_width(),
                                                      subfield.get_handler('left'),
                                                      subfield.get_handler('right'))),
+                                                     padding=self.padding,
                                                      marked=detour_arrow.marked))
         padding = (detour_arrow.get_width() - subfield.get_width()) / 2
 
         left_arrow_y = subfield.get_handler('left') - left_arrow.get_handler('right') + padding
-        right_arrow_y = subfield.get_handler('right') - left_arrow.get_handler('left') + padding
+        right_arrow_y = subfield.get_handler('right') - right_arrow.get_handler('left') + padding
 
         background = self.render_image(Rectangle((subfield.get_width() + 2 * padding, subfield.get_height() + 2 * padding),
                                        thickness=0))

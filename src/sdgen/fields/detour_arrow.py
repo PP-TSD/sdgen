@@ -11,7 +11,7 @@ from _field import antialiasing
 @antialiasing
 class DetourArrow(Arrow):
     render_config_key = "detour"
-    padding = 7
+    padding = 10
 
     def __init__(self, width, left_height, right_height, *args, **kwargs):
         super(DetourArrow, self).__init__(*args, **kwargs)
@@ -32,13 +32,13 @@ class DetourArrow(Arrow):
 
         bezier_points_lists = [# left curve
                   [(0, left_height + 2 * padding),
-                  (2 * padding, left_height + 2 * padding),
+                  (padding, left_height + 2 * padding),
                   (0, padding),
                   (2 * padding, padding)],
                   # right curve
                   [(width - 2 * padding, padding),
                   (width, padding),
-                  (width - 2 * padding, right_height + 2 * padding),
+                  (width - padding, right_height + 2 * padding),
                   (width, right_height + 2 * padding)]
                   ]
         
