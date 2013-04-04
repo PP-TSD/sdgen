@@ -27,61 +27,40 @@ class DetourArrow(Arrow):
         image = Image.new('RGBA', (width, height))
         left_height = self.pt_to_px(self.left_height)
         right_height = self.pt_to_px(self.right_height)
+        marker = self.pt_to_px(self.marker)
         draw = ImageDraw.Draw(image)
 
-        bezier_points = [# left curve
-                  (0, left_height + 2 * padding),
+        bezier_points_lists = [# left curve
+                  [(0, left_height + 2 * padding),
                   (2 * padding, left_height + 2 * padding),
-                  (0, 0),
-                  (2 * padding, 0),
-                  # subfield corners
-                  (2 * padding, 2 * padding),
-                  (width - 2 * padding, 2 * padding),
+                  (0, padding),
+                  (2 * padding, padding)],
                   # right curve
-                  (width - 2 * padding, 0),
-                  (width, 0),
+                  [(width - 2 * padding, padding),
+                  (width, padding),
                   (width - 2 * padding, right_height + 2 * padding),
-                  (width, right_height + 2 * padding)
+                  (width, right_height + 2 * padding)]
                   ]
         
-        bezier = make_bezier(bezier_points)
-        samples = max(width, height) * 3.0
-        half_thickness = thickness / 2
-        for point in bezier([t/samples for t in range(int(samples))]):
-            draw.ellipse((point[0] - half_thickness, point[1] - half_thickness,
-                          point[0] + half_thickness, point[1] + half_thickness),
-                         fill = self.fill, outline = self.fill)
-#        #draw lines
-#        
-#        draw.line((padding * 2, padding * 2, padding, left_height + padding), width=thickness, fill=self.fill)
-#        draw.line((width - padding * 2, padding * 2, width - padding, right_height + padding), width=thickness, fill=self.fill)
-#        draw.line((padding * 3, padding, width - padding * 3, padding), width=thickness, fill=self.fill)
-#
-#        #draw outlines
-#        half_thickness = thickness / 2
-#        draw.pieslice((-padding - half_thickness, left_height - half_thickness,
-#                       padding + half_thickness,
-#                       left_height + padding * 2 + half_thickness), 0, 90,
-#                      outline=self.fill, fill=self.fill)
-#        draw.pieslice((padding * 2 - half_thickness, padding - half_thickness, padding * 4 + half_thickness,
-#                       padding * 3 + half_thickness), 180, 270, outline=self.fill, fill=self.fill)
-#        draw.pieslice((width - padding * 4 - half_thickness, padding - half_thickness, width - padding * 2 + half_thickness,
-#                       padding * 3 + half_thickness), 270, 0, outline=self.fill, fill=self.fill)
-#        draw.pieslice((width - padding - half_thickness, right_height - half_thickness, width + padding + half_thickness,
-#                       right_height + padding * 2 + half_thickness), 90, 180,
-#                      outline=self.fill, fill=self.fill)
-#        
-#        # fill transparent
-#        transparent = (0, 0, 0, 0)
-#        draw.pieslice((-padding + half_thickness, left_height + half_thickness,
-#                       padding - half_thickness,
-#                       left_height + padding * 2 - half_thickness), 0, 90,
-#                      outline=transparent, fill=transparent)
-#        draw.pieslice((padding * 2 + half_thickness, padding + half_thickness, padding * 4 - half_thickness,
-#                       padding * 3 - half_thickness), 180, 270, outline=transparent, fill=transparent)
-#        draw.pieslice((width - padding * 4 + half_thickness, padding + half_thickness, width - padding * 2 - half_thickness,
-#                       padding * 3 - half_thickness), 270, 0, outline=transparent, fill=transparent)
-#        draw.pieslice((width - padding + half_thickness, right_height + half_thickness, width + padding - half_thickness,
-#                       right_height + padding * 2 - half_thickness), 90, 180,
-#                      outline=transparent, fill=transparent)
+        for bezier_points in bezier_points_lists:
+            bezier = make_bezier(bezier_points)
+            samples = max(width, height) * 3.0
+            half_thickness = thickness / 2
+            
+            for point in bezier([t/samples for t in range(int(samples))]):
+                draw.ellipse((point[0] - half_thickness, point[1] - half_thickness,
+                              point[0] + half_thickness, point[1] + half_thickness),
+                             fill = self.fill, outline = self.fill)
+
+        relative = lambda (x1, y1), (x2, y2): (x1 + x2, y1 + y2)
+        
+        line_points = (2 * padding, padding, width - 2 * padding, padding)
+        line_center = (line_points[0] + line_points[2]) / 2, line_points[1]
+        
+        draw.line(line_points, width=thickness, fill=self.fill)
+        draw.polygon([relative(line_center, (marker / 2, 0)),
+                      relative(line_center, (-marker / 2, -marker / 3)),
+                      relative(line_center, (-marker / 2, marker / 3))],
+                     fill=self.fill,
+                     )
         return ImageWrapper(image, width, height)
