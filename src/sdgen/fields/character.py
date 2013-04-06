@@ -16,6 +16,7 @@ class Character(Field):
     font_size = 12
     font_typeface = "normal"
     font_color = "black"
+    marked_font_color = "red"
     padding = 0
     background = "transparent"
 

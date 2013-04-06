@@ -7,10 +7,11 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Rectangle(Field):
-    render_config_key = "rectangle"
     thickness = 1
     fill = "transparent"
     outline = "black"
+    marked_outline = "red"
+    marked_fill = "yellow"
 
     def __init__(self, size, *args, **kwargs):
         """Render rectangle.

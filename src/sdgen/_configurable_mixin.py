@@ -5,7 +5,12 @@ from sdgen.config import render_config, safeget
 
 
 class ConfigurableMixin(object):
+    """
+
+    """
+
     _render_config_key = None
+    _render_config_secondary_key = None
     _render_config_default_key = "default"
 
     def __init__(self, render_config_key=None, *args, **kwargs):
@@ -16,7 +21,7 @@ class ConfigurableMixin(object):
         elif not self._render_config_key:
             self._render_config_key = self.__class__.__name__.lower()
         self._passed_config = kwargs
-        self._parse_args(**kwargs)
+        self._config = self._parse_args(**kwargs)
 
     def _parse_args(self, **kwargs):
         """
@@ -25,8 +30,8 @@ class ConfigurableMixin(object):
         Priority of configs:
         __init__ argument > config for class > class attribute > default config
         """
-        default_config = self._flat_dict(deepcopy(safeget(render_config, self._render_config_default_key)) or {})
-        class_config = self._flat_dict(deepcopy(safeget(render_config, self._render_config_key)) or {})
+        default_config = self.flat_dict(deepcopy(safeget(render_config, self._render_config_default_key)) or {})
+        class_config = self.flat_dict(deepcopy(safeget(render_config, self._render_config_key)) or {})
 
         # update by class variables
         default_config.update(self._get_self_attributes())
@@ -35,9 +40,14 @@ class ConfigurableMixin(object):
         # update by params passed to __init__
         default_config.update(kwargs)
 
+        # get rid of protected attributes
+        default_config = dict((k, default_config[k]) for k in default_config if not k.startswith('_'))
+
+        # set attributes values
         for (key, value) in default_config.items():
-            if not key.startswith('_'):
                 setattr(self, key, value)
+
+        return default_config
 
     def _get_self_attributes(self):
         """
@@ -45,15 +55,14 @@ class ConfigurableMixin(object):
         """
         attrs = {}
         for key in dir(self):
-            if key.startswith('_'):
-                continue
-            attr = getattr(self, key)
-            # check for not functions
-            if not hasattr(attr, '__call__'):
-                attrs[key] = attr
+            if not key.startswith('_'):
+                attr = getattr(self, key)
+                # check for not-functions
+                if not hasattr(attr, '__call__'):
+                    attrs[key] = attr
         return attrs
 
-    def _flat_dict(self, d):
+    def flat_dict(self, d):
         """
         Transform multi-level dict into one-level dict
         """
@@ -61,7 +70,7 @@ class ConfigurableMixin(object):
         for (k, v) in d.items():
             k = str(k)
             if isinstance(v, dict):
-                v = self._flat_dict(v)
+                v = self.flat_dict(v)
                 for (kv, vv) in v.items():
                     flat['_'.join((k, kv))] = vv
             else:
