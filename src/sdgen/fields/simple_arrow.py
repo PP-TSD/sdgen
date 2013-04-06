@@ -2,7 +2,7 @@
 import Image
 import ImageDraw
 
-from sdgen.fields._field import antialiasing
+from sdgen.utils.antialiasing import antialiasing
 from sdgen.utils.image_wrapper import ImageWrapper
 from arrow import Arrow
 

@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 from _view import View
 from connections.connection import Connection
-from sdgen.fields.detour_arrow import DetourArrow
+from sdgen.views.connections.detour_connection import DetourConnection
 from sdgen.fields.rectangle import Rectangle
 from sdgen.fields.flattener import Flattener
+from sdgen.utils.antialiasing import antialiasing
 
 
 class Detour(View):
-    render_config_key = "detour"
     padding = 8
     thickness = 2
 
     def add_children(self, children):
         extended = []
-        #TODO: replace hard-coded length with flexible one (dependent on character and so on)
         iterator = iter([Connection(render_config={'length': 2 * self.padding}),  # left connection
                          View(),
                          Connection(render_config={'marker': None, 'length': 2 * self.padding}),  # right connection
-                         Connection()  # detour connection
+                         DetourConnection(left_length = 2 * self.padding, right_length = 2 * self.padding)  # detour connection
                          ])
 
         for child in children:
@@ -37,18 +36,20 @@ class Detour(View):
         right_arrow = self.render_subview(right_arrow)
         subfield = self.render_subview(subfield)
 
-        detour_arrow = self.render_image(DetourArrow(
-                *map(self.px_to_pt, (subfield.get_width(),
-                subfield.get_height() - subfield.get_handler('left'),
-                subfield.get_height() - subfield.get_handler('right'))),
-                padding=self.padding,
-                marked=detour_arrow.marked))
+        detour_arrow.set_subfield_params(subfield.get_size(),
+            {
+                # in pixels
+                "left": subfield.get_height() - subfield.get_handler('left'),
+                "right": subfield.get_height() - subfield.get_handler('right')
+            })
+        detour_arrow = self.render_subview(detour_arrow)
+
         padding = (detour_arrow.get_width() - subfield.get_width()) / 2
 
         left_arrow_y = subfield.get_handler('left') - left_arrow.get_handler('right')
         right_arrow_y = subfield.get_handler('right') - right_arrow.get_handler('left')
 
-        background = self.render_image(Rectangle((subfield.get_width() + 2 * padding, subfield.get_height() + padding),
+        background = self.render_image(Rectangle((detour_arrow.get_width(), detour_arrow.get_height() + max(subfield.get_handlers().values())),
                                        thickness=0))
 
         flattener = Flattener(background, [(detour_arrow, (0, subfield.get_handler('left'))),
