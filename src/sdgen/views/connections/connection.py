@@ -9,4 +9,4 @@ class Connection(View):
     render_config = {}
 
     def render(self):
-        return self.render_view(SimpleArrow(**self.render_config))
+        return self.render_view(self.get_field(SimpleArrow, marked=self.marked, **self.render_config))

@@ -20,7 +20,7 @@ class Rectangle(Field):
             size (tuple): width, height of rectangle.
 
         Kwargs:
-            thickness (int): thickness of rectangle (in pixels).
+            thickness (int): thickness of rectangle border (in pixels).
             fill (str): filling color (default transparent).
             outline (str): outline color (default black).
         """

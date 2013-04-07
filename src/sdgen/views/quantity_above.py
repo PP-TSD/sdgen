@@ -14,13 +14,14 @@ class QuantityAbove(View):
         assert len(self.subfields) == 1
 
     def render(self):
-        quantity = self.render_image(Character(self.value))
+        quantity = self.render_image(self.get_field(Character, self.value))
         subfield = self.render_subview(self.subfields[0])
 
         width = max(quantity.get_width(), subfield.get_width())
         height = sum((quantity.get_height(), self.padding, subfield.get_height()))
 
-        background = self.render_image(Rectangle((width, height), thickness=0))
+        # backgroudn without border
+        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=0))
 
         quantity_x = (width - quantity.get_width())/2
         subfield_x = (width - subfield.get_width())/2

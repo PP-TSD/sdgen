@@ -9,7 +9,13 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 @antialiasing
 class RoundedRectangle(Field):
-    def __init__(self, size, thickness=2, fill="white", outline="black"):
+    thickness = 2
+    fill = "transparent"
+    outline = "black"
+    marked_outline = "red"
+    marked_fill = "yellow"
+
+    def __init__(self, size, *args, **kwargs):
         """Render rectangle with half-circles on sides.
 
         If width is less than height result will be circle with diameter=height
@@ -22,12 +28,9 @@ class RoundedRectangle(Field):
             fill (str): filling color (default transparent).
             outline (str): outline color (default black).
         """
+        super(RoundedRectangle, self).__init__(*args, **kwargs)
         self.size = (max(size), size[1])
-        self.thickness = thickness
         assert self.thickness <= min(self.size)/2, 'Thickness is too large'
-        self.fill = fill
-        self.outline = outline
-
 
     def to_png(self):
         size = tuple([self.pt_to_px(p) for p in self.size])

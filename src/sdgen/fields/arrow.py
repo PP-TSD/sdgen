@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-
-from _field import Field
+from sdgen.fields._field import Field
 
 
 MARKER = 5  # detaults marker length (in points)
 
 
 class Arrow(Field):
-    render_config_key = "arrow"
     thickness = 2
     marker = "normal"
     fill = "black"
+    marked_fill = "red"
 
     def __init__(self, *args, **kwargs):
-        """Base arrow class.
+        """
+        Base arrow class.
 
         Kwargs:
             thickness (int): thickness of arrow (in points).
-            marker (str): size of arrowhead (normal|large|small)
+            marker (str): size of arrowhead (normal|large|small).
             fill (str): color (default black).
         """
         super(Arrow, self).__init__(*args, **kwargs)

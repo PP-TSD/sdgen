@@ -10,6 +10,11 @@ from .inv_terminal_delimiter import InvTerminalDelimiter
 
 class InvTerminal(View):
     padding = 5
+    inner_padding = 3
+    fill = "black"
+    outline = "black"
+    marked_fill = "red"
+    marked_outline = "yellow"
 
     def add_children(self, children):
         """
@@ -39,10 +44,15 @@ class InvTerminal(View):
         for i in range(len(fields)-1, 0, -1):
             fields[i:i] = [delimiter]
 
-        width = sum(map(lambda f: f.get_width(), fields)) + 2 * padding
+        width = sum(map(lambda f: f.get_width(), fields)) + 2 * padding + (len(fields)-1) * self.inner_padding
         height = max(map(lambda f: f.get_height(), fields)) + 2 * padding
 
-        background = self.render_image(RoundedRectangle((width, height), fill="black"))
+        background = self.render_image(self.get_field(RoundedRectangle,
+                                                      (width, height),
+                                                      fill=self.fill,
+                                                      outline=self.outline,
+                                                      marked_fill=self.marked_fill,
+                                                      marked_outline=self.marked_outline))
 
         def next_field():
             x = padding
@@ -53,7 +63,7 @@ class InvTerminal(View):
             for field in fields:
                 yield field, (x, padding + diff + top_max_height - field.get_handler('left'))
                 diff += field.get_handler('right') - field.get_handler('left')
-                x += field.get_width()
+                x += field.get_width() + self.inner_padding
         positioned_fields = list(next_field())
 
         field = Flattener(background, positioned_fields)

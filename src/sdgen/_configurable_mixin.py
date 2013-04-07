@@ -16,10 +16,16 @@ class ConfigurableMixin(object):
     def __init__(self, render_config_key=None, *args, **kwargs):
         # overwrite default class value for this instance
         if render_config_key:
+            if not self._render_config_secondary_key:
+                if self._render_config_key:
+                    self._render_config_secondary_key = self._render_config_key
+                else:
+                    self._render_config_secondary_key = self.__class__.__name__.lower()
             self._render_config_key = render_config_key
         # set to class name
         elif not self._render_config_key:
             self._render_config_key = self.__class__.__name__.lower()
+
         self._passed_config = kwargs
         self._config = self._parse_args(**kwargs)
 
@@ -35,6 +41,10 @@ class ConfigurableMixin(object):
 
         # update by class variables
         default_config.update(self._get_self_attributes())
+        # update by secondary config for this class
+        if self._render_config_secondary_key:
+            class_secondary_config = self.flat_dict(deepcopy(safeget(render_config, self._render_config_secondary_key)) or {})
+            default_config.update(class_secondary_config)
         # update by config for this class
         default_config.update(class_config)
         # update by params passed to __init__

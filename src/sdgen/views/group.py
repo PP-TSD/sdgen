@@ -44,7 +44,7 @@ class Group(View):
         border_size = self.pt_to_px(self.border_size)
 
         # black rect with title
-        header = self.render_image(Character(self.name, font_color="white", background="black", padding=self.header_padding))
+        header = self.render_image(self.get_field(Character, self.name, font_color="white", background="black", padding=self.header_padding, marked=False))
 
         left_arrow, sequence, right_arrow = fields
         # width and height of image
@@ -59,7 +59,7 @@ class Group(View):
         right_arrow_x = sequence_x + sequence.get_width()
         right_arrow_y = subfields_y + sequence.get_handler('right') - right_arrow.get_handler('left')
 
-        background = self.render_image(Rectangle((width, height), thickness=self.border_size))
+        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=self.border_size, marked=False))
         field = Flattener(background, [(header, (border_size, ) * 2),
                     (left_arrow, (left_arrow_x, left_arrow_y)),
                     (sequence, (sequence_x, subfields_y)),

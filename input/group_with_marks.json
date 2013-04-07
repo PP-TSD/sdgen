@@ -1,6 +1,6 @@
 {
     "view": "Group",
-    "name": "Terminal example",
+    "name": "Terminal example with marked",
     "children":
     [
         {
@@ -13,7 +13,8 @@
         },
         {
             "view": "Terminal",
-            "value": "B"
+            "value": "B",
+            "mark": "yes"
         },
         {
             "type": "Connection",

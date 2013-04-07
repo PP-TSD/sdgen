@@ -9,6 +9,7 @@ from ..fields.flattener import Flattener
 
 
 class NonTerminal(View):
+    save_as_subimage = True
     padding = 5
 
     def render_subimage(self):
@@ -23,8 +24,8 @@ class NonTerminal(View):
         return group.render()
 
     def render(self):
-            text = self.render_image(Character(self.name))
-            border = self.render_image(Rectangle(tuple(self.px_to_pt(p) + self.padding * 2 for p in text.get_size())))
+            text = self.render_image(self.get_field(Character, self.name))
+            border = self.render_image(self.get_field(Rectangle, tuple(self.px_to_pt(p) + self.padding * 2 for p in text.get_size())))
 
             nonterminal = Flattener(border, [(text, (self.pt_to_px(self.padding),) * 2)])
             return self.render_view(nonterminal)

@@ -19,7 +19,7 @@ class Sequence(View):
                 extended_children.append(el1)
             elif not (el1_conn or el2_conn):
                 extended_children.append(el1)
-                extended_children.append(Connection())
+                extended_children.append(Connection(mark=self.marked))
         super(Sequence, self).add_children(extended_children)
 
     def render(self):
@@ -46,7 +46,7 @@ class Sequence(View):
 
         # get y coordinate of last fields and add it's right handler
         right_handler = positioned_fields[-1][1][1] + positioned_fields[-1][0].get_handler('right')
-        background = self.render_image(Rectangle((width, height), thickness=0))
+        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=0, marked=False))
         field = Flattener(background, list(next_field()))
 
         handlers = {

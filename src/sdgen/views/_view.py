@@ -36,6 +36,11 @@ class View(ConfigurableMixin):
             yield prev, item
             prev = item
 
+    def get_field(self, field, *args, **kwargs):
+        if 'marked' not in kwargs:
+            kwargs['marked'] = self.marked
+        return field(render_config_key=self._render_config_key, *args, **kwargs)
+
     def render_subimage(self, *args, **kwargs):
         """
         Called when view has save_as_subimage == True
@@ -54,7 +59,7 @@ class View(ConfigurableMixin):
         rendered = view.render()
         # add rendered view to rendered list
         if view.save_as_subimage:
-            self.rendered.append(view.render_subimage())
+            self.rendered.extend(view.render_subimage())
         # extend rendered list by generated earlier views that should be saved
         self.rendered.extend(rendered[1:])
         return rendered[0]
