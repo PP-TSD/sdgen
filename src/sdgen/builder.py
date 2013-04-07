@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from views import alternation, detour, group, inv_terminal, non_terminal, quantity, quantity_above, quantity_detour, quantity_return, sequence, terminal
+from views import alternation, detour, group, inv_terminal, non_terminal, quantity, quantity_above, quantity_detour, quantity_return, return_, sequence, terminal
 from views.connections import connection
 
 # classes for views names
@@ -7,6 +7,7 @@ views_classes = {
     "Alternation": alternation.Alternation,
     "Connection": connection.Connection,
     "Detour": detour.Detour,
+    "Return": return_.Return,
     "Group": group.Group,
     "InvTerminal": inv_terminal.InvTerminal,
     "NonTerminal": non_terminal.NonTerminal,

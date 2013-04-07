@@ -16,7 +16,6 @@ def main():
 
     parser = argparse.ArgumentParser(description='Generate syntax diagram.')
     parser.add_argument('input', type=file, help='data file in JSON format')
-    #TODO: what to do with many output files
     parser.add_argument('output', help='path to output files')
     parser.add_argument('--config', type=file, metavar='CONFIG_FILE',
                         help='config file in json format')
