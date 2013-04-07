@@ -12,16 +12,16 @@ class Loop(View):
     thickness = 2
 
     def get_connection_class(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def get_handlers_relative_to_subfield(self, subfield, padding):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def get_arrow_position(self, handlers):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def get_subfield_position(self, left_arrow_width, padding):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def add_children(self, children):
         extended = []
@@ -60,8 +60,10 @@ class Loop(View):
         left_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('left') - left_arrow.get_handler('right')
         right_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('right') - right_arrow.get_handler('left')
 
-        background = self.render_image(Rectangle((loop_arrow.get_width(), loop_arrow.get_height() + max(subfield.get_handlers().values())),
-                                       thickness=0))
+        background = self.render_image(Rectangle((loop_arrow.get_width(),
+                        max((left_arrow_y + subfield.get_height() - subfield.get_handler('left')),
+                             self.get_arrow_position(subfield)[1] + loop_arrow.get_height())),
+                        thickness=0))
 
         flattener = Flattener(background, [(loop_arrow, self.get_arrow_position(subfield)),
                                              (left_arrow, (0, left_arrow_y)),
