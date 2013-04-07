@@ -24,13 +24,13 @@ class LoopArrow(Arrow):
 
     def get_line_points_lists(self):
         raise NotImplementedError()
-    
+
     def get_polygons_points_lists(self):
         raise NotImplementedError()
-    
+
     def get_handlers(self):
         raise NotImplementedError()
-    
+
     def to_png(self):
         padding = self.pt_to_px(self.padding)
         left_length = self.pt_to_px(self.left_length)
@@ -42,11 +42,11 @@ class LoopArrow(Arrow):
 
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
-        
+
         for bezier_points in self.get_bezier_points_lists():
             bezier_points = map(lambda coordinates: tuple(map(self.pt_to_px, coordinates)), bezier_points)
             bezier = make_bezier(bezier_points)
-            samples = max(width, height) * 3.0
+            samples = height + 2.0 * padding
             half_thickness = thickness / 2.0
 
             for point in bezier([t/samples for t in range(int(samples))]):
@@ -56,7 +56,7 @@ class LoopArrow(Arrow):
 
         for line_points in self.get_line_points_lists():
             draw.line(map(self.pt_to_px, line_points), width=thickness, fill=self.fill)
-        
+
         for polygon_points in self.get_polygons_points_lists():
             # polygon_points is a list of tuple with coordinates
             draw.polygon(map(lambda coordinates: tuple(map(self.pt_to_px, coordinates)), polygon_points),

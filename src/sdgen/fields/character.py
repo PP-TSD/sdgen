@@ -19,6 +19,7 @@ class Character(Field):
     marked_font_color = "red"
     padding = 0
     background = "transparent"
+    marked_background = "transparent"
 
     def __init__(self, text, *args, **kwargs):
         """Render text.
@@ -55,8 +56,7 @@ class Character(Field):
     def to_png(self):
         padding = self.pt_to_px(self.padding)
         font = self._get_font(self.font_name, self.font_size, self.font_typeface)
-        image_size = [x + 2 * self.pt_to_px(self.padding)
-                            for x in font.getsize(self.text)]
+        image_size = [x + 2 * self.pt_to_px(self.padding) for x in font.getsize(self.text)]
         background = (self.background if not self.background == "transparent"
                       else (0, 0, 0, 0))
         image = Image.new('RGBA', image_size, background)

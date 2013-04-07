@@ -15,9 +15,11 @@
                 "typeface": "bold italic"
             }
         },
-        "highlight": {
-            "foreground": "red",
-            "background": "yellow"
+        "marked": {
+            "background": "yellow",
+            "font": {
+                "color": "red"
+            }
         }
     },
     "terminal": {
@@ -26,23 +28,17 @@
     "nonterminal": {
         "font": {
             "name": "Times",
-            "size": 12,
+            "size": 50,
             "typeface": "bold italic"
         }
     },
     "connection": {
-        "thickness": 1,
+        "thickness": 2,
         "marker": "normal",
-        "length": 20
+        "length": 30
     },
     "png": {
         "ppi": 300,
         "scale": 1
-    },
-    "character": {
-        "padding": 0
-    },
-    "detour": {
-        "padding": 10
     }
 }

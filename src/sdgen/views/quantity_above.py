@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
-from ._view import View
-from ..fields.character import Character
+from sdgen.views._view import View
+from sdgen.fields.character import Character
 from sdgen.fields.flattener import Flattener
 from sdgen.fields.rectangle import Rectangle
 
@@ -21,7 +20,7 @@ class QuantityAbove(View):
         height = sum((quantity.get_height(), self.padding, subfield.get_height()))
 
         # backgroudn without border
-        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=0))
+        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=0, marked=False))
 
         quantity_x = (width - quantity.get_width())/2
         subfield_x = (width - subfield.get_width())/2

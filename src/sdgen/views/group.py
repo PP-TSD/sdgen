@@ -48,7 +48,7 @@ class Group(View):
 
         left_arrow, sequence, right_arrow = fields
         # width and height of image
-        width = sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size)
+        width = max(sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size), header.get_width())
         height = header.get_height() + sequence.get_height() + 2 * (padding + border_size)
 
         # position of box with children and children

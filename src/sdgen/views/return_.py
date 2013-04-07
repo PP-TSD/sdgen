@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 from _loop import Loop
-from connections.connection import Connection
 from sdgen.views.connections.return_connection import ReturnConnection
-from sdgen.fields.rectangle import Rectangle
-from sdgen.fields.flattener import Flattener
-from sdgen.utils.antialiasing import antialiasing
 
 
 class Return(Loop):

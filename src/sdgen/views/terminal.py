@@ -14,7 +14,7 @@ class Terminal(View):
             self.value = "Space"
 
     def render(self):
-        text = self.render_image(self.get_field(Character, self.value))
+        text = self.render_image(self.get_field(Character, self.value, marked=self.marked))
         border = self.render_image(self.get_field(RoundedRectangle, tuple(self.px_to_pt(p) + self.padding * 2 for p in text.get_size())))
 
         terminal = Flattener(border, [(text, ((border.get_width() - text.get_width()) / 2,

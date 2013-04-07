@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-from _view import View
-from connections.connection import Connection
-from sdgen.views.connections.detour_connection import DetourConnection
+from sdgen.views._view import View
+from sdgen.views.connections.connection import Connection
 from sdgen.fields.rectangle import Rectangle
 from sdgen.fields.flattener import Flattener
-from sdgen.utils.antialiasing import antialiasing
 
 
 class Loop(View):
@@ -26,10 +24,10 @@ class Loop(View):
     def add_children(self, children):
         extended = []
         connection_class = self.get_connection_class()
-        iterator = iter([Connection(render_config={'length': 3 * self.padding}),  # left connection
-                         View(),
-                         Connection(render_config={'marker': None, 'length': 3 * self.padding}),  # right connection
-                         connection_class(left_length = 3 * self.padding, right_length = 3 * self.padding)  # loop connection
+        iterator = iter([Connection(render_config={'length': 3 * self.padding}, mark=self.marked),  # left connection
+                         View(mark=self.marked),
+                         Connection(render_config={'marker': None, 'length': 3 * self.padding}, mark=self.marked),  # right connection
+                         connection_class(left_length = 3 * self.padding, right_length = 3 * self.padding, mark=self.marked)  # loop connection
                          ])
 
         for child in children:
@@ -48,7 +46,7 @@ class Loop(View):
         left_arrow = self.render_subview(left_arrow)
         right_arrow = self.render_subview(right_arrow)
         subfield = self.render_subview(subfield)
-        
+
         relative_handlers = self.get_handlers_relative_to_subfield(subfield, self.pt_to_px(self.padding))
 
         loop_arrow.set_subfield_params(subfield.get_size(),
