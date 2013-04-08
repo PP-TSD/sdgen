@@ -1,0 +1,22 @@
+{
+    "view": "Group",
+    "name": "Alternation example",
+    "children":
+    [
+        {
+            "view": "Terminal",
+            "value": "A"
+        },
+        {
+            "children":
+            [
+                 {"view": "Terminal", "value": "Sza, cichosza"},
+                 {"view": "Terminal", "value": "Siała baba mak"},
+                 {"view": "Terminal", "value": "B"}
+            ],
+            "name": "Alternation BC",
+            "view": "Alternation"
+        },
+        {"view": "Terminal", "value": "D"}
+    ]
+}

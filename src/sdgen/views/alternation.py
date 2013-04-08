@@ -43,15 +43,15 @@ class Alternation(View):
         super(Alternation, self).add_children(extended)
     
     def render(self):
-        padding = self.pt_to_px(self.padding)
-        arrow_width = self.pt_to_px(self.arrow_width)
-        left_padding = self.pt_to_px(self.left_padding)
-        right_padding = self.pt_to_px(self.right_padding)
+        padding = self.padding
+        arrow_width = self.arrow_width
+        left_padding = self.left_padding
+        right_padding = self.right_padding
 
         rendered_subfields = dict((subfield, self.render_subview(subfield)) for subfield in self.subfields)
 
         total_height = sum([c.get_height() for c in rendered_subfields.values()]) + padding * (len(self.subfields) - 1)
-        total_width = max([c.get_width() for c in rendered_subfields.values()]) + 2 * self.pt_to_px(self.subfields_padding)
+        total_width = max([c.get_width() for c in rendered_subfields.values()]) + 2 * self.subfields_padding
         
         # size of rectangle with arrows (without horizontal lines)
         left_box_size = arrow_width + left_padding, total_height

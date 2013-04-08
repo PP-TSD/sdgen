@@ -6,8 +6,7 @@ from sdgen.fields.flattener import Flattener
 
 
 class Loop(View):
-    padding = 10
-    thickness = 2
+    thickness = 3
 
     def get_connection_class(self):
         raise NotImplementedError()
@@ -59,9 +58,7 @@ class Loop(View):
         right_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('right') - right_arrow.get_handler('left')
 
         background = self.render_image(Rectangle((loop_arrow.get_width(),
-                        max((left_arrow_y + subfield.get_height() - subfield.get_handler('left')),
-                             self.get_arrow_position(subfield)[1] + loop_arrow.get_height())),
-                        thickness=0))
+                subfield.get_height() + 2 * padding), thickness=0))
 
         flattener = Flattener(background, [(loop_arrow, self.get_arrow_position(subfield)),
                                              (left_arrow, (0, left_arrow_y)),

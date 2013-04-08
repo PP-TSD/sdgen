@@ -20,7 +20,7 @@ class Rectangle(Field):
             size (tuple): width, height of rectangle.
 
         Kwargs:
-            thickness (int): thickness of rectangle border (in pixels).
+            thickness (int): thickness of rectangle border.
             fill (str): filling color (default transparent).
             outline (str): outline color (default black).
         """
@@ -28,10 +28,11 @@ class Rectangle(Field):
         self.size = size
 
     def to_png(self):
-        image = Image.new('RGBA', self.size)
+        size = map(self.pt_to_px, self.size)
+        image = Image.new('RGBA', size)
         draw = ImageDraw.Draw(image)
         fill = self.fill if not self.fill == "transparent" else (0, 0, 0, 0)
-        width, height = self.size
+        width, height = size
         thickness = self.pt_to_px(self.thickness)
 
         draw.rectangle((0, 0, width - 1, height - 1),
