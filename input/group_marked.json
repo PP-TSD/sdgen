@@ -1,6 +1,7 @@
 {
     "view": "Group",
     "name": "Terminal example",
+    "mark": "yes",
     "children":
     [
         {

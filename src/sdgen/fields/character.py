@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-import os
-
 import Image
 import ImageFont
 import ImageDraw
 
 from _field import Field
-from sdgen.config import config, render_config, safeget
 from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.utils import helpers
 
@@ -41,17 +38,9 @@ class Character(Field):
 
     def _get_font(self, font_type, size, typeface):
         """Get font with given parameters."""
-        font_type = font_type.lower()
-        for directory in config.get('fonts', 'directories').split():
-            for (dirpath, dirnames, filenames) in os.walk(directory):
-                files = [name for name in filenames
-                         if font_type in name.lower()]
-                #TODO: bold, italic, normal
-                if files:
-                    path = os.path.join(dirpath,
-                                        dirnames[0] if dirnames else '',
-                                        files[0])
-                    return ImageFont.truetype(path, helpers.pt_to_px(size))
+        font_path = helpers.get_font_path(font_type, typeface)
+        if font_path:
+            return ImageFont.truetype(font_path, helpers.pt_to_px(size))
         return ImageFont.load_default()
 
     def to_png(self):
