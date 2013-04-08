@@ -23,12 +23,11 @@
         }
     },
     "terminal": {
-        "padding": 8
+        "padding": 5
     },
     "nonterminal": {
         "font": {
             "name": "Times",
-            "size": 50,
             "typeface": "bold italic"
         }
     },
