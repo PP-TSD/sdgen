@@ -107,7 +107,7 @@ class ImageWrapper(object):
         Args:
             scale (float): scale, (0,1) makes image smaller, (1,..) larger.
         """
-        self.width = int(self.width * scale)
-        self.height = int(self.height * scale)
-        for (k, v) in self.handlers.items():
-            self.handlers[k] = int(v * scale)
+        self.width = self.width * scale
+        self.height = self.height * scale
+        for k, v in self.handlers.items():
+            self.handlers[k] = v * scale

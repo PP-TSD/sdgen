@@ -37,11 +37,11 @@ class Group(View):
 
     def render(self):
         # render ImageWrappers of fields
-        padding = self.pt_to_px(self.padding)
+        padding = self.padding
 
         # render all subviews and save this one, that should be saved to files
         fields = map(self.render_subview, self.subfields)
-        border_size = self.pt_to_px(self.border_size)
+        border_size = self.border_size
 
         # black rect with title
         header = self.render_image(self.get_field(Character, self.name, font_color="white", background="black", padding=self.header_padding, marked=False))

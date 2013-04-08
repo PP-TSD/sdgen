@@ -1,6 +1,6 @@
 {
     "default": {
-        "thickness": 4,
+        "thickness": 3,
         "padding": 10,
         "font": {
             "name": "Arial",
@@ -32,12 +32,12 @@
         }
     },
     "connection": {
-        "thickness": 2,
+        "thickness": 3,
         "marker": "normal",
         "length": 30
     },
     "png": {
-        "dpi": 75,
+        "dpi": 120,
         "scale": 1
     }
 }

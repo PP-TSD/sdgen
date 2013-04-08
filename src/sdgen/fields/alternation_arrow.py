@@ -10,6 +10,7 @@ from sdgen.utils.antialiasing import antialiasing
 @antialiasing
 class AlternationArrow(Arrow):
     arrow_width = 50
+    thickness = 3
 
     def __init__(self, size, handlers, left_length=0, right_length=0,*args, **kwargs):
         """
@@ -50,7 +51,7 @@ class AlternationArrow(Arrow):
                          (left_length + arrow_width, right_handler)]
         
         bezier = make_bezier(bezier_points)
-        samples = max(width, height) * 3.0
+        samples = float(max(left_length, right_length) + height)
         half_thickness = thickness / 2.0
 
         for point in bezier([t/samples for t in range(int(samples))]):
@@ -72,4 +73,4 @@ class AlternationArrow(Arrow):
                 draw.polygon(polygon_points,
                          fill=self.fill,
                          )
-        return ImageWrapper(image, width, height, handlers=self.handlers)
+        return ImageWrapper(image, self.px_to_pt(width), self.px_to_pt(height), handlers=self.handlers)

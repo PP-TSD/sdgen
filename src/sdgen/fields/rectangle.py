@@ -41,4 +41,4 @@ class Rectangle(Field):
                         width - 1 - thickness,
                         height - 1 - thickness),
                        fill=fill, outline=fill)
-        return ImageWrapper(image, *size)
+        return ImageWrapper(image, *self.size)

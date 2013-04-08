@@ -9,6 +9,7 @@ from sdgen.utils.antialiasing import antialiasing
 
 
 class LoopArrow(Arrow):
+    thickness = 3
 
     def __init__(self, width, left_height,
                  right_height, *args, **kwargs):
@@ -62,4 +63,4 @@ class LoopArrow(Arrow):
             draw.polygon(map(lambda coordinates: tuple(map(self.pt_to_px, coordinates)), polygon_points),
                      fill=self.fill,
                      )
-        return ImageWrapper(image, width, height, handlers=self.get_handlers(height))
+        return ImageWrapper(image, self.px_to_pt(width), self.px_to_pt(height), handlers=self.get_handlers(height))

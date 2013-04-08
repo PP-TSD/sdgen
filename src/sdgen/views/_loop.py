@@ -6,8 +6,7 @@ from sdgen.fields.flattener import Flattener
 
 
 class Loop(View):
-    padding = 10
-    thickness = 2
+    thickness = 3
 
     def get_connection_class(self):
         raise NotImplementedError()

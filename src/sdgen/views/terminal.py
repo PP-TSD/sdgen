@@ -6,7 +6,7 @@ from ..fields.flattener import Flattener
 
 
 class Terminal(View):
-    padding = 3
+    padding = 0
 
     def __init__(self, *args, **kwargs):
         super(Terminal, self).__init__(*args, **kwargs)
@@ -15,8 +15,8 @@ class Terminal(View):
 
     def render(self):
         text = self.render_image(self.get_field(Character, self.value, marked=self.marked))
-        border = self.render_image(self.get_field(RoundedRectangle, tuple(self.px_to_pt(p) + self.padding * 2 for p in text.get_size())))
+        border = self.render_image(self.get_field(RoundedRectangle, tuple(p + self.padding * 2.0 for p in text.get_size())))
 
         terminal = Flattener(border, [(text, ((border.get_width() - text.get_width()) / 2,
-                                              self.pt_to_px(self.padding)))])
+                                              (border.get_height() - text.get_height()) / 2))])
         return self.render_view(terminal)

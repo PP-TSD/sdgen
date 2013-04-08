@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import Image
-
+from sdgen.utils import helpers
 ANTIALIASING = 4
 
 
@@ -23,10 +23,10 @@ def antialiasing(klass):
         def to_png(self, *args, **kwargs):
             image_wrapper = self._original_to_png(*args, **kwargs)
             image = image_wrapper.get_image()
-            new_width = image_wrapper.get_width() / ANTIALIASING
-            new_height = image_wrapper.get_height() / ANTIALIASING
+            new_width = helpers.pt_to_px(image_wrapper.get_width())
+            new_height = helpers.pt_to_px(image_wrapper.get_height())
             image_wrapper.image = image.resize((new_width, new_height), Image.ANTIALIAS)
-            image_wrapper.scale_parameters(1.0/ANTIALIASING)
+            #image_wrapper.scale_parameters(1.0/ANTIALIASING)
             return image_wrapper
     
         klass._original_to_png = klass.to_png

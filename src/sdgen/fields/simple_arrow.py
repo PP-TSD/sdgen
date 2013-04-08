@@ -14,7 +14,7 @@ class SimpleArrow(Arrow):
     """ Arrow from left to right. """
     def to_png(self):
         width = self.pt_to_px(self.length)
-        height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness)
+        height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness + 1)
         marker = self.pt_to_px(self.marker)
         thickness = self.pt_to_px(self.thickness)
         image = Image.new('RGBA', (width, height))
@@ -26,4 +26,4 @@ class SimpleArrow(Arrow):
                      (width - marker, height / 2 + marker / 3)],
                      fill=self.fill,
                      )
-        return ImageWrapper(image, width, height)
+        return ImageWrapper(image, self.length, self.px_to_pt(height))

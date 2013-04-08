@@ -9,7 +9,7 @@ from sdgen.utils.image_wrapper import ImageWrapper
 
 @antialiasing
 class RoundedRectangle(Field):
-    thickness = 2
+    thickness = 3
     fill = "transparent"
     outline = "black"
     marked_outline = "red"
@@ -24,7 +24,7 @@ class RoundedRectangle(Field):
             size (tuple): width, height of rectangle.
 
         Kwargs:
-            thickness (int): thickness of rectangle (in pixels).
+            thickness (float): thickness of rectangle (in points).
             fill (str): filling color (default transparent).
             outline (str): outline color (default black).
         """
@@ -59,4 +59,4 @@ class RoundedRectangle(Field):
                         width - half_height - 1, height - thickness - 1),
                        fill=fill, outline=fill)
 
-        return ImageWrapper(image, width, height)
+        return ImageWrapper(image, *self.size)
