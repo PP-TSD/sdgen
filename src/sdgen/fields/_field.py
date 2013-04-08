@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from sdgen._configurable_mixin import ConfigurableMixin
+from sdgen.utils import helpers
 
 
 class Field(ConfigurableMixin):
@@ -43,13 +44,7 @@ class Field(ConfigurableMixin):
         raise NotImplementedError()
 
     def pt_to_px(self, points):
-        """
-        Converts points to pixels.
-        """
-        return int(points)
+        return helpers.pt_to_px(points)
 
     def px_to_pt(self, points):
-        """
-        Converts pixels to points.
-        """
-        return float(points)
+        return helpers.px_to_pt(points)

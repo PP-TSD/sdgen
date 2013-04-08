@@ -18,7 +18,7 @@ def file_path(depth, names):
     return os.path.join(dir_up(os.path.abspath(__file__), depth), *names)
 
 
-def safeget(d, path):
+def safeget(d, path, default=None):
     """
     Returns value from dict d with keys from path, separeted by dot.
     If key-path is not in dict, returns None.
@@ -28,7 +28,7 @@ def safeget(d, path):
         if isinstance(tmp, dict) and key in tmp:
             tmp = tmp[key]
         else:
-            return None
+            return default
     return tmp
 
 

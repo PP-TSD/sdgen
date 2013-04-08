@@ -6,8 +6,9 @@ import ImageFont
 import ImageDraw
 
 from _field import Field
-from sdgen.config import config
+from sdgen.config import config, render_config, safeget
 from sdgen.utils.image_wrapper import ImageWrapper
+from sdgen.utils import helpers
 
 
 class Character(Field):
@@ -50,7 +51,7 @@ class Character(Field):
                     path = os.path.join(dirpath,
                                         dirnames[0] if dirnames else '',
                                         files[0])
-                    return ImageFont.truetype(path, size)
+                    return ImageFont.truetype(path, helpers.pt_to_px(size))
         return ImageFont.load_default()
 
     def to_png(self):

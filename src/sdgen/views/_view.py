@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from sdgen._configurable_mixin import ConfigurableMixin
+from sdgen.utils import helpers
 
 
 class View(ConfigurableMixin):
@@ -92,7 +93,7 @@ class View(ConfigurableMixin):
         return [self.render_image(view)] + self.rendered
 
     def pt_to_px(self, points):
-        return points
+        return helpers.pt_to_px(points)
 
     def px_to_pt(self, points):
-        return points
+        return helpers.px_to_pt(points)
