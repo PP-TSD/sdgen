@@ -16,6 +16,8 @@ class View(ConfigurableMixin):
         self.rendered = []
         self.name = name
         self.value = value
+        if value:
+            self.value = self.value.decode('utf-8')
         self.type = type_
         self.marked = True if mark in (True, 'yes') else False
 
