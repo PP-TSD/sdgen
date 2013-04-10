@@ -9,7 +9,7 @@ def read(file_name):
 
 setup(
     name="sdgen",
-    version='0.0.2',
+    version='0.0.3',
     author=read("AUTHORS"),
     keywords="syntax diagram generator",
     url="https://github.com/PP-TSD/sdgen",
@@ -18,7 +18,12 @@ setup(
     long_description=read("README.md"),
     packages=find_packages(PACKAGE_DIR,
                            exclude=['ez_setup', 'examples', 'tests']),
-    data_files=[('var', [os.sep.join(('var', 'config.ini'))])],
+    data_files=[
+        ('var', [
+            os.sep.join(('var', 'config.ini')),
+            os.sep.join(('var', 'render_config.json')),
+        ]),
+    ],
     zip_safe=False,
     entry_points={
         'console_scripts': [

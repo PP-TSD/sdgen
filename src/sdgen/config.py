@@ -4,7 +4,11 @@ import os
 import json
 
 config = None  # application config from .ini file
-render_config = {}  # render config from .json file
+render_config = {
+    'png': {
+        'dpi': 70
+    }
+}  # render config from .json file
 
 
 def dir_up(path, level):
@@ -51,7 +55,10 @@ def load_render_config(data):
     global render_config
 
     if not render_config:
-        render_config.update(json.load(data))
+        if isinstance(data, file):
+            data = json.load(data)
+        assert isinstance(data, dict)
+        render_config.update(data)
 
 
 def load(render_config_path):

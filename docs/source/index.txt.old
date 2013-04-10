@@ -1,0 +1,19 @@
+.. Syntax Diagram Generator documentation master file, created by
+   sphinx-quickstart on Fri Mar 16 10:13:31 2012.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Syntax Diagram Generator's documentation!
+====================================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   _static/intro.txt
+   _static/installation.txt
+   _static/running.txt
+   _static/todo.txt
+   _static/fontsize.txt
+   _generated/examples.txt

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from copy import deepcopy
 
-from sdgen.config import render_config, safeget
+from config import render_config, safeget
 
 
 class ConfigurableMixin(object):
