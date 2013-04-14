@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from _loop_arrow import LoopArrow
 from sdgen.utils.antialiasing import antialiasing
 from sdgen.utils.helpers import relative
+
+from _loop_arrow import LoopArrow
+
 
 @antialiasing
 class DetourArrow(LoopArrow):
@@ -16,7 +18,8 @@ class DetourArrow(LoopArrow):
                 (0, self.left_height + self.padding),
                 (self.left_length, self.left_height + self.padding)],
                 # right curve
-                [(total_width - self.right_length, self.right_height + self.padding),
+                [(total_width - self.right_length,
+                  self.right_height +self.padding),
                 (total_width, self.right_height + self.padding),
                 (total_width - self.right_length / 2.0, 0),
                 (total_width, 0)]
@@ -30,11 +33,10 @@ class DetourArrow(LoopArrow):
                  self.right_height + self.padding)
                 ]
     
-    def get_polygons_points_lists(self):
-        polygons = []
-        
+    def get_polygons_points_lists(self):        
         points = self.get_line_points_lists()[0]
-        assert len(points) == 4, "Line should be 4-touple with 2 points coordinates"
+        assert len(points) == 4, "Line should be 4-touple with 2 points \
+                                    coordinates"
         center = (points[0] + points[2]) / 2.0, (points[1] + points[3]) / 2.0
         return [
                 # marker coordinates

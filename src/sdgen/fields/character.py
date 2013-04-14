@@ -3,9 +3,11 @@ import Image
 import ImageFont
 import ImageDraw
 
-from _field import Field
+from sdgen.config import config
 from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.utils import helpers
+
+from _field import Field
 
 
 class Character(Field):
@@ -53,3 +55,4 @@ class Character(Field):
         draw = ImageDraw.Draw(image)
         draw.text((padding,) * 2, self.text, font=font, fill=self.font_color)
         return ImageWrapper(image, *map(self.px_to_pt, image_size))
+

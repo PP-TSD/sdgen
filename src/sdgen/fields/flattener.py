@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-import Image
-import ImageDraw
-
 from _field import Field
-from sdgen.utils.image_wrapper import ImageWrapper
 
 
 class Flattener(Field):
