@@ -4,8 +4,10 @@ import ImageDraw
 
 from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.utils.bezier import make_bezier
-from arrow import Arrow
 from sdgen.utils.antialiasing import antialiasing
+
+from _arrow import Arrow
+
 
 @antialiasing
 class AlternationArrow(Arrow):

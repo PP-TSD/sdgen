@@ -3,8 +3,9 @@ import Image
 import ImageDraw
 
 from sdgen.utils.antialiasing import antialiasing
-from _field import Field
 from sdgen.utils.image_wrapper import ImageWrapper
+
+from _field import Field
 
 
 @antialiasing

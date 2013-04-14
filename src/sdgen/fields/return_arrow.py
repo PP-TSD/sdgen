@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from _loop_arrow import LoopArrow
 from sdgen.utils.antialiasing import antialiasing
 from sdgen.utils.helpers import relative
+
+from _loop_arrow import LoopArrow
+
 
 @antialiasing
 class ReturnArrow(LoopArrow):
@@ -28,11 +30,10 @@ class ReturnArrow(LoopArrow):
                  self.width + self.left_length * 3 / 2, self.padding)
                 ]
     
-    def get_polygons_points_lists(self):
-        polygons = []
-        
+    def get_polygons_points_lists(self):        
         points = self.get_line_points_lists()[0]
-        assert len(points) == 4, "Line should be 4-touple with 2 points coordinates"
+        assert len(points) == 4, "Line should be 4-touple with 2 points \
+                                    coordinates"
         center = (points[0] + points[2]) / 2.0, (points[1] + points[3]) / 2.0
         return [
                 # marker coordinates

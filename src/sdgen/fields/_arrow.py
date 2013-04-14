@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from sdgen.fields._field import Field
-
+from _field import Field
 
 MARKER = 5  # detaults marker length (in points)
 

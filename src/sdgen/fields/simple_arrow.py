@@ -4,7 +4,8 @@ import ImageDraw
 
 from sdgen.utils.antialiasing import antialiasing
 from sdgen.utils.image_wrapper import ImageWrapper
-from arrow import Arrow
+
+from _arrow import Arrow
 
 
 @antialiasing

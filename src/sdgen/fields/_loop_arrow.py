@@ -4,8 +4,8 @@ import ImageDraw
 
 from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.utils.bezier import make_bezier
-from arrow import Arrow
-from sdgen.utils.antialiasing import antialiasing
+
+from _arrow import Arrow
 
 
 class LoopArrow(Arrow):
@@ -36,9 +36,8 @@ class LoopArrow(Arrow):
         padding = self.pt_to_px(self.padding)
         left_length = self.pt_to_px(self.left_length)
         right_length = self.pt_to_px(self.right_length)
-        left_height = self.pt_to_px(self.left_height)
-        right_height = self.pt_to_px(self.right_height)
-        width, height = self.pt_to_px(self.width) + left_length + right_length, self.pt_to_px(self.height) + 2 * padding
+        width, height = (self.pt_to_px(self.width) + left_length + right_length,
+                        self.pt_to_px(self.height) + 2 * padding)
         thickness = self.pt_to_px(self.thickness)
 
         image = Image.new('RGBA', (width, height))

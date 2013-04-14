@@ -4,17 +4,27 @@ from sdgen.utils import helpers
 
 
 class Field(ConfigurableMixin):
+    """Abstract base *field* class.
+    
+    Each field represents simple or complex graphical element, for example:
+    :class:`sdgen.fields.character.Character` or
+    :class:`sdgen.fields.simple_arrow.SimpleArrow` described with set of
+    params, like padding, width, font_size, etc.
+    
+    Fields are created by views (you can find them in :module:`sdgen.views`)
+    with all needed parameters and then called to render by specific *Builder*.
+    """
     marked = False
 
     def __init__(self, *args, **kwargs):
         """
-        Base field class.
 
-        All frontend-configuration (such as font_color and so on) can be prefixed
-        by marked_, which will be used when field/view is marked (marked=True)
+        All frontend-configuration (such as font_color and so on) can be
+        prefixed by marked_, which will be used when field/view is marked
+        (marked=True).
 
-        Kwargs:
-            marked (boolean): True, if field should be marked
+        :param marked: True, if field should be marked.
+        :type marked: bool. 
         """
         super(Field, self).__init__(*args, **kwargs)
 
@@ -30,21 +40,33 @@ class Field(ConfigurableMixin):
         return object.__getattribute__(self, attrname)
 
     def to_png(self):
-        """
-        This method should be overwritted in derived classes to render png image
-        of field.
+        """Render field in png
+        
+        This method should be overwritted in derived classes to render png
+        image of field.
         """
         raise NotImplementedError()
 
     def to_svg(self):
-        """
-        This method should be overwritted in derived classes to render svg image
-        of field.
+        """Render field in svg.
+        
+        This method should be overwritted in derived classes to render svg
+        image of field.
         """
         raise NotImplementedError()
 
     def pt_to_px(self, points):
+        """Mapping :function:`pt_to_px` from :mod:`sdgen.lib.helpers`.
+        
+        Result of this method can be modified by setting antialiasing decorator
+        on class.
+        """
         return helpers.pt_to_px(points)
 
     def px_to_pt(self, points):
+        """Mapping :function:`px_to_pt` from :mod:`sdgen.lib.helpers`.
+        
+        Result of this method can be modified by setting antialiasing decorator
+        on class.
+        """
         return helpers.px_to_pt(points)

@@ -2,8 +2,9 @@
 import Image
 import ImageDraw
 
-from _field import Field
 from sdgen.utils.image_wrapper import ImageWrapper
+
+from _field import Field
 
 
 class Rectangle(Field):
