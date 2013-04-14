@@ -1,28 +1,28 @@
 # -*- coding: utf-8 -*-
 from _field import Field
 
-MARKER = 5  # detaults marker length (in points)
-
 
 class Arrow(Field):
-    thickness = 2
     marker = "normal"
+    thickness = 3
     fill = "black"
     marked_fill = "red"
 
     def __init__(self, *args, **kwargs):
-        """
-        Base arrow class.
+        """Base arrow class.
 
-        Kwargs:
-            thickness (int): thickness of arrow (in points).
-            marker (str): size of arrowhead (normal|large|small).
-            fill (str): color (default black).
+        
+        :param thickness: Thickness of arrow line (in points).
+        :type thickness: float. 
+        :param marker: Size of arrowhead (normal|large|small).
+        :type marker: str.
+        :param fill: Color (default black).
+        :type fill: str.
         """
         super(Arrow, self).__init__(*args, **kwargs)
         marker_to_int = {
-            "small": 1,
-            "normal": 2,
-            "large": 3
+            "small": 2,
+            "normal": 3,
+            "large": 4
         }
-        self.marker = marker_to_int.get(self.marker, 0) * MARKER
+        self.marker = marker_to_int.get(self.marker, 0) * self.thickness

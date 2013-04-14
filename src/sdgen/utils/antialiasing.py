@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import Image
 from sdgen.utils import helpers
-ANTIALIASING = 4
+ANTIALIASING = 3.5
 
 
 def antialiasing(klass):
     if hasattr(klass, 'pt_to_px'):
         def pt_to_px(self, points):
-            return ANTIALIASING * self._original_pt_to_px(points)
+            return int(ANTIALIASING * self._original_pt_to_px(points))
     
         klass._original_pt_to_px = klass.pt_to_px
         klass.pt_to_px = pt_to_px

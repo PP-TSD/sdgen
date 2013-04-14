@@ -10,18 +10,31 @@ from _arrow import Arrow
 
 @antialiasing
 class SimpleArrow(Arrow):
+    """Arrow from left to right. """
     length = 20
+    sharp = True
 
-    """ Arrow from left to right. """
+    def __init__(self, *args, **kwargs):
+        """Straight, horizontal arrow ended with marker.
+        
+        :param length: length of arrow with marker (of course in points).
+        :type length: float.
+        :param sharp: check if arrow should has sharp marker.
+        :type sharp: bool.
+        """
+        super(SimpleArrow, self).__init__(*args, **kwargs)
+        self.sharp = self.sharp
+    
     def to_png(self):
         width = self.pt_to_px(self.length)
-        height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness + 1)
+        height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness)
         marker = self.pt_to_px(self.marker)
         thickness = self.pt_to_px(self.thickness)
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
 
-        draw.line((0, height/2, width, height/2), width=thickness, fill=self.fill)
+        draw.line((0, height/2, width - marker * self.sharp, height/2),
+                  width=thickness, fill=self.fill)
         draw.polygon([(width, height / 2),
                       (width - marker, height / 2 - marker / 3),
                      (width - marker, height / 2 + marker / 3)],

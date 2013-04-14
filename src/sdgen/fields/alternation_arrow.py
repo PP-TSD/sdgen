@@ -12,7 +12,6 @@ from _arrow import Arrow
 @antialiasing
 class AlternationArrow(Arrow):
     arrow_width = 50
-    thickness = 3
 
     def __init__(self, size, handlers, left_length=0, right_length=0,*args, **kwargs):
         """
@@ -63,7 +62,7 @@ class AlternationArrow(Arrow):
 
         for line_points in [(0, left_handler, left_length, left_handler),
                             (left_length + arrow_width, right_handler,
-                                                        width, right_handler)]:
+                             width - marker, right_handler)]:
             draw.line(line_points, width=thickness, fill=self.fill)
         
         if right_length > marker:

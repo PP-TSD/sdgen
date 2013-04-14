@@ -9,8 +9,6 @@ from _arrow import Arrow
 
 
 class LoopArrow(Arrow):
-    thickness = 3
-
     def __init__(self, width, left_height,
                  right_height, *args, **kwargs):
         super(LoopArrow, self).__init__(*args, **kwargs)
