@@ -1,5 +1,5 @@
 #!/bin/bash
-INPUT=examples/*
+INPUT=examples/*.json
 OUTPUT=output
 CONFIG=var/render_config.json
 FORMAT=png
