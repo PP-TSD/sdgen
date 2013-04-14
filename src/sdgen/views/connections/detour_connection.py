@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from sdgen.views.connections._loop import LoopConnection
-from sdgen.fields.detour_arrow import DetourArrow
+from sdgen.fields import DetourArrow
+from connections._loop import LoopConnection
 
 
 class DetourConnection(LoopConnection):

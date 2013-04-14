@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from sdgen.views.connections._loop import LoopConnection
-from sdgen.fields.return_arrow import ReturnArrow
+from sdgen.fields import ReturnArrow
+from _loop import LoopConnection
 
 
 class ReturnConnection(LoopConnection):

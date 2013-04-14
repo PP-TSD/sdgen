@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
-from .._view import View
-from sdgen.fields.simple_arrow import SimpleArrow
+from sdgen.fields import SimpleArrow
+from sdgen.views._view import View
 
 
 class Connection(View):
