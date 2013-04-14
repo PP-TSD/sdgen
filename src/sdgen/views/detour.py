@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
+from connections import DetourConnection
 from _loop import Loop
-from connections.connection import Connection
-from sdgen.views.connections.detour_connection import DetourConnection
-from sdgen.fields.rectangle import Rectangle
-from sdgen.fields.flattener import Flattener
-from sdgen.utils.antialiasing import antialiasing
 
 
 class Detour(Loop):
@@ -16,11 +12,11 @@ class Detour(Loop):
 
     def get_handlers_relative_to_subfield(self, subfield, padding):
         return {
-                # in pixels
-                "left": subfield.get_height() - subfield.get_handler('left'),
-                "right": subfield.get_height() - subfield.get_handler('right')
-            }
-    
+            # in pixels
+            "left": subfield.get_height() - subfield.get_handler('left'),
+            "right": subfield.get_height() - subfield.get_handler('right')
+        }
+
     def get_arrow_position(self, subfield):
         return (0, subfield.get_handlers()['left'])
 

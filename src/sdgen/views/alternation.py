@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+from sdgen.fields import Rectangle
+from sdgen.fields import Flattener
 from connections.alternation_connection import AlternationConnection
 from connections.connection import Connection
-from sdgen.fields.rectangle import Rectangle
-from sdgen.fields.flattener import Flattener
-from ._view import View
+from _view import View
 
 
 class Alternation(View):
@@ -12,14 +12,14 @@ class Alternation(View):
     left_padding = 0
     right_padding = 0
     subfields_padding = 12
-    
+
     def add_children(self, children):
         assert children, "Alternation children lists shouldn't be empty"
         extended = []
         # dict for fast navigation over connections (linked with children)
         # each child should have "left" and "right" connection generated
         self.alternation_connections = {}
-        
+
         for i in range(len(children)):
             if isinstance(children[i], Connection):
                 # children list should be:
@@ -41,7 +41,7 @@ class Alternation(View):
             self.alternation_connections[child] = dict(left=left, right=right)
 
         super(Alternation, self).add_children(extended)
-    
+
     def render(self):
         padding = self.padding
         arrow_width = self.arrow_width
@@ -52,14 +52,14 @@ class Alternation(View):
 
         total_height = sum([c.get_height() for c in rendered_subfields.values()]) + padding * (len(self.subfields) - 1)
         total_width = max([c.get_width() for c in rendered_subfields.values()]) + 2 * self.subfields_padding
-        
+
         # size of rectangle with arrows (without horizontal lines)
         left_box_size = arrow_width + left_padding, total_height
         right_box_size = arrow_width + right_padding, total_height
 
         # list with rendered children and their positions
         subimages = []
-        
+
         # y position of each subfield
         top_offside = 0
         for subfield in self.subfields:
@@ -68,8 +68,8 @@ class Alternation(View):
             hline_length = (total_width - rendered.get_width()) / 2
             # join generated subfield to all subimages list
             subimages.append((rendered, (left_box_size[0] + hline_length, top_offside)))
-            
-            # set left arrow params (dependent of subfields) 
+
+            # set left arrow params (dependent of subfields)
             left_arrow = self.alternation_connections[subfield]['left']
             left_handlers = {
                 'left': total_height/2,
@@ -79,7 +79,7 @@ class Alternation(View):
                                           left_length=left_padding,
                                           right_length=hline_length)
             subimages.append((self.render_subview(left_arrow), (0, 0)))
-             
+
             right_arrow = self.alternation_connections[subfield]['right']
             right_handlers = {
                 'right': total_height/2,

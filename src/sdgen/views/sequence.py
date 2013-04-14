@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from ._view import View
-from .connections.connection import Connection
-from sdgen.fields.rectangle import Rectangle
-from sdgen.fields.flattener import Flattener
+from sdgen.fields import Rectangle
+from sdgen.fields import Flattener
+from _view import View
+from connections.connection import Connection
 
 
 class Sequence(View):

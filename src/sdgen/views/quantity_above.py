@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from sdgen.views._view import View
-from sdgen.fields.character import Character
-from sdgen.fields.flattener import Flattener
-from sdgen.fields.rectangle import Rectangle
+from sdgen.fields import Character
+from sdgen.fields import Flattener
+from sdgen.fields import Rectangle
+from _view import View
 
 
 class QuantityAbove(View):

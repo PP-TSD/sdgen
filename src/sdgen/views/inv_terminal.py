@@ -1,11 +1,11 @@
 
 # -*- coding: utf-8 -*-
-from ._view import View
-from .terminal import Terminal
-from .inv_terminal_child import InvTerminalChild
-from ..fields.rounded_rectangle import RoundedRectangle
-from ..fields.flattener import Flattener
-from .inv_terminal_delimiter import InvTerminalDelimiter
+from sdgen.fields.rounded_rectangle import RoundedRectangle
+from sdgen.fields.flattener import Flattener
+from _view import View
+from terminal import Terminal
+from inv_terminal_child import InvTerminalChild
+from inv_terminal_delimiter import InvTerminalDelimiter
 
 
 class InvTerminal(View):

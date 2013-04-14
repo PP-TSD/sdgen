@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from sdgen.views.terminal import Terminal
-from sdgen.fields.character import Character
+from sdgen.fields import Character
+from terminal import Terminal
 
 
 class InvTerminalChild(Terminal):

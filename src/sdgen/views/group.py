@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from ._view import View
+from sdgen.fields import Character
+from sdgen.fields import Rectangle
+from sdgen.fields import Flattener
+from connections import Connection
 from sequence import Sequence
-from .connections.connection import Connection
-from sdgen.fields.character import Character
-from sdgen.fields.rectangle import Rectangle
-from sdgen.fields.flattener import Flattener
+from _view import View
 
 
 class Group(View):

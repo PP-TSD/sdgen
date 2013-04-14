@@ -1,5 +1,5 @@
-from sdgen.views._view import View
-from sdgen.fields.rectangle import Rectangle
+from sdgen.fields import Rectangle
+from _view import View
 
 
 class InvTerminalDelimiter(View):

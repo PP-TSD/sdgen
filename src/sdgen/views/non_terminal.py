@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import copy
 
-from ._view import View
-from .group import Group
-from ..fields.character import Character
-from ..fields.rectangle import Rectangle
-from ..fields.flattener import Flattener
+from sdgen.fields import Character
+from sdgen.fields import Rectangle
+from sdgen.fields import Flattener
+from _view import View
+from group import Group
 
 
 class NonTerminal(View):

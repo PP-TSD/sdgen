@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from ._view import View
-from ..fields.character import Character
-from ..fields.rounded_rectangle import RoundedRectangle
-from ..fields.flattener import Flattener
+from sdgen.fields.character import Character
+from sdgen.fields.rounded_rectangle import RoundedRectangle
+from sdgen.fields.flattener import Flattener
+from _view import View
 
 
 class Terminal(View):
