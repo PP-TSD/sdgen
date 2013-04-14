@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 @author: unutbu
 http://stackoverflow.com/questions/246525/how-can-i-draw-a-bezier-curve-using-pythons-pil
@@ -34,5 +35,5 @@ def pascal_row(n):
         # n is even
         result.extend(reversed(result[:-1]))
     else:
-        result.extend(reversed(result)) 
+        result.extend(reversed(result))
     return result

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from sdgen.fields import Rectangle
 from _view import View
 
