@@ -8,6 +8,7 @@ from _loop_arrow import LoopArrow
 @antialiasing
 class ReturnArrow(LoopArrow):
     render_config_key = "return"
+    padding = 10
 
     def get_bezier_points_lists(self):
         total_width = self.width + self.right_length + self.left_length
@@ -29,8 +30,8 @@ class ReturnArrow(LoopArrow):
                 (self.left_length / 2, self.padding,
                  self.width + self.left_length * 3 / 2, self.padding)
                 ]
-    
-    def get_polygons_points_lists(self):        
+
+    def get_polygons_points_lists(self):
         points = self.get_line_points_lists()[0]
         assert len(points) == 4, "Line should be 4-touple with 2 points \
                                     coordinates"
