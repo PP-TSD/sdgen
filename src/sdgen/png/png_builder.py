@@ -29,7 +29,7 @@ class PNGBuilder(Builder):
         """
         View.renderer = "to_png"
 
-        png_config = safeget(render_config, "png")
+        png_config = safeget(render_config, "png", {})
         render_config["render"] = png_config
 
         image = super(PNGBuilder, self).generate(data, input_path, output_dir)
@@ -37,6 +37,8 @@ class PNGBuilder(Builder):
         output_file_tmpl = "{output_dir}{sep}{base_file}_{file_nr}.png"
         sep = os.path.sep
         base_file = os.path.splitext(os.path.basename(input_path))[0]
+
+        result = []
 
         # save all generated images
         for (file_nr, img) in enumerate(image):
@@ -58,4 +60,5 @@ class PNGBuilder(Builder):
                     raw_image = raw_image.resize(new_dimensions, Image.ANTIALIAS)
 
             raw_image.save(output_file_path)
-        return raw_image
+            result.append((output_file_path, raw_image))
+        return result
