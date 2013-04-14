@@ -29,7 +29,10 @@ class PNGBuilder(Builder):
         """
         View.renderer = "to_png"
 
-        png_config = safeget(render_config, "png", {})
+        default_png_config = {
+            'dpi': 70
+        }
+        png_config = safeget(render_config, "png", default_png_config)
         render_config["render"] = png_config
 
         image = super(PNGBuilder, self).generate(data, input_path, output_dir)

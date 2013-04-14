@@ -4,11 +4,7 @@ import os
 import json
 
 config = None  # application config from .ini file
-render_config = {
-    'png': {
-        'dpi': 70
-    }
-}  # render config from .json file
+render_config = {}  # render config from .json file
 
 
 def dir_up(path, level):
