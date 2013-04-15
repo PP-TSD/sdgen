@@ -9,6 +9,15 @@ from _arrow import Arrow
 
 
 class LoopArrow(Arrow):
+    """Abstract loop arrow class.
+    
+    Loop arrow like :class:`sdgen.fields.return_arrow.ReturnArrow` consists of
+    lines, curves and polygons, which should be provided in inherited classes
+    by overriding :method:`get_line_points_lists`,
+    :method:`get_bezier_points_lists` and :method:`get_polygons_points_lists`.
+    Handlers are also needed. You should specify them in
+    :method:`get_handlers`.
+    """
     def __init__(self, width, left_height,
                  right_height, *args, **kwargs):
         super(LoopArrow, self).__init__(*args, **kwargs)
@@ -27,7 +36,7 @@ class LoopArrow(Arrow):
     def get_polygons_points_lists(self):
         raise NotImplementedError()
 
-    def get_handlers(self):
+    def get_handlers(self, height):
         raise NotImplementedError()
 
     def to_png(self):

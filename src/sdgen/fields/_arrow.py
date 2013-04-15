@@ -3,10 +3,12 @@ from _field import Field
 
 
 class Arrow(Field):
-    marker = "normal"
-    thickness = 3
-    fill = "black"
-    marked_fill = "red"
+    """Abstract arrow class.
+    """
+    marker = "normal"  #: size of arrowhead, default: "normal"
+    thickness = 3.0  #: line thickness in points, default 3.0
+    fill = "black"  #: arrow color, default: "black"
+    marked_fill = "red"  #: marked arrow color, default: "red"
 
     def __init__(self, *args, **kwargs):
         """Base arrow class.
