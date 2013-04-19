@@ -20,7 +20,7 @@ def main():
     parser.add_argument('output', help='path to output files')
     parser.add_argument('--render-config', type=file, metavar='CONFIG_FILE',
                         help='config file in json format')
-    parser.add_argument('--format', default='svg', choices=_builders.keys(),
+    parser.add_argument('--format', default='png', choices=_builders.keys(),
                         help='output format')
 
     args = parser.parse_args()
@@ -35,7 +35,7 @@ def main():
     return _main(data=data, format=args.format, input_path=args.input.name, output_dir=args.output, render_config=args.render_config)
 
 
-def _main(data, output_dir, format='png', input_path='sdgen', render_config={}):
+def _main(data, output_dir, format='png', input_path='sdgen', render_config=None):
     try:
         config.load(render_config)
     except ValueError:

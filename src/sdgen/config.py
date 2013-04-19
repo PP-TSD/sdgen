@@ -50,7 +50,7 @@ def load_render_config(data):
     """
     global render_config
 
-    if not render_config:
+    if not render_config and data:
         if isinstance(data, file):
             data = json.load(data)
         assert isinstance(data, dict)
