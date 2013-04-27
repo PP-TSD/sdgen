@@ -1,0 +1,11 @@
+{
+    "view": "Group",
+    "name": "Short Group example",
+    "children":
+    [
+        {
+            "view": "Terminal",
+            "value": "A"
+        }
+    ]
+}
