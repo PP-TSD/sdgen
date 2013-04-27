@@ -5,13 +5,13 @@
         "font": {
             "name": "Arial",
             "size": 12,
-            "typeface": "bold"
+            "typeface": "regular"
         },
         "name": {
             "padding": 10,
             "font": {
-                "name": "Times",
-                "size": 12,
+                "name": "Arial",
+                "size": 14,
                 "typeface": "bold italic"
             }
         },
@@ -23,7 +23,11 @@
         }
     },
     "terminal": {
-        "padding": 5
+        "padding": 5,
+        "font": {
+            "size": 15,
+            "typeface": "regular"
+        }
     },
     "nonterminal": {
         "font": {
@@ -37,7 +41,7 @@
         "length": 30
     },
     "png": {
-        "dpi": 120,
+        "dpi": 300,
         "scale": 1
     }
 }
