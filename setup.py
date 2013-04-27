@@ -27,7 +27,7 @@ setup(
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'sdgen = sdgen.sdgen:main',
+            'sdgen = sdgen.main:main',
         ]
     }
 )

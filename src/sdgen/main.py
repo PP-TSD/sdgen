@@ -2,8 +2,8 @@
 import argparse
 import json
 import os
-
-from .builder import Builder as SVGBuilder  # change to proper import when svg package will be modified
+# change to proper import when svg package will be modified
+from .builder import Builder as SVGBuilder
 from .png.png_builder import PNGBuilder
 from . import config
 
@@ -13,37 +13,53 @@ _builders = {
     'png': PNGBuilder,
 }
 
-
 def main():
+    """Entry point with args parser."""
     parser = argparse.ArgumentParser(description='Generate syntax diagram.')
-    parser.add_argument('input', type=file, help='data file in JSON format')
-    parser.add_argument('output', help='path to output files')
-    parser.add_argument('--render-config', type=file, metavar='CONFIG_FILE',
-                        help='config file in json format')
-    parser.add_argument('--format', default='svg', choices=_builders.keys(),
-                        help='output format')
-
+    
+    arguments = {
+        'input': {
+            'type': file,
+            'help': 'data file in JSON format'
+        },
+        'output': {
+            'help': 'path to output directory'
+        },
+        '--render-config': {
+            'type': file,
+            'metavar': 'CONFIG_FILE',
+            'help': 'config file in json format'
+        },
+        '--format': {
+            'default': 'png',
+            'choices': _builders.keys(),
+            'help': 'output format, ex. "png"'
+        }
+    }
+    # add arguments specified above to command parser
+    for argument in arguments:
+        parser.add_argument(argument, **arguments[argument])
+    # parse arguments from sys.argv into args object
     args = parser.parse_args()
-
+    
+    # read given input file (file will be closed at the end of function)
     data = args.input.read()
     try:
         data = json.loads(data)
     except ValueError:
         print "Data file doesn't consist valid JSON."
-        return -1
-
+        exit(-1)
     return _main(data=data, format=args.format, input_path=args.input.name, output_dir=args.output, render_config=args.render_config)
 
-
-def _main(data, output_dir, format='png', input_path='sdgen', render_config={}):
+def _main(data, output_dir, format='png', input_path='sdgen', render_config=None):
     try:
         config.load(render_config)
     except ValueError:
         print "Config file doesn't consist valid JSON."
-        return -2
+        exit(-2)
     except IOError:
         print "Config file doesn't exists."
-        return -3
+        exit(-3)
 
     if not os.path.isdir(output_dir):
         if not os.path.isdir(os.path.dirname(output_dir)) or\
