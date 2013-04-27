@@ -1,6 +1,6 @@
 #!/bin/bash
 INPUT=examples/*.json
-OUTPUT=output
+OUTPUT=examples/output
 CONFIG=var/render_config.json
 FORMAT=png
 
