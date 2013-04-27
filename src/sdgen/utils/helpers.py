@@ -9,6 +9,22 @@ from sdgen.config import config, render_config, safeget
 dpi = None
 dpi_inv = None
 fonts_paths = {}
+# aliases for font styles
+_font_styles_aliases = [
+    ("normal", "regular")
+]
+
+
+def _build_styles_aliases():
+    """
+    Builds dict from list of tuples
+    """
+    aliases = {}
+    for alias in _font_styles_aliases:
+        for style in alias:
+            aliases[style] = alias
+    return aliases
+font_styles_aliases = _build_styles_aliases()
 
 
 def relative(point, diff):
@@ -47,12 +63,34 @@ def get_font_path(font_name, style="Regular"):
 
     If style has more than one word, it can be passed with any order.
     """
+    def combinations(l):
+        comb = []
+        if l:
+            first = l[0]
+            rest_combinations = combinations(l[1:])
+            if rest_combinations:
+                for alias in first:
+                    for c in rest_combinations:
+                        comb.append([alias] + c)
+            else:
+                comb = list(first)
+        return comb
+
+    def get_all_styles(style_str):
+        styles = []
+        splitted_style = style_str.split()
+        for style in splitted_style:
+            styles.append(font_styles_aliases.get(style, (style,)))
+
+        styles = combinations(styles)
+        return sorted(["".join(s) for s in itertools.permutations(styles)])
+
     global fonts_paths
 
     lower_font_name = font_name.strip().lower().replace(' ', '')
     lower_style = style.lower().strip()
     # possible style names (lowercased and un-spaced)
-    lower_styles = sorted(["".join(s) for s in itertools.permutations(lower_style.split())])
+    lower_styles = get_all_styles(lower_style)
 
     # font id, consisted of lower font name and sorted (by splitted name) lower font style
     font_id = (lower_font_name, lower_styles[0])
