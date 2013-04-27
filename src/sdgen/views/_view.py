@@ -82,7 +82,9 @@ class View(ConfigurableMixin):
 
     def render_image(self, field):
         if self.renderer and hasattr(field, self.renderer):
-            return getattr(field, self.renderer)()
+            img = getattr(field, self.renderer)()
+            img.name = self.name
+            return img
         else:
             raise NotImplementedError('Renderer {function} is not supported\
                      for {field_name} field.'.format(function=self.renderer,

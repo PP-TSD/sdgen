@@ -1,5 +1,6 @@
 {
     "view": "Sequence",
+    "name": "Sequence Example",
     "children":
     [
         {
