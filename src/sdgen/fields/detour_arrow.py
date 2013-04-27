@@ -8,7 +8,7 @@ from _loop_arrow import LoopArrow
 @antialiasing
 class DetourArrow(LoopArrow):
     render_config_key = "detour"
-    padding = 6
+    padding = 10
 
     def get_bezier_points_lists(self):
         total_width = self.width + self.right_length + self.left_length

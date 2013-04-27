@@ -17,6 +17,9 @@ class Terminal(View):
         text = self.render_image(self.get_field(Character, self.value, marked=self.marked))
         border = self.render_image(self.get_field(RoundedRectangle, tuple(p + self.padding * 2.0 for p in text.get_size())))
 
-        terminal = Flattener(border, [(text, ((border.get_width() - text.get_width()) / 2,
-                                              (border.get_height() - text.get_height()) / 2))])
+        terminal = Flattener([
+            (border, (0,0)),
+            (text, ((border.get_width() - text.get_width()) / 2,
+                        (border.get_height() - text.get_height()) / 2))
+        ])
         return self.render_view(terminal)

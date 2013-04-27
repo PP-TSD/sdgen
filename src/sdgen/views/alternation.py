@@ -95,6 +95,6 @@ class Alternation(View):
         background = self.render_image(Rectangle((total_width + 2 * arrow_width + left_padding + right_padding, total_height),
                         thickness=0))
 
-        flattener = Flattener(background, subimages)
+        flattener = Flattener(subimages)
 
         return self.render_view(flattener)

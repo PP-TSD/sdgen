@@ -26,7 +26,7 @@ class QuantityAbove(View):
         subfield_x = (width - subfield.get_width())/2
         subfield_y = quantity.get_height() + self.padding
 
-        quantity_above = Flattener(background, [(quantity, (quantity_x, 0)),
+        quantity_above = Flattener([(quantity, (quantity_x, 0)),
                                                 (subfield, (subfield_x, subfield_y))])
         handlers = {
             "left": subfield_y + subfield.get_handler('left'),

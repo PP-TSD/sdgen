@@ -12,7 +12,6 @@ class Return(Loop):
 
     def get_handlers_relative_to_subfield(self, subfield, padding):
         return {
-            # in pixels
             "left": subfield.get_handler('left') + 2 * padding,
             "right": subfield.get_handler('right') + 2 * padding
         }

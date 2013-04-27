@@ -27,5 +27,8 @@ class NonTerminal(View):
             text = self.render_image(self.get_field(Character, self.name))
             border = self.render_image(self.get_field(Rectangle, tuple(p + self.padding * 2 for p in text.get_size())))
 
-            nonterminal = Flattener(border, [(text, (self.padding,) * 2)])
+            nonterminal = Flattener([
+                (border, (0, 0)),
+                (text, (self.padding, self.padding))
+            ])
             return self.render_view(nonterminal)

@@ -47,7 +47,7 @@ class Sequence(View):
         # get y coordinate of last fields and add it's right handler
         right_handler = positioned_fields[-1][1][1] + positioned_fields[-1][0].get_handler('right')
         background = self.render_image(self.get_field(Rectangle, (width, height), thickness=0, marked=False))
-        field = Flattener(background, list(next_field()))
+        field = Flattener(list(next_field()))
 
         handlers = {
                     "left": top_max_height,

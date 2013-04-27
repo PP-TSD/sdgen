@@ -1,23 +1,29 @@
 # -*- coding: utf-8 -*-
 from _field import Field
+from rectangle import Rectangle
 
 
 class Flattener(Field):
-    def __init__(self, background, images):
+    def __init__(self, images, **kwargs):
         """Merge list of images.
     
-        Insert i-th image into (i-1)-th on specified position,
+        Insert i-th image on (i-1)-th on specified position,
         i = n, n-1, ..., 0.
         This field is usefull for views to join Images (packed in ImageWrapper)
 
         Args:
-            background (ImageWrapper): base layer.
             images (tuple): (ImageWrapper, (x, y)) image and it's position
                 relative to the background.
         """
-        self.background = background
+        super(Flattener, self).__init__(**kwargs)
         self.images = images
-
+        
+        max_width = max([image.get_width() + width for image, (width, height) in images])
+        max_height = max([image.get_height() + height for image, (width, height) in images])
+        
+        self.background = Rectangle((max_width, max_height),
+                                    thickness=kwargs.get('thickness', 0))
+ 
     def to_png(self):
         
         def paste_pixels(pixel1, pixel2):
@@ -52,9 +58,10 @@ class Flattener(Field):
                         # end of background image
                         break
         
-        background_image = self.background.get_image()
+        background = self.background.to_png()
+        background_image = background.get_image()
         for image, position in self.images:
             transparent_paste(background_image, image.get_image(), map(self.pt_to_px, position))
-        self.background.set_image(background_image)
-        return self.background
+        background.set_image(background_image)
+        return background
         

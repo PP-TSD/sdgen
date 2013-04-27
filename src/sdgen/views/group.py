@@ -60,7 +60,8 @@ class Group(View):
         right_arrow_y = subfields_y + sequence.get_handler('right') - right_arrow.get_handler('left')
 
         background = self.render_image(self.get_field(Rectangle, (width, height), thickness=self.border_size, marked=False))
-        field = Flattener(background, [(header, (border_size, ) * 2),
+        field = Flattener([(background, (0,0)),
+                    (header, (border_size, ) * 2),
                     (left_arrow, (left_arrow_x, left_arrow_y)),
                     (sequence, (sequence_x, subfields_y)),
                     (right_arrow, (right_arrow_x, right_arrow_y))])

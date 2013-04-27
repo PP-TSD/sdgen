@@ -7,6 +7,9 @@ from sdgen.fields.flattener import Flattener
 
 class Loop(View):
     thickness = 3
+    padding = 10
+    left_length = 30
+    right_length = 30
 
     def get_connection_class(self):
         raise NotImplementedError()
@@ -23,10 +26,10 @@ class Loop(View):
     def add_children(self, children):
         extended = []
         connection_class = self.get_connection_class()
-        iterator = iter([Connection(render_config={'length': 3 * self.padding}, mark=self.marked),  # left connection
+        iterator = iter([Connection(render_config={'length': self.left_length}, mark=self.marked),  # left connection
                          View(mark=self.marked),
-                         Connection(render_config={'marker': None, 'length': 3 * self.padding}, mark=self.marked),  # right connection
-                         connection_class(left_length = 3 * self.padding, right_length = 3 * self.padding, mark=self.marked)  # loop connection
+                         Connection(render_config={'marker': None, 'length': self.right_length}, mark=self.marked),  # right connection
+                         connection_class(left_length = self.left_length, right_length = self.right_length, mark=self.marked)  # loop connection
                          ])
 
         for child in children:
@@ -57,13 +60,13 @@ class Loop(View):
         left_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('left') - left_arrow.get_handler('right')
         right_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('right') - right_arrow.get_handler('left')
 
-        background = self.render_image(Rectangle((loop_arrow.get_width(),
-                subfield.get_height() + 2 * padding), thickness=0))
+        flattener = Flattener([
+            (loop_arrow, self.get_arrow_position(subfield)),
+            (left_arrow, (0, left_arrow_y)),
+            (subfield, self.get_subfield_position(left_arrow.get_width(), padding)),
+            (right_arrow, (subfield.get_width() + left_arrow.get_width(), right_arrow_y))
+        ])
 
-        flattener = Flattener(background, [(loop_arrow, self.get_arrow_position(subfield)),
-                                             (left_arrow, (0, left_arrow_y)),
-                                             (subfield, self.get_subfield_position(left_arrow.get_width(), padding)),
-                                             (right_arrow, (subfield.get_width() + left_arrow.get_width(), right_arrow_y))])
         handlers = {
                     "left": self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('left'),
                     "right": self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('right')

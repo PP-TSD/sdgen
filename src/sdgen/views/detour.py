@@ -4,7 +4,7 @@ from _loop import Loop
 
 
 class Detour(Loop):
-    padding = 8
+    padding = 10
     thickness = 2
 
     def get_connection_class(self):

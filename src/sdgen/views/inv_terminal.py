@@ -66,5 +66,5 @@ class InvTerminal(View):
                 x += field.get_width() + self.inner_padding
         positioned_fields = list(next_field())
 
-        field = Flattener(background, positioned_fields)
+        field = Flattener([(background, (0,0))] + positioned_fields)
         return self.render_view(field)
