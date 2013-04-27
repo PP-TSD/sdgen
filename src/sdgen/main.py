@@ -62,13 +62,14 @@ def _main(data, output_dir=None, format='png', input_path='sdgen', render_config
         print "Config file doesn't exists."
         exit(-3)
 
-    if not os.path.isdir(output_dir):
-        if not os.path.isdir(os.path.dirname(output_dir)) or\
-                os.path.exists(output_dir):
-            print "Path to the output is not correct"
-            return -4
-        else:
-            os.mkdir(output_dir)
+    if output_dir is not None:
+        if not os.path.isdir(output_dir):
+            if not os.path.isdir(os.path.dirname(output_dir)) or\
+                    os.path.exists(output_dir):
+                print "Path to the output is not correct"
+                return -4
+            else:
+                os.mkdir(output_dir)
 
     builder = _builders[format]()
     return builder.generate(data=data, input_path=input_path, output_dir=output_dir)

@@ -8,8 +8,9 @@ class ImageWrapper(object):
     Wrap image in any format working with coordinates (svg, png or other)
     and provide such features like getting size of image or handlers.
     '''
+    name = None
 
-    def __init__(self, image, width, height, handlers=None):
+    def __init__(self, image, width, height, name=None, handlers=None):
         '''
         Wrapper constructor.
 
@@ -23,6 +24,7 @@ class ImageWrapper(object):
         self.image = image
         self.width = width
         self.height = height
+        self.name = name
         self.handlers = {
             "left": height/2,
             "right": height/2,
@@ -74,7 +76,7 @@ class ImageWrapper(object):
     def update_handlers(self, handlers):
         """
         Update handlers with given dict.
-        
+
         Args:
             handlers (dict): y coordinates of handlers.
         """
@@ -89,6 +91,9 @@ class ImageWrapper(object):
             object: return wrapper's content.
         """
         return self.image
+
+    def get_image_with_name(self):
+        return (self.name, self.image)
 
     def set_image(self, image):
         """
