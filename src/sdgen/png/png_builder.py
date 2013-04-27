@@ -39,14 +39,14 @@ class PNGBuilder(Builder):
         # save as input file name with png extension
         output_file_tmpl = "{output_dir}{sep}{base_file}_{file_nr}.png"
         sep = os.path.sep
-        base_file = os.path.splitext(os.path.basename(input_path))[0]
+        base_file = os.path.splitext(os.path.basename(input_path))[0] if input_path else None
 
         result = []
 
         # save all generated images
         for (file_nr, img) in enumerate(image):
             raw_image = img.get_image()
-            output_file_path = output_file_tmpl.format(**locals())
+
             # dpi
             dpi = png_config.get("dpi")
             if dpi:
@@ -62,6 +62,8 @@ class PNGBuilder(Builder):
                     new_dimensions = tuple([int(x * ratio) for x in raw_image.size])
                     raw_image = raw_image.resize(new_dimensions, Image.ANTIALIAS)
 
-            raw_image.save(output_file_path)
+            if output_dir and base_file:
+                output_file_path = output_file_tmpl.format(**locals())
+                raw_image.save(output_file_path)
             result.append((output_file_path, raw_image))
         return result
