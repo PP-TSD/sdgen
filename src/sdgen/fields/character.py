@@ -14,7 +14,7 @@ class Character(Field):
     render_config_key = "character"
     font_name = "Arial"
     font_size = 12
-    font_typeface = "normal"
+    font_typeface = "regular"
     font_color = "black"
     marked_font_color = "red"
     padding = 3
@@ -41,6 +41,7 @@ class Character(Field):
     def _get_font(self, font_type, size, typeface):
         """Get font with given parameters."""
         font_path = helpers.get_font_path(font_type, typeface)
+
         if font_path:
             return ImageFont.truetype(font_path, helpers.pt_to_px(size))
         return ImageFont.load_default()
