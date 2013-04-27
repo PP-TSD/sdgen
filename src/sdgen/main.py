@@ -30,7 +30,7 @@ def main():
             'metavar': 'CONFIG_FILE',
             'help': 'config file in json format'
         },
-        '--formnat': {
+        '--format': {
             'default': 'png',
             'choices': _builders.keys(),
             'help': 'output format, ex. "png"'
