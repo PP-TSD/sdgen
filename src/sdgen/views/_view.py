@@ -42,7 +42,11 @@ class View(ConfigurableMixin):
     def get_field(self, field, *args, **kwargs):
         if 'marked' not in kwargs:
             kwargs['marked'] = self.marked
-        return field(render_config_key=self._render_config_key, *args, **kwargs)
+        render_config_key = self._render_config_key
+        if 'render_config_key' in kwargs:
+            render_config_key = kwargs['render_config_key']
+            del kwargs['render_config_key']
+        return field(render_config_key=render_config_key, *args, **kwargs)
 
     def render_subimage(self, *args, **kwargs):
         """

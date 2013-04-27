@@ -44,7 +44,7 @@ class Group(View):
         border_size = self.border_size
 
         # black rect with title
-        header = self.render_image(self.get_field(Character, self.name, font_color="white", background="black", padding=self.header_padding, marked=False))
+        header = self.render_image(self.get_field(Character, self.name, render_config_key='header', font_color="white", background="black", padding=self.header_padding, marked=False))
 
         left_arrow, sequence, right_arrow = fields
         # width and height of image

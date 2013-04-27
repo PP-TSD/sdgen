@@ -7,19 +7,19 @@
             "size": 12,
             "typeface": "regular"
         },
-        "name": {
-            "padding": 10,
-            "font": {
-                "name": "Arial",
-                "size": 14,
-                "typeface": "bold italic"
-            }
-        },
         "marked": {
             "background": "yellow",
             "font": {
                 "color": "red"
             }
+        }
+    },
+    "header": {
+        "padding": 10,
+        "font": {
+            "name": "Arial",
+            "size": 14,
+            "typeface": "bold italic"
         }
     },
     "terminal": {
@@ -31,7 +31,7 @@
     },
     "nonterminal": {
         "font": {
-            "name": "Times",
+            "name": "Times New Roman",
             "typeface": "bold italic"
         }
     },
