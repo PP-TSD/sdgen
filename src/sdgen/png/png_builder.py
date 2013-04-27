@@ -42,6 +42,7 @@ class PNGBuilder(Builder):
         base_file = os.path.splitext(os.path.basename(input_path))[0] if input_path else None
 
         result = []
+        output_file_path = ""
 
         # save all generated images
         for (file_nr, img) in enumerate(image):
