@@ -21,7 +21,7 @@ class NonTerminal(View):
             del config['view']
         if 'children' in config:
             del config['children']
-        group = Group(name=self.name, type_=self.type, value=self.value, mark=self.marked, save_as_subimage=True, **config)
+        group = Group(name=self.name, value=self.value, mark=self.marked, save_as_subimage=True, **config)
         group.add_children(self.subfields)
         return group.render()
 

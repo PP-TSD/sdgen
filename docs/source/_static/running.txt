@@ -1,7 +1,19 @@
 ======================
 Running an application
 ======================
-   
+
+There are two ways of using sdgen:
+
+------------------------------
+Running from installed script
+------------------------------
+
+After installing sdgen, there should be available `sdgen` script in your system.
+
+---------------------
+Import python module
+---------------------
+
 To get diagrams, an appriopriate Python file should be prepared:
 
 ::

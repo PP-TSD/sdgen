@@ -20,8 +20,9 @@ Below there are some examples of using Syntax Diagram Generator to generate imag
 TEMPLATE_NAME = """%s
 %s
 
-.. include:: %s
-   :literal:
+.. literalinclude:: %s
+   :language: json
+   :linenos:
 
 """
 
@@ -30,32 +31,38 @@ TEMPLATE_IMAGE = """
 
 """
 
+GENERATED_DIR = '_generated'
+EXAMPLES_GENERATED_DIR = os.path.join('source', GENERATED_DIR)
+EXAMPLES_TXT = os.path.join('source', '_static', 'examples.txt')
+EXAMPLES_DIR = os.path.join('..', 'examples')
+EXAMPLES_EXT = '.json'
+
+
 if __name__ == '__main__':
     print "Generating examples...",
 
-    txt = open("source/_generated/examples.txt", "w")
+    txt = open(EXAMPLES_TXT, "w")
 
     txt.write(TEMPLATE_HEADER)
-    examples = [os.path.splitext(filename)[0]
-                    for filename in os.listdir('../examples')
-                    if filename.endswith('json')]
+
+    examples = sorted([os.path.join(EXAMPLES_DIR, f) for f in os.listdir(EXAMPLES_DIR) if f.endswith(EXAMPLES_EXT)])
     for example in examples:
         # load data
-        example_file = open('../examples/%s.json' % example, 'r')
+        example_file = open(example, 'r')
         m = json.load(example_file)
-        
-        name = m['name']
-        path = "../../../examples/%s.json" % example
 
-        # put header and source code of an example
-        txt.write(TEMPLATE_NAME % (name, '=' * len(name), path))
+        name = m['name']
+        path_from_generated = os.path.join('..', '..', example)
+
+        # put json contentof an example
+        txt.write(TEMPLATE_NAME % (name, '-' * len(name), path_from_generated))
 
         # add images
-        r = to_png(m, "source/_generated/")
+        r = to_png(m, EXAMPLES_GENERATED_DIR)
 
         for i in r:
             filename = i[0].replace(' ', '_').lower() + ".png"
-
-            txt.write(TEMPLATE_IMAGE % filename)
+            img_path = os.path.join('..', GENERATED_DIR, filename)
+            txt.write(TEMPLATE_IMAGE % img_path)
 
     print "done"

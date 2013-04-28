@@ -25,7 +25,6 @@ class InvTerminal(View):
         for child in children:
             assert isinstance(child, Terminal)
             inv_terminal_child = InvTerminalChild(name=child.name,
-                                                  type=child.type,
                                                   value=child.value,
                                                   mark=child.marked,
                                                   **child._passed_config)

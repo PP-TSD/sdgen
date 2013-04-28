@@ -1,0 +1,59 @@
+====================
+Preparing input data
+====================
+
+TODO (mostly from source code)
+
+
+Possible views
+==============
+
+View
+++++++++++++++
+
+.. autoclass:: sdgen.views._view.View()
+
+
+Alternation
+++++++++++++++
+.. autoclass:: sdgen.views.alternation.Alternation()
+
+
+Detour
+++++++++++++++
+.. autoclass:: sdgen.views.detour.Detour()
+
+
+Group
+++++++++++++++
+.. autoclass:: sdgen.views.group.Group()
+
+
+InvertedTerminal
+++++++++++++++++
+.. autoclass:: sdgen.views.inv_terminal.InvTerminal()
+
+
+NonTerminal
+++++++++++++++++
+.. autoclass:: sdgen.views.non_terminal.NonTerminal()
+
+
+QuantityAbove
+++++++++++++++++
+.. autoclass:: sdgen.views.quantity_above.QuantityAbove()
+
+
+Return
+++++++++++++++++
+.. autoclass:: sdgen.views.return_.Return()
+
+
+Sequence
+++++++++++++++++
+.. autoclass:: sdgen.views.sequence.Sequence()
+
+
+Terminal
+++++++++++++++++
+.. autoclass:: sdgen.views.terminal.Terminal()

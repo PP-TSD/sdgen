@@ -6,6 +6,7 @@ The following libraries are required to use Syntax Diagram Generator:
 
     * setuptools (http://pypi.python.org/pypi/setuptools)
     * python-tk (http://wiki.python.org/moin/TkInter)
+    * PIL (http://www.pythonware.com/products/pil/)
 
 After satisfy these assumptions, installation of Syntax Diagram Generator is executing the command:
 

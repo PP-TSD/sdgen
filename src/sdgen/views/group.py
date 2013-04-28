@@ -8,6 +8,63 @@ from _view import View
 
 
 class Group(View):
+    """
+    Group view.
+
+    Contains header in top-left corner and children putted in sequence. Group is
+    placed in rectangled border.
+
+    .. attribute:: padding : int
+
+        Space between element border and content (in points).
+        Default: 10
+
+    .. attribute:: arrow_height : int
+
+        Thickness of sequence arrow (in points).
+        Default: 1
+
+    .. attribute:: arrow_width : int
+
+        Arrow width (in points).
+        Default: 10
+
+    .. attribute:: border_size : int
+
+        Thickness of border (in points).
+        Default: 1
+
+    .. attribute:: header_padding : int
+
+        Space between header border and it's content (in points).
+        Default: 10
+
+    .. attribute:: header_font_color : str
+
+        Font color of header content.
+        Default: white
+
+    .. attribute:: header_background : str
+
+        Background color of header.
+        Default: black
+
+    .. attribute:: header_font_typeface : str
+
+        Header font style.
+        Default: bold italic
+
+    .. attribute:: header_font_type : str
+
+        Header font family.
+        Default: Arial
+
+    .. attribute:: header_font_size : int
+
+        Header font size (in points).
+        Default: 14
+    """
+
     padding = 10
     header_padding = 10
     header_font_color = "white"

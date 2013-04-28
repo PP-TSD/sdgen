@@ -1,0 +1,202 @@
+========
+Examples
+========
+
+Below there are some examples of using Syntax Diagram Generator to generate images.
+
+Alternation example
+-------------------
+
+.. literalinclude:: ../../../examples/alternation.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/alternation_example.png
+
+Detour example
+--------------
+
+.. literalinclude:: ../../../examples/detour.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/detour_example.png
+
+Detour marked example
+---------------------
+
+.. literalinclude:: ../../../examples/detour_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/detour_marked_example.png
+
+Detour simple example
+---------------------
+
+.. literalinclude:: ../../../examples/detour_simple.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/detour_simple_example.png
+
+Group example
+-------------
+
+.. literalinclude:: ../../../examples/group.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/group_example.png
+
+Group marked example
+--------------------
+
+.. literalinclude:: ../../../examples/group_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/group_marked_example.png
+
+Short Group example
+-------------------
+
+.. literalinclude:: ../../../examples/group_short.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/short_group_example.png
+
+Group example with marked
+-------------------------
+
+.. literalinclude:: ../../../examples/group_with_marks.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/group_example_with_marked.png
+
+Inverse Terminal example
+------------------------
+
+.. literalinclude:: ../../../examples/invterminal.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/inverse_terminal_example.png
+
+Inverse Terminal marked example
+-------------------------------
+
+.. literalinclude:: ../../../examples/invterminal_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/inverse_terminal_marked_example.png
+
+Nonterminal example
+-------------------
+
+.. literalinclude:: ../../../examples/nonterminal.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/nonterminal_example.png
+
+
+.. image:: ../_generated/non_terminal_c.png
+
+Nonterminal marked example
+--------------------------
+
+.. literalinclude:: ../../../examples/nonterminal_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/nonterminal_marked_example.png
+
+
+.. image:: ../_generated/non_terminal_c.png
+
+Quantity above example
+----------------------
+
+.. literalinclude:: ../../../examples/quantity_above.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/quantity_above_example.png
+
+Quantity above marked example
+-----------------------------
+
+.. literalinclude:: ../../../examples/quantity_above_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/quantity_above_marked_example.png
+
+Return example
+--------------
+
+.. literalinclude:: ../../../examples/return.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/return_example.png
+
+Return marked example
+---------------------
+
+.. literalinclude:: ../../../examples/return_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/return_marked_example.png
+
+Sequence Example
+----------------
+
+.. literalinclude:: ../../../examples/sequence.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/sequence_example.png
+
+Terminal example
+----------------
+
+.. literalinclude:: ../../../examples/terminal.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/terminal_example.png
+
+Terminal marked example
+-----------------------
+
+.. literalinclude:: ../../../examples/terminal_marked.json
+   :language: json
+   :linenos:
+
+
+.. image:: ../_generated/terminal_marked_example.png
+

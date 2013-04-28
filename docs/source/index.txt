@@ -11,9 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   _static/intro.txt
-   _static/installation.txt
-   _static/running.txt
-   _static/todo.txt
-   _static/fontsize.txt
-   _generated/examples.txt
+   _static/intro
+   _static/installation
+   _static/running
+   _static/input_data
+   _static/render_config
+   _static/examples
