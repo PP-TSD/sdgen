@@ -14,7 +14,12 @@ class Terminal(View):
             self.value = "Space"
 
     def render(self):
-        text = self.render_image(self.get_field(Character, self.value, marked=self.marked))
+        kwargs = {
+            "marked": self.marked
+        }
+        if self.value == "Space":
+            kwargs["font_typeface"] = "italic"
+        text = self.render_image(self.get_field(Character, self.value, **kwargs))
         border = self.render_image(self.get_field(RoundedRectangle, tuple(p + self.padding * 2.0 for p in text.get_size())))
 
         terminal = Flattener([
