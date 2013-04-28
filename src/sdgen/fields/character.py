@@ -3,7 +3,6 @@ import Image
 import ImageFont
 import ImageDraw
 
-from sdgen.config import config
 from sdgen.utils.image_wrapper import ImageWrapper
 from sdgen.utils import helpers
 
@@ -50,8 +49,7 @@ class Character(Field):
         padding = self.pt_to_px(self.padding)
         font = self._get_font(self.font_name, self.font_size, self.font_typeface)
         image_size = [x + 2 * padding for x in font.getsize(self.text)]
-        background = (self.background if not self.background == "transparent"
-                      else (0, 0, 0, 0))
+        background = helpers.standarize_colors(self.background)
         image = Image.new('RGBA', image_size, background)
         draw = ImageDraw.Draw(image)
         draw.text((padding,) * 2, self.text, font=font, fill=self.font_color)

@@ -144,3 +144,9 @@ def get_font_path(font_name, style="Regular"):
     # save font path in cache
     fonts_paths[font_id] = proper_path
     return proper_path
+
+
+def standarize_colors(color):
+    """Convert color to PIL standard color."""
+    return color if not color == "transparent" else (0, 0, 0, 0)
+ 

@@ -3,6 +3,7 @@ import Image
 import ImageDraw
 
 from sdgen.utils.image_wrapper import ImageWrapper
+from sdgen.utils import helpers
 
 from _field import Field
 
@@ -32,7 +33,7 @@ class Rectangle(Field):
         size = map(self.pt_to_px, self.size)
         image = Image.new('RGBA', size)
         draw = ImageDraw.Draw(image)
-        fill = self.fill if not self.fill == "transparent" else (0, 0, 0, 0)
+        fill = helpers.standarize_colors(self.fill)
         width, height = size
         thickness = self.pt_to_px(self.thickness)
 

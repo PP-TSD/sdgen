@@ -14,7 +14,7 @@ class Field(ConfigurableMixin):
     Fields are created by views (you can find them in :module:`sdgen.views`)
     with all needed parameters and then called to render by specific *Builder*.
     """
-    marked = False  #: field can be highlighted, default: False 
+    marked = False  # field can be highlighted, default: False 
 
     def __init__(self, *args, **kwargs):
         """

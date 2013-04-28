@@ -3,8 +3,7 @@ from _field import Field
 
 
 class Arrow(Field):
-    """Abstract arrow class.
-    """
+    """Abstract arrow class."""
     marker = "normal"  #: size of arrowhead, default: "normal"
     thickness = 3.0  #: line thickness in points, default 3.0
     fill = "black"  #: arrow color, default: "black"
