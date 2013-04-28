@@ -14,13 +14,13 @@ class Loop(View):
     def get_connection_class(self):
         raise NotImplementedError()
 
-    def get_handlers_relative_to_subfield(self, subfield, padding):
+    def get_handlers_relative_to_subfield(self, subfield):
         raise NotImplementedError()
 
     def get_arrow_position(self, handlers):
         raise NotImplementedError()
 
-    def get_subfield_position(self, left_arrow_width, padding):
+    def get_subfield_position(self, left_arrow_width):
         raise NotImplementedError()
 
     def add_children(self, children):
@@ -52,28 +52,25 @@ class Loop(View):
         right_arrow = self.render_subview(right_arrow)
         subfield = self.render_subview(subfield)
 
-        relative_handlers = self.get_handlers_relative_to_subfield(subfield, self.pt_to_px(self.padding))
+        relative_handlers = self.get_handlers_relative_to_subfield(subfield)
 
-        loop_arrow.set_subfield_params(subfield.get_size(),
-           relative_handlers)
+        loop_arrow.set_subfield_params(subfield.get_size(), relative_handlers)
         loop_arrow = self.render_subview(loop_arrow)
 
-        padding = self.pt_to_px(self.padding)
-
-        left_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('left') - left_arrow.get_handler('right')
-        right_arrow_y = self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('right') - right_arrow.get_handler('left')
+        left_arrow_y = self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('left') - left_arrow.get_handler('right')
+        right_arrow_y = self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('right') - right_arrow.get_handler('left')
 
         flattener = Flattener([
             (loop_arrow, self.get_arrow_position(subfield)),
             (left_arrow, (0, left_arrow_y)),
-            (subfield, self.get_subfield_position(left_arrow.get_width(), padding)),
+            (subfield, self.get_subfield_position(left_arrow.get_width())),
             (right_arrow, (subfield.get_width() + left_arrow.get_width(), right_arrow_y))
         ])
 
         handlers = {
-                    "left": self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('left'),
-                    "right": self.get_subfield_position(left_arrow.get_width(), padding)[1] + subfield.get_handler('right')
-                    }
+            "left": self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('left'),
+            "right": self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('right')
+        }
         rendered_fields = self.render_view(flattener)
         rendered_fields[0].update_handlers(handlers)
         return rendered_fields

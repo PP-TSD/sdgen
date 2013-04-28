@@ -8,7 +8,7 @@ class LoopConnection(Connection):
         raise NotImplementedError
 
     def set_subfield_params(self, size, handlers):
-        self.subfield_width, self.subfield_height = size  # in px
+        self.subfield_width, self.subfield_height = size  # in pt
         self.left_height, self.right_height = handlers['left'], handlers['right']
         self.subfield_size = True
 
