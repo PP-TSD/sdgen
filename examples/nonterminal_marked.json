@@ -1,6 +1,6 @@
 {
     "view": "Group",
-    "name": "Nonterminal example",
+    "name": "Nonterminal marked example",
     "children": [
         {"view": "Terminal", "value": "A"},
         {

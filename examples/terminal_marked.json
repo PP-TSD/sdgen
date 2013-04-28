@@ -1,5 +1,6 @@
 {
     "view": "Terminal",
-    "value": "KUBKED",
+    "name": "Terminal marked example",
+    "value": "Zażółć gęślą jaźń",
     "mark": "yes"
 }

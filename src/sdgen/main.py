@@ -45,7 +45,7 @@ def main():
     # read given input file (file will be closed at the end of function)
     data = args.input.read()
     try:
-        data = json.loads(data)
+        data = json.loads(data, encoding="utf-8")
     except ValueError:
         print "Data file doesn't consist valid JSON."
         exit(-1)

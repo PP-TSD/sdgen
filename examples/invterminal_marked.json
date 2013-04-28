@@ -1,6 +1,6 @@
 {
     "view": "Group",
-    "name": "Inverse Terminal example",
+    "name": "Inverse Terminal marked example",
     "children": [
         {"view": "Terminal", "value": "A"},
         {
