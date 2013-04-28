@@ -10,4 +10,4 @@ class Connection(View):
     sharp = True
 
     def render(self):
-        return self.render_view(self.get_field(SimpleArrow, marked=self.marked, sharp=self.sharp))
+        return self.render_view(self.get_field(SimpleArrow, marker=self.marker, length=self.length, marked=self.marked, sharp=self.sharp))

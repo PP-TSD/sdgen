@@ -26,9 +26,9 @@ class Loop(View):
     def add_children(self, children):
         extended = []
         connection_class = self.get_connection_class()
-        iterator = iter([Connection(render_config={'length': self.left_length}, mark=self.marked),  # left connection
+        iterator = iter([Connection(length=self.left_length, mark=self.marked),  # left connection
                          View(mark=self.marked),
-                         Connection(render_config={'marker': None, 'length': self.right_length}, mark=self.marked),  # right connection
+                         Connection(marker=None, length=self.right_length, mark=self.marked),  # right connection
                          connection_class(left_length = self.left_length, right_length = self.right_length, mark=self.marked)  # loop connection
                          ])
 
