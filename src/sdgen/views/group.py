@@ -5,8 +5,6 @@ from sdgen.fields import Flattener
 from connections import Connection
 from sequence import Sequence
 from _view import View
-from _loop import Loop
-from alternation import Alternation
 
 
 class Group(View):

@@ -4,7 +4,7 @@ from _loop import Loop
 
 
 class Return(Loop):
-    padding = 8
+    padding = 3
     thickness = 2
 
     def get_connection_class(self):
