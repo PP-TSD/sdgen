@@ -12,6 +12,7 @@ class Alternation(View):
     left_padding = 0
     right_padding = 0
     subfields_padding = 12
+    arrowhead = True
 
     def add_children(self, children):
         assert children, "Alternation children lists shouldn't be empty"

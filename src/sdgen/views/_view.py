@@ -9,6 +9,7 @@ class View(ConfigurableMixin):
     """
     renderer = None
     save_as_subimage = False  # True if separate rendered image for view
+    arrowhead = False  # True if view starts with arrow
 
     def __init__(self, name=None, type_=None, value=None, mark=False, *args, **kwargs):
         super(View, self).__init__(*args, **kwargs)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from sdgen.views._view import View
 from sdgen.views.connections.connection import Connection
-from sdgen.fields.rectangle import Rectangle
 from sdgen.fields.flattener import Flattener
 
 
@@ -10,6 +9,7 @@ class Loop(View):
     padding = 10
     left_length = 30
     right_length = 30
+    arrowhead = True
 
     def get_connection_class(self):
         raise NotImplementedError()
@@ -40,6 +40,9 @@ class Loop(View):
             extended.append(child)
         for item in iterator:
             extended.append(item)
+
+        # generate headless arrow if subfield starts with arrow
+        extended[0].sharp = not extended[1].arrowhead
 
         super(Loop, self).add_children(extended)
 

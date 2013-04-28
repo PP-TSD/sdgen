@@ -6,6 +6,7 @@ import ImageFont
 
 from sdgen.config import config, render_config, safeget
 
+
 dpi = None
 dpi_inv = None
 fonts_paths = {}

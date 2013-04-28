@@ -5,6 +5,8 @@ from sdgen.fields import Flattener
 from connections import Connection
 from sequence import Sequence
 from _view import View
+from _loop import Loop
+from alternation import Alternation
 
 
 class Group(View):
@@ -19,10 +21,11 @@ class Group(View):
         if children:
             #first connection
             if isinstance(children[0], Connection):
+                children[0].sharp = not children[1].arrowhead if children[1] else True
                 extended_children.append(children[0])
                 children = children[1:]
             else:
-                extended_children.append(Connection(mark=self.marked))
+                extended_children.append(Connection(mark=self.marked, sharp=not children[0].arrowhead))
             #last connection
             if children:
                 if isinstance(children[-1], Connection):

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from sdgen.fields import Rectangle
 from sdgen.fields import Flattener
 from _view import View
 from connections.connection import Connection
@@ -15,11 +14,19 @@ class Sequence(View):
         for el1, el2 in self._pairs(children):
             el1_conn = isinstance(el1, Connection)
             el2_conn = isinstance(el2, Connection)
+            # if one of siblings is connection or this is the last element
             if el1_conn != el2_conn or el2 is None:
+                if el1_conn and el2 and el2.arrowhead:
+                    el1.sharp = False
                 extended_children.append(el1)
+            # if siblings are not separated by connection, create connection
             elif not (el1_conn or el2_conn):
                 extended_children.append(el1)
-                extended_children.append(Connection(mark=self.marked))
+                extended_children.append(Connection(mark=self.marked, sharp=not el2.arrowhead))
+            # in both cases only e1 is added to list, e2 will be added in next
+            # loop iteration
+        self.arrowhead = extended_children[0].arrowhead
+
         super(Sequence, self).add_children(extended_children)
 
     def render(self):
@@ -27,10 +34,6 @@ class Sequence(View):
         fields = map(self.render_subview, self.subfields)
 
         top_max_height = max([max(x.get_handlers().values()) for x in fields])
-        bottom_max_height = max([x.get_height() - min(x.get_handlers().values()) for x in fields])
-
-        width = sum(map(lambda f: f.get_width(), fields))
-        height = top_max_height + bottom_max_height
 
         def next_field():
             x = 0
@@ -46,7 +49,6 @@ class Sequence(View):
 
         # get y coordinate of last fields and add it's right handler
         right_handler = positioned_fields[-1][1][1] + positioned_fields[-1][0].get_handler('right')
-        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=0, marked=False))
         field = Flattener(list(next_field()))
 
         handlers = {
