@@ -8,6 +8,11 @@ from .png.png_builder import PNGBuilder
 from . import config
 
 
+DATA_FILE_INCORRECT = -1
+CONFIG_FILE_INCORRECT = -2
+CONFIG_FILE_UNEXISTS = -3
+OUTPUT_PATH_INCORRECT = -4
+
 _builders = {
     'svg': SVGBuilder,
     'png': PNGBuilder,
@@ -48,7 +53,7 @@ def main():
         data = json.loads(data, encoding="utf-8")
     except ValueError:
         print "Data file doesn't consist valid JSON."
-        exit(-1)
+        exit(DATA_FILE_INCORRECT)
     return _main(data=data, format=args.format, input_path=args.input.name, output_dir=args.output, render_config=args.render_config)
 
 
@@ -57,17 +62,17 @@ def _main(data, output_dir=None, format='png', input_path='sdgen', render_config
         config.load(render_config)
     except ValueError:
         print "Config file doesn't consist valid JSON."
-        exit(-2)
+        exit(CONFIG_FILE_INCORRECT)
     except IOError:
         print "Config file doesn't exists."
-        exit(-3)
+        exit(CONFIG_FILE_UNEXISTS)
 
     if output_dir is not None:
         if not os.path.isdir(output_dir):
             if not os.path.isdir(os.path.dirname(output_dir)) or\
                     os.path.exists(output_dir):
                 print "Path to the output is not correct"
-                return -4
+                exit(OUTPUT_PATH_INCORRECT)
             else:
                 os.mkdir(output_dir)
 
