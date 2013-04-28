@@ -6,7 +6,9 @@ from _view import View
 
 
 class Terminal(View):
-    padding = 0
+    padding = 5
+    font_size = 15
+    font_typeface = "regular"
 
     def __init__(self, *args, **kwargs):
         super(Terminal, self).__init__(*args, **kwargs)

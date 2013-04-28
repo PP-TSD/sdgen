@@ -10,6 +10,15 @@ class View(ConfigurableMixin):
     renderer = None
     save_as_subimage = False  # True if separate rendered image for view
     arrowhead = False  # True if view starts with arrow
+    # default configuration
+    thickness = 3
+    padding = 10
+    font_name = "Arial"
+    font_size = 12
+    font_typeface = "regular"
+    marked_background = "yellow"
+    marked_font_color = "red"
+    
 
     def __init__(self, name=None, type_=None, value=None, mark=False, *args, **kwargs):
         super(View, self).__init__(*args, **kwargs)

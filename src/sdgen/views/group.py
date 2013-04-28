@@ -9,7 +9,12 @@ from _view import View
 
 class Group(View):
     padding = 10
-    header_padding = 5
+    header_padding = 10
+    header_font_color = "white"
+    header_background = "black"
+    header_font_typeface = "bold italic"
+    header_font_type = "Arial"
+    header_font_size = 14
     arrow_height = 1
     arrow_width = 10
     border_size = 1
@@ -45,7 +50,12 @@ class Group(View):
         border_size = self.border_size
 
         # black rect with title
-        header = self.render_image(self.get_field(Character, self.name, render_config_key='header', font_color="white", background="black", padding=self.header_padding, marked=False))
+        header = self.render_image(self.get_field(Character, self.name,
+            render_config_key='header', font_color=self.header_font_color,
+            background=self.header_background, padding=self.header_padding,
+            font_typeface=self.header_font_typeface,
+            font_size=self.header_font_size, font_type=self.header_font_type,
+            marked=False))
 
         left_arrow, sequence, right_arrow = fields
         # width and height of image

@@ -14,32 +14,6 @@
             }
         }
     },
-    "header": {
-        "padding": 10,
-        "font": {
-            "name": "Arial",
-            "size": 14,
-            "typeface": "bold italic"
-        }
-    },
-    "terminal": {
-        "padding": 5,
-        "font": {
-            "size": 15,
-            "typeface": "regular"
-        }
-    },
-    "nonterminal": {
-        "font": {
-            "name": "Times New Roman",
-            "typeface": "bold italic"
-        }
-    },
-    "connection": {
-        "thickness": 3,
-        "marker": "normal",
-        "length": 30
-    },
     "png": {
         "dpi": 300,
         "scale": 1

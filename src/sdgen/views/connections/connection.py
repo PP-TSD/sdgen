@@ -4,9 +4,10 @@ from sdgen.views._view import View
 
 
 class Connection(View):
-    render_config_key = "connection"
-    render_config = {}
+    thickness = 3
+    marker = "normal"
+    length = 30
     sharp = True
 
     def render(self):
-        return self.render_view(self.get_field(SimpleArrow, marked=self.marked, sharp=self.sharp, **self.render_config))
+        return self.render_view(self.get_field(SimpleArrow, marked=self.marked, sharp=self.sharp))

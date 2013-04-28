@@ -10,6 +10,8 @@ from group import Group
 
 class NonTerminal(View):
     save_as_subimage = True
+    font_name = "Times New Roman"
+    font_typeface = "bold italic"
     padding = 5
 
     def render_subimage(self):
