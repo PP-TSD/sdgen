@@ -81,7 +81,7 @@ class Group(View):
         if children:
             #first connection
             if isinstance(children[0], Connection):
-                children[0].sharp = not children[1].arrowhead if children[1] else True
+                children[0].sharp = not children[1].arrowhead if len(children) > 1 and children[1] else True
                 extended_children.append(children[0])
                 children = children[1:]
             else:
@@ -101,6 +101,8 @@ class Group(View):
     def render(self):
         # render ImageWrappers of fields
         padding = self.padding
+        width = 0
+        height = 0
 
         # render all subviews and save this one, that should be saved to files
         fields = map(self.render_subview, self.subfields)
@@ -114,25 +116,30 @@ class Group(View):
             font_size=self.header_font_size, font_type=self.header_font_type,
             marked=False))
 
-        left_arrow, sequence, right_arrow = fields
-        # width and height of image
-        width = max(sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size), header.get_width())
-        height = header.get_height() + sequence.get_height() + 2 * (padding + border_size)
+        params = []
 
-        # position of box with children and children
-        subfields_y = header.get_height() + padding + border_size
-        left_arrow_x = border_size + padding
-        left_arrow_y = subfields_y + sequence.get_handler('left') - left_arrow.get_handler('right')
-        sequence_x = left_arrow_x + left_arrow.get_width()
-        right_arrow_x = sequence_x + sequence.get_width()
-        right_arrow_y = subfields_y + sequence.get_handler('right') - right_arrow.get_handler('left')
+        if fields:
+            left_arrow, sequence, right_arrow = fields
+            # width and height of image
+            width = max(sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size), header.get_width())
+            height = header.get_height() + sequence.get_height() + 2 * (padding + border_size)
+
+            # position of box with children and children
+            subfields_y = header.get_height() + padding + border_size
+            left_arrow_x = border_size + padding
+            left_arrow_y = subfields_y + sequence.get_handler('left') - left_arrow.get_handler('right')
+            sequence_x = left_arrow_x + left_arrow.get_width()
+            right_arrow_x = sequence_x + sequence.get_width()
+            right_arrow_y = subfields_y + sequence.get_handler('right') - right_arrow.get_handler('left')
+
+            params.extend([(left_arrow, (left_arrow_x, left_arrow_y)),
+                           (sequence, (sequence_x, subfields_y)),
+                           (right_arrow, (right_arrow_x, right_arrow_y))])
 
         background = self.render_image(self.get_field(Rectangle, (width, height), thickness=self.border_size, marked=False))
-        field = Flattener([(background, (0,0)),
-                    (header, (border_size, ) * 2),
-                    (left_arrow, (left_arrow_x, left_arrow_y)),
-                    (sequence, (sequence_x, subfields_y)),
-                    (right_arrow, (right_arrow_x, right_arrow_y))])
+        params[0:0] = [(background, (0, 0)), (header, (border_size, ) * 2)]
+
+        field = Flattener(params)
 
         # final render of this view
         return self.render_view(field)
