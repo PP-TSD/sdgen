@@ -139,7 +139,7 @@ def get_font_path(font_name, style="Regular"):
 
     # check for fonts, that has font_name (lowercased) in filename (lowercased)
     paths = []
-    for directory in config.get('fonts', 'directories').split():
+    for directory in safeget(config, 'fonts.directories', []):
         for (dirpath, dirnames, filenames) in os.walk(directory):
             files = filter(lambda filename: any(spl in filename.lower() for spl in splitted_font_name), filenames)
             paths.extend([os.path.join(dirpath, dirnames[0] if dirnames else '', file_) for file_ in files])

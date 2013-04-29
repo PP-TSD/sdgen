@@ -5,7 +5,7 @@ import os
 # change to proper import when svg package will be modified
 from .builder import Builder as SVGBuilder
 from .png.png_builder import PNGBuilder
-from . import config
+from . import config as config_mod
 
 
 DATA_FILE_INCORRECT = -1
@@ -31,7 +31,7 @@ def main():
         'output': {
             'help': 'path to output directory'
         },
-        '--render-config': {
+        '--config': {
             'type': file,
             'metavar': 'CONFIG_FILE',
             'help': 'config file in json format'
@@ -64,13 +64,13 @@ def main():
                  format=args.format,
                  input_path=args.input.name,
                  output_dir=args.output,
-                 render_config=args.render_config,
+                 config=args.config,
                  overwrite=args.overwrite)
 
 
-def _main(data, output_dir=None, format='png', input_path='sdgen', render_config=None, overwrite=False):
+def _main(data, output_dir=None, format='png', input_path='sdgen', config=None, overwrite=False):
     try:
-        config.load(render_config)
+        config_mod.load_config(config)
     except ValueError:
         print "Config file doesn't consist valid JSON."
         exit(CONFIG_FILE_INCORRECT)
@@ -106,7 +106,7 @@ def to_png(data, path=None, conf=None, overwrite=False):
     :return: a list of tuples, each tuple contains two fields: a name and an image in png format
     :rtype: list
     """
-    return _main(data, format='png', output_dir=path, render_config=conf, overwrite=overwrite)
+    return _main(data, format='png', output_dir=path, config=conf, overwrite=overwrite)
 
 
 if __name__ == '__main__':
