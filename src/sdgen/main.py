@@ -18,6 +18,7 @@ _builders = {
     'png': PNGBuilder,
 }
 
+
 def main():
     """Entry point with args parser."""
     parser = argparse.ArgumentParser(description='Generate syntax diagram.')
@@ -39,6 +40,10 @@ def main():
             'default': 'png',
             'choices': _builders.keys(),
             'help': 'output format, ex. "png"'
+        },
+        '--overwrite': {
+            'action': 'store_true',
+            'help': 'overwrite existing output files'
         }
     }
     # add arguments specified above to command parser
@@ -54,10 +59,16 @@ def main():
     except ValueError:
         print "Data file doesn't consist valid JSON."
         exit(DATA_FILE_INCORRECT)
-    return _main(data=data, format=args.format, input_path=args.input.name, output_dir=args.output, render_config=args.render_config)
+
+    return _main(data=data,
+                 format=args.format,
+                 input_path=args.input.name,
+                 output_dir=args.output,
+                 render_config=args.render_config,
+                 overwrite=args.overwrite)
 
 
-def _main(data, output_dir=None, format='png', input_path='sdgen', render_config=None):
+def _main(data, output_dir=None, format='png', input_path='sdgen', render_config=None, overwrite=False):
     try:
         config.load(render_config)
     except ValueError:
@@ -77,10 +88,10 @@ def _main(data, output_dir=None, format='png', input_path='sdgen', render_config
                 os.mkdir(output_dir)
 
     builder = _builders[format]()
-    return builder.generate(data=data, input_path=input_path, output_dir=output_dir)
+    return builder.generate(data=data, input_path=input_path, output_dir=output_dir, overwrite=overwrite)
 
 
-def to_png(data, path=None, conf=None):
+def to_png(data, path=None, conf=None, overwrite=False):
     """
     .. deprecated:: 0.0.3
 
@@ -95,7 +106,7 @@ def to_png(data, path=None, conf=None):
     :return: a list of tuples, each tuple contains two fields: a name and an image in png format
     :rtype: list
     """
-    return _main(data, format='png', output_dir=path, render_config=conf)
+    return _main(data, format='png', output_dir=path, render_config=conf, overwrite=overwrite)
 
 
 if __name__ == '__main__':
