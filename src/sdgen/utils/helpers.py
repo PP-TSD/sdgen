@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import itertools
 import os
+import unicodedata
+from string import maketrans
 
 import ImageFont
 
@@ -57,6 +59,24 @@ def px_to_pt(points):
     if not dpi_inv:
         dpi_inv = 75.0 / int(safeget(render_config, "render.dpi", 75))
     return float(points) * dpi_inv
+
+
+def normalize_str(text):
+    """
+    Normalizes unicode input text (for example remove national characters)
+
+    :param text: text to normalize
+    :type text: unicode
+    """
+    # unicodedata NFKD doesn't convert properly polish ł
+    trans_dict = {
+        u'ł': u'l',
+        u'Ł': u'L'
+    }
+    trans = dict((ord(k), ord(v)) for k, v in trans_dict.items())
+    text = text.translate(trans)
+
+    return unicodedata.normalize('NFKD', text).encode('ascii', 'ignore')
 
 
 # ========================================
@@ -149,4 +169,3 @@ def get_font_path(font_name, style="Regular"):
 def standarize_colors(color):
     """Convert color to PIL standard color."""
     return color if not color == "transparent" else (0, 0, 0, 0)
- 

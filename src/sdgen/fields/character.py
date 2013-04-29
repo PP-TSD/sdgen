@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import unicodedata
+
 import Image
 import ImageFont
 import ImageDraw
@@ -48,10 +50,19 @@ class Character(Field):
     def to_png(self):
         padding = self.pt_to_px(self.padding)
         font = self._get_font(self.font_name, self.font_size, self.font_typeface)
-        image_size = [x + 2 * padding for x in font.getsize(self.text)]
+
+        # try to get font size to check if fonts support all characters in text
+        try:
+            text_size = font.getsize(self.text)
+        except UnicodeEncodeError:
+            self.text = helpers.normalize_str(self.text)
+            text_size = font.getsize(self.text)
+
+        image_size = [x + 2 * padding for x in text_size]
         background = helpers.standarize_colors(self.background)
         image = Image.new('RGBA', image_size, background)
+
         draw = ImageDraw.Draw(image)
         draw.text((padding,) * 2, self.text, font=font, fill=self.font_color)
-        return ImageWrapper(image, *map(self.px_to_pt, image_size))
 
+        return ImageWrapper(image, *map(self.px_to_pt, image_size))
