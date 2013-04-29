@@ -9,8 +9,8 @@ from inv_terminal_delimiter import InvTerminalDelimiter
 
 
 class InvTerminal(View):
-    padding = 5
-    inner_padding = 3
+    padding = 1
+    inner_padding = 2
     fill = "black"
     outline = "black"
     marked_fill = "red"
