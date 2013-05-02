@@ -4,6 +4,29 @@ from sdgen.views._view import View
 
 
 class Connection(View):
+    """
+    Base connection, rendered as an arrow.
+
+    .. attribute:: thickness : int
+
+        Thickness of an arrow.
+        Default: 3
+
+    .. attribute:: marker : str
+
+        Arrowhead size. Possible options are: small, normal, large.
+        Default: normal.
+
+    .. attribute:: length : str
+
+        Length of an arrow.
+        Default: 30
+
+    .. attribute:: sharp : bool
+
+        True if arrow should has sharp arrowhead.
+        Default: True
+    """
     thickness = 3
     marker = "normal"
     length = 30

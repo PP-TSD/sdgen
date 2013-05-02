@@ -58,7 +58,7 @@ if __name__ == '__main__':
         txt.write(TEMPLATE_NAME % (name, '-' * len(name), path_from_generated))
 
         # add images
-        r = to_png(m, EXAMPLES_GENERATED_DIR)
+        r = to_png(m, EXAMPLES_GENERATED_DIR, overwrite=True)
 
         for i in r:
             filename = i[0].replace(' ', '_').lower() + ".png"

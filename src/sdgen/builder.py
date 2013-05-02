@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from views import alternation, detour, group, inv_terminal, non_terminal, quantity_above, return_, sequence, terminal
-from views.connections import connection
+from sdgen.views import alternation, detour, group, inv_terminal, non_terminal, quantity_above, return_, sequence, terminal
+from sdgen.views.connections import connection
 
 # classes for views names
 views_classes = {

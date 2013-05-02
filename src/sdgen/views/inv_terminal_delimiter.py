@@ -4,6 +4,9 @@ from _view import View
 
 
 class InvTerminalDelimiter(View):
+    """
+    Separator in Inverted Terminal.
+    """
     _render_config_key = "invterminal"
     width = 1
     height = 10

@@ -7,6 +7,35 @@ from _view import View
 
 
 class Alternation(View):
+    """
+    Provides alternative view with multiple possible ways to reach target.
+    Alternatives are placed vertically, one below each other.
+
+    .. attribute:: arrow_width : int
+
+        Width of alternation arrow (in points).
+        Default: 50
+
+    .. attribute:: padding : int
+
+        Space between alternative elements (vertical; in points).
+        Default: 5
+
+    .. attribute:: left_padding : int
+
+        Alternation-in arrows padding (in points).
+        Default: 0
+
+    .. attribute:: right_padding : int
+
+        Alternation-out arrows padding (in points).
+        Default: 0
+
+    .. attribute:: subfields_padding : int
+
+        Horizontal padding of each children element (in points).
+        Default: 12
+    """
     arrow_width = 50
     padding = 5
     left_padding = 0

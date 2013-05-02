@@ -9,6 +9,35 @@ from inv_terminal_delimiter import InvTerminalDelimiter
 
 
 class InvTerminal(View):
+    """
+    Final element with 'reversed' colors. All children are in one rounded
+    rectangle and are separeted by \|.
+
+    .. attribute:: inner_padding : int
+
+        Padding between element and | separator.
+        Default: 2
+
+    .. attribute:: fill : str
+
+        Background color of element.
+        Default: black
+
+    .. attribute:: outline : str
+
+        Border color of element.
+        Default: black
+
+    .. attribute:: marked_fill : str
+
+        Background color when element is marked.
+        Default: red
+
+    .. attribute:: marked_outline : str
+
+        Border color when element is marked.
+        Default: yellow
+    """
     padding = 1
     inner_padding = 2
     fill = "black"

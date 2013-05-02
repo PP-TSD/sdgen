@@ -4,6 +4,9 @@ from terminal import Terminal
 
 
 class InvTerminalChild(Terminal):
+    """
+    Child of Inverted Terminal.
+    """
     _render_config_key = "invterminal"
     font_color = "white"
     background = "transparent"

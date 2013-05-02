@@ -6,6 +6,21 @@ from _view import View
 
 
 class Terminal(View):
+    """
+    Rounded rectangle with text inside.
+    If value of Terminal is ' ', it's converted to 'Space'.
+
+    .. attribute:: font_size : int
+
+        Size of font used to generate inside text.
+        Default: 15
+
+    .. attribute:: font_typeface : int
+
+        Font style.
+        Default: regular
+    """
+
     padding = 5
     font_size = 15
     font_typeface = "regular"

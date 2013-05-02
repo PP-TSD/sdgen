@@ -19,6 +19,12 @@ Alternation
 .. autoclass:: sdgen.views.alternation.Alternation()
 
 
+Connection
+++++++++++++++
+
+.. autoclass:: sdgen.views.connections.connection.Connection()
+
+
 Detour
 ++++++++++++++
 .. autoclass:: sdgen.views.detour.Detour()

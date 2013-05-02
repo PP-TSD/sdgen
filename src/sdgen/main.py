@@ -3,9 +3,9 @@ import argparse
 import json
 import os
 # change to proper import when svg package will be modified
-from .builder import Builder as SVGBuilder
-from .png.png_builder import PNGBuilder
-from . import config as config_mod
+from sdgen.builder import Builder as SVGBuilder
+from sdgen.png.png_builder import PNGBuilder
+from sdgen import config as config_mod
 
 
 DATA_FILE_INCORRECT = -1
