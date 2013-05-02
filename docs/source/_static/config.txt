@@ -1,0 +1,95 @@
+====================
+Render configuration
+====================
+
+------
+Format
+------
+
+Configuration is passed to sdgen as json (while running as sdgen script) or python dict (while running as python function)
+
+--------
+Content
+--------
+
+Views
++++++
+
+Configuration can be specified for every view in sdgen, for example Terminal, Group and so on.
+
+When view uses a field (i.e. Character), it depends on calling view configuration, so You can specify another configuration for text in Terminal view and other for text in Group group.
+
+On the top level of configuration, keys (in general) are names of views. On the second level, keys are names or specific configuration (like padding) or name of subsection (like font).
+
+PNG configuration
++++++++++++++++++
+
+For rendering PNG images, two options are available:
+
+* dpi - specifies resolution of generated image.
+    Default: 120
+
+* scale - specifies scale of generated image. Scale should be in range (0, 1].
+    Default: 1
+
+Fonts paths
++++++++++++
+
+Additional font paths can be added to sdgen.
+
+Default font paths:
+
+* /usr/share/fonts/TTF/
+
+* C:\\WINDOW\\Fonts\\
+
+* /usr/share/fonts/truetype/
+
+Font path specific for Your system can be added to config using "directories" subsection in "fonts" section.
+
+Example configuration
+++++++++++++++++++++++
+
+.. code-block:: json
+
+    {
+        "default": {
+            "thickness": 4,
+            "padding": 10,
+            "font": {
+                "name": "Arial",
+                "size": 12,
+                "typeface": "bold"
+            },
+            "marked": {
+                "background": "yellow",
+                "font": {
+                    "color": "red"
+                }
+            }
+        },
+        "terminal": {
+            "padding": 8
+        },
+        "nonterminal": {
+            "font": {
+                "name": "Times",
+                "size": 50,
+                "typeface": "bold italic"
+            }
+        },
+        "connection": {
+            "thickness": 2,
+            "marker": "normal",
+            "length": 30
+        },
+        "png": {
+            "dpi": 75,
+            "scale": 1
+        },
+        "fonts": {
+            "directories": [
+                "my/system/font/path"
+            ]
+        }
+    }

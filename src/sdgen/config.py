@@ -13,21 +13,11 @@ config = {
         "directories": _default_font_paths[:]
     },
     "png": {
-        "dpi": 300,
+        "dpi": 120,
         "scale": 1
     }
 }
 render_config = config  # backward compatibility
-
-# def dir_up(path, level):
-#     """
-#     climb up in directories path (level must be positive integer)
-#     """
-#     return path if not level else dir_up(os.path.dirname(path), level-1)
-
-
-# def file_path(depth, names):
-#     return os.path.join(dir_up(os.path.abspath(__file__), depth), *names)
 
 
 def safeget(d, path, default=None):
@@ -42,18 +32,6 @@ def safeget(d, path, default=None):
         else:
             return default
     return tmp
-
-
-# def load_config():
-#     global config
-
-#     if not config:
-#         config = ConfigParser.SafeConfigParser()
-#         # ./src/sdgen/config.py -> ./var/config.ini
-#         config_path = ('var', 'config.ini')
-#         # try to load from two different levels
-#         config.read(file_path(2, config_path))
-#         config.read(file_path(3, config_path))
 
 
 def load_config(data):
@@ -71,5 +49,5 @@ def load_config(data):
         # append font directories to default
         data_fonts_dir = safeget(data, "fonts.directories", [])
         fonts_dirs = _default_font_paths[:]
-        fonts_dirs.extend(data_fonts_dir)
+        fonts_dirs[0:0] = data_fonts_dir
         config["fonts"]["directories"] = fonts_dirs

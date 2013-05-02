@@ -57,8 +57,14 @@ if __name__ == '__main__':
         # put json contentof an example
         txt.write(TEMPLATE_NAME % (name, '-' * len(name), path_from_generated))
 
+        conf = {
+            'png': {
+                'dpi': 100
+            }
+        }
+
         # add images
-        r = to_png(m, EXAMPLES_GENERATED_DIR, overwrite=True)
+        r = to_png(m, EXAMPLES_GENERATED_DIR, conf=conf, overwrite=True)
 
         for i in r:
             filename = i[0].replace(' ', '_').lower() + ".png"

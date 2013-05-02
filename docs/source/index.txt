@@ -15,5 +15,5 @@ Contents:
    _static/installation
    _static/running
    _static/input_data
-   _static/render_config
+   _static/config
    _static/examples

@@ -2,7 +2,7 @@
 Preparing input data
 ====================
 
-TODO (mostly from source code)
+Examples of usage are in :doc:`examples`.
 
 
 Possible views

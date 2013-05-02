@@ -14,28 +14,6 @@ Alternation example
 
 .. image:: ../_generated/alternation_example.png
 
-ISBN
-----
-
-.. literalinclude:: ../../../examples/complex.json
-   :language: json
-   :linenos:
-
-
-.. image:: ../_generated/isbn.png
-
-
-.. image:: ../_generated/separator.png
-
-
-.. image:: ../_generated/separator.png
-
-
-.. image:: ../_generated/separator.png
-
-
-.. image:: ../_generated/separator.png
-
 Detour example
 --------------
 
