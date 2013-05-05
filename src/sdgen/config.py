@@ -11,10 +11,6 @@ _default_font_paths = [
 config = {
     "fonts": {
         "directories": _default_font_paths[:]
-    },
-    "png": {
-        "dpi": 120,
-        "scale": 1
     }
 }
 render_config = config  # backward compatibility

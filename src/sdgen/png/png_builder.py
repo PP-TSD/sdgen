@@ -31,7 +31,7 @@ class PNGBuilder(Builder):
         View.renderer = "to_png"
 
         default_png_config = {
-            'dpi': 120,
+            'dpi': 150,
             'scale': 1
         }
         png_config = safeget(render_config, "png", default_png_config)

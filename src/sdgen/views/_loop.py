@@ -68,8 +68,8 @@ class Loop(View):
         ])
 
         handlers = {
-            "left": self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('left'),
-            "right": self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('right')
+            "left": left_arrow_y + left_arrow.get_handler("left"),  #self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('left'),
+            "right": right_arrow_y + right_arrow.get_handler("right")  #self.get_subfield_position(left_arrow.get_width())[1] + subfield.get_handler('right')
         }
         rendered_fields = self.render_view(flattener)
         rendered_fields[0].update_handlers(handlers)

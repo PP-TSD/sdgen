@@ -11,20 +11,7 @@ class Sequence(View):
     Arrows can be specified by putting Connection
     (`sdgen.views.connections.connection.Connection`) in children. If connection
     is not specified, default is used.
-
-    .. attribute:: arrow_height : int
-
-        Thickness of arrow.
-        Default: 1
-
-    .. attribute:: arrow_width : int
-
-        Length of arrow.
-        Default: 10
     """
-    padding = 10
-    arrow_height = 1
-    arrow_width = 10
 
     def add_children(self, children):
         extended_children = []

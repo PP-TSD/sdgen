@@ -10,14 +10,14 @@ class Terminal(View):
     Rounded rectangle with text inside.
     If value of Terminal is ' ', it's converted to 'Space'.
 
-    .. attribute:: font_size : int
+    .. attribute:: font_size : float
 
         Size of font used to generate inside text.
         Default: 15
 
-    .. attribute:: font_typeface : int
+    .. attribute:: font_typeface : str
 
-        Font style.
+        Font style {regular, bold, italic}.
         Default: regular
     """
 

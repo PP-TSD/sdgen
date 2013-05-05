@@ -13,7 +13,7 @@ class InvTerminal(View):
     Final element with 'reversed' colors. All children are in one rounded
     rectangle and are separeted by \|.
 
-    .. attribute:: inner_padding : int
+    .. attribute:: inner_padding : float
 
         Padding between element and | separator.
         Default: 2

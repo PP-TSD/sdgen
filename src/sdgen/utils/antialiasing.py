@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import Image
 from sdgen.utils import helpers
-ANTIALIASING = 3.5
+ANTIALIASING = 4
 
 
 def antialiasing(klass):

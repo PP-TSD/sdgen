@@ -32,8 +32,8 @@ class DetourArrow(LoopArrow):
                  self.width + self.left_length,
                  self.right_height + self.padding)
                 ]
-    
-    def get_polygons_points_lists(self):        
+
+    def get_polygons_points_lists(self):
         points = self.get_line_points_lists()[0]
         assert len(points) == 4, "Line should be 4-touple with 2 points \
                                     coordinates"

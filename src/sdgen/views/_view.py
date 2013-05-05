@@ -20,12 +20,12 @@ class View(ConfigurableMixin):
 
     Default view configuration (can be used in all subclasses):
 
-    .. attribute:: thickness : int
+    .. attribute:: thickness : float
 
         Thickness of element (in points).
         Default: 3
 
-    .. attribute:: padding : int
+    .. attribute:: padding : float
 
         Space between element border and content.
         Default: 10
@@ -35,7 +35,7 @@ class View(ConfigurableMixin):
         Font family name.
         Default: Arial
 
-    .. attribute:: font_size : int
+    .. attribute:: font_size : float
 
         Size of font (in points).
         Default: 12

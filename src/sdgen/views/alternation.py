@@ -11,27 +11,27 @@ class Alternation(View):
     Provides alternative view with multiple possible ways to reach target.
     Alternatives are placed vertically, one below each other.
 
-    .. attribute:: arrow_width : int
+    .. attribute:: arrow_width : float
 
         Width of alternation arrow (in points).
         Default: 50
 
-    .. attribute:: padding : int
+    .. attribute:: padding : float
 
         Space between alternative elements (vertical; in points).
         Default: 5
 
-    .. attribute:: left_padding : int
+    .. attribute:: left_padding : float
 
         Alternation-in arrows padding (in points).
         Default: 0
 
-    .. attribute:: right_padding : int
+    .. attribute:: right_padding : float
 
         Alternation-out arrows padding (in points).
         Default: 0
 
-    .. attribute:: subfields_padding : int
+    .. attribute:: subfields_padding : float
 
         Horizontal padding of each children element (in points).
         Default: 12

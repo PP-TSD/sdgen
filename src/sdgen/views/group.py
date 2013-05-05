@@ -14,27 +14,27 @@ class Group(View):
     Contains header in top-left corner and children putted in sequence. Group is
     placed in rectangled border.
 
-    .. attribute:: padding : int
+    .. attribute:: padding : float
 
         Space between element border and content (in points).
         Default: 10
 
-    .. attribute:: arrow_height : int
+    .. attribute:: arrow_height : float
 
         Thickness of sequence arrow (in points).
         Default: 1
 
-    .. attribute:: arrow_width : int
+    .. attribute:: arrow_width : float
 
         Arrow width (in points).
         Default: 10
 
-    .. attribute:: border_size : int
+    .. attribute:: border_size : float
 
         Thickness of border (in points).
         Default: 1
 
-    .. attribute:: header_padding : int
+    .. attribute:: header_padding : float
 
         Space between header border and it's content (in points).
         Default: 10
@@ -59,7 +59,7 @@ class Group(View):
         Header font family.
         Default: Arial
 
-    .. attribute:: header_font_size : int
+    .. attribute:: header_font_size : float
 
         Header font size (in points).
         Default: 14

@@ -16,15 +16,13 @@ class SimpleArrow(Arrow):
 
     def __init__(self, *args, **kwargs):
         """Straight, horizontal arrow ended with marker.
-        
-        :param length: length of arrow with marker (of course in points).
-        :type length: float.
-        :param sharp: check if arrow should has sharp marker.
-        :type sharp: bool.
+
+        :attribute length: float
+        length of arrow with marker (in points).
         """
         super(SimpleArrow, self).__init__(*args, **kwargs)
         self.sharp = self.sharp
-    
+
     def to_png(self):
         width = self.pt_to_px(self.length)
         height = self.pt_to_px(self.marker * 2.0 / 3 or self.thickness)

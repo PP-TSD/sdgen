@@ -7,7 +7,7 @@ class Connection(View):
     """
     Base connection, rendered as an arrow.
 
-    .. attribute:: thickness : int
+    .. attribute:: thickness : float
 
         Thickness of an arrow.
         Default: 3

@@ -26,8 +26,8 @@ class ImageWrapper(object):
         self.height = height
         self.name = name
         self.handlers = {
-            "left": height/2,
-            "right": height/2,
+            "left": height/2.0,
+            "right": height/2.0,
         }
         if isinstance(handlers, dict):
             self.handlers.update(handlers)
@@ -67,7 +67,7 @@ class ImageWrapper(object):
             handler (str): Name of handler.
 
         Returns:
-            int: y coordinate of concrete handler.
+            float: y coordinate of concrete handler.
         """
         if not handler in self.handlers:
             raise KeyError("Invalid handler name.")
