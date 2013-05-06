@@ -6,11 +6,11 @@ from connections.connection import Connection
 
 class Sequence(View):
     """
-    Sequence of views, separeted by arrow.
+    Sequence of views, separated by arrow.
 
-    Arrows can be specified by putting Connection
-    (`sdgen.views.connections.connection.Connection`) in children. If connection
-    is not specified, default is used.
+    Arrows can be specified by putting
+    :class:`sdgen.views.connections.connection.Connection` in children.
+    If connection is not specified, default is used.
     """
 
     def add_children(self, children):

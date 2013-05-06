@@ -13,7 +13,7 @@ from _field import Field
 
 class Character(Field):
     render_config_key = "character"
-    font_name = "Arial"
+    font_type = "Arial"
     font_size = 12
     font_typeface = "regular"
     font_color = "black"
@@ -29,7 +29,7 @@ class Character(Field):
             text (str): Text, which should be rendered.
 
         Kwargs:
-            font_name (str): Name of font type, ex. 'arial'.
+            font_type (str): Name of font type, ex. 'arial'.
             font_size (float): Font size in points.
             font_typeface (str): Font typeface, ex. 'bold italic'.
             font_color (str): Font color.
@@ -49,7 +49,7 @@ class Character(Field):
 
     def to_png(self):
         padding = self.pt_to_px(self.padding)
-        font = self._get_font(self.font_name, self.font_size, self.font_typeface)
+        font = self._get_font(self.font_type, self.font_size, self.font_typeface)
 
         # try to get font size to check if fonts support all characters in text
         try:

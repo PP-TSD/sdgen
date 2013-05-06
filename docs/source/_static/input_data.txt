@@ -8,12 +8,6 @@ Examples of usage are in :doc:`examples`.
 Possible views
 ==============
 
-View
-++++++++++++++
-
-.. autoclass:: sdgen.views._view.View()
-
-
 Alternation
 ++++++++++++++
 .. autoclass:: sdgen.views.alternation.Alternation()
@@ -23,7 +17,8 @@ Connection
 ++++++++++++++
 
 .. autoclass:: sdgen.views.connections.connection.Connection()
-
+.. autoclass:: sdgen.views.connections.detour_connection.DetourConnection()
+.. autoclass:: sdgen.views.connections.return_connection.ReturnConnection()
 
 Detour
 ++++++++++++++
@@ -63,3 +58,14 @@ Sequence
 Terminal
 ++++++++++++++++
 .. autoclass:: sdgen.views.terminal.Terminal()
+
+Abstract base views
++++++++++++++++++++
+This views are base for other views and cannot be used directly.
+Other views inherit their properties.
+
+.. autoclass:: sdgen.views._view.View()
+
+.. autoclass:: sdgen.views._loop.Loop()
+
+.. autoclass:: sdgen.views.connections._loop.LoopConnection()

@@ -9,5 +9,5 @@ mkdir -p $OUTPUT
 for f in $INPUT
 do
     echo "Processing $f input..."
-    python src/test.py $f $OUTPUT --render-config=$CONFIG --format=$FORMAT    
+    python src/test.py $f $OUTPUT --format=$FORMAT --overwrite 
 done

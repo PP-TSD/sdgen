@@ -9,8 +9,29 @@ from group import Group
 
 
 class NonTerminal(View):
+    """
+    NonTerminal view render self as group in new image.
+    
+    Represent itself as rectangle with name of external group with children
+    of this view.
+
+    .. attribute:: padding : float
+
+        Space between element border and content (in points).
+        Default: 5
+
+    .. attribute:: font_typeface : str
+
+        Header font style.
+        Default: bold italic
+
+    .. attribute:: font_type : str
+
+        Header font family.
+        Default: Times New Roman
+    """
     save_as_subimage = True
-    font_name = "Times New Roman"
+    font_type = "Times New Roman"
     font_typeface = "bold italic"
     padding = 5
 
@@ -21,13 +42,16 @@ class NonTerminal(View):
             del config['view']
         if 'children' in config:
             del config['children']
-        group = Group(name=self.name, value=self.value, mark=self.marked, save_as_subimage=True, **config)
+        group = Group(name=self.name, value=self.value, mark=self.marked,
+                      save_as_subimage=True, **config)
         group.add_children(self.subfields)
         return group.render()
 
     def render(self):
-            text = self.render_image(self.get_field(Character, self.name))
-            border = self.render_image(self.get_field(Rectangle, tuple(p + self.padding * 2 for p in text.get_size())))
+            text = self.render_image(self.get_field(Character, self.name,
+                font_type=self.font_type, font_typeface=self.font_typeface))
+            border = self.render_image(self.get_field(Rectangle,
+                tuple(p + self.padding * 2 for p in text.get_size())))
 
             nonterminal = Flattener([
                 (border, (0, 0)),

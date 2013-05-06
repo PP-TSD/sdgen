@@ -4,13 +4,18 @@ from _loop import Loop
 
 
 class Return(Loop):
-    padding = 10
-    thickness = 2
-
+    """
+    Return view shows that it's child occurs many times.
+    
+    To specify number of occurrences use
+    :class:`sdgen.views.quantity_above.QuantityAbove`.
+    
+    .. seealso:: :class:`sdgen.views._loop.Loop`
+    """
     def get_connection_class(self):
         return ReturnConnection
 
-    def get_handlers_relative_to_subfield(self, subfield):
+    def get_absolute_subfield_handlers(self, subfield):
         return {
             "left": subfield.get_handler('left') + 2 * self.padding,
             "right": subfield.get_handler('right') + 2 * self.padding
