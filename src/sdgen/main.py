@@ -107,7 +107,3 @@ def to_png(data, path=None, conf=None, overwrite=False):
     :rtype: list
     """
     return _main(data, format='png', output_dir=path, config=conf, overwrite=overwrite)
-
-
-if __name__ == '__main__':
-    main()
