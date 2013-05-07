@@ -7,7 +7,7 @@ Below there are some examples of using Syntax Diagram Generator to generate imag
 Alternation example
 -------------------
 
-.. literalinclude:: ../../../examples/alternation.json
+.. literalinclude:: ../../../samples/json/alternation.json
    :language: json
    :linenos:
 
@@ -17,7 +17,7 @@ Alternation example
 Detour example
 --------------
 
-.. literalinclude:: ../../../examples/detour.json
+.. literalinclude:: ../../../samples/json/detour.json
    :language: json
    :linenos:
 
@@ -27,7 +27,7 @@ Detour example
 Detour marked example
 ---------------------
 
-.. literalinclude:: ../../../examples/detour_marked.json
+.. literalinclude:: ../../../samples/json/detour_marked.json
    :language: json
    :linenos:
 
@@ -37,7 +37,7 @@ Detour marked example
 Detour simple example
 ---------------------
 
-.. literalinclude:: ../../../examples/detour_simple.json
+.. literalinclude:: ../../../samples/json/detour_simple.json
    :language: json
    :linenos:
 
@@ -47,7 +47,7 @@ Detour simple example
 Group example
 -------------
 
-.. literalinclude:: ../../../examples/group.json
+.. literalinclude:: ../../../samples/json/group.json
    :language: json
    :linenos:
 
@@ -57,7 +57,7 @@ Group example
 Group marked example
 --------------------
 
-.. literalinclude:: ../../../examples/group_marked.json
+.. literalinclude:: ../../../samples/json/group_marked.json
    :language: json
    :linenos:
 
@@ -67,7 +67,7 @@ Group marked example
 Short Group example
 -------------------
 
-.. literalinclude:: ../../../examples/group_short.json
+.. literalinclude:: ../../../samples/json/group_short.json
    :language: json
    :linenos:
 
@@ -77,7 +77,7 @@ Short Group example
 Group example with marked
 -------------------------
 
-.. literalinclude:: ../../../examples/group_with_marks.json
+.. literalinclude:: ../../../samples/json/group_with_marks.json
    :language: json
    :linenos:
 
@@ -87,7 +87,7 @@ Group example with marked
 Inverse Terminal example
 ------------------------
 
-.. literalinclude:: ../../../examples/invterminal.json
+.. literalinclude:: ../../../samples/json/invterminal.json
    :language: json
    :linenos:
 
@@ -97,7 +97,7 @@ Inverse Terminal example
 Inverse Terminal marked example
 -------------------------------
 
-.. literalinclude:: ../../../examples/invterminal_marked.json
+.. literalinclude:: ../../../samples/json/invterminal_marked.json
    :language: json
    :linenos:
 
@@ -107,7 +107,7 @@ Inverse Terminal marked example
 Nonterminal example
 -------------------
 
-.. literalinclude:: ../../../examples/nonterminal.json
+.. literalinclude:: ../../../samples/json/nonterminal.json
    :language: json
    :linenos:
 
@@ -120,7 +120,7 @@ Nonterminal example
 Nonterminal marked example
 --------------------------
 
-.. literalinclude:: ../../../examples/nonterminal_marked.json
+.. literalinclude:: ../../../samples/json/nonterminal_marked.json
    :language: json
    :linenos:
 
@@ -133,7 +133,7 @@ Nonterminal marked example
 Quantity above example
 ----------------------
 
-.. literalinclude:: ../../../examples/quantity_above.json
+.. literalinclude:: ../../../samples/json/quantity_above.json
    :language: json
    :linenos:
 
@@ -143,7 +143,7 @@ Quantity above example
 Quantity above marked example
 -----------------------------
 
-.. literalinclude:: ../../../examples/quantity_above_marked.json
+.. literalinclude:: ../../../samples/json/quantity_above_marked.json
    :language: json
    :linenos:
 
@@ -153,7 +153,7 @@ Quantity above marked example
 Return example
 --------------
 
-.. literalinclude:: ../../../examples/return.json
+.. literalinclude:: ../../../samples/json/return.json
    :language: json
    :linenos:
 
@@ -163,7 +163,7 @@ Return example
 Return marked example
 ---------------------
 
-.. literalinclude:: ../../../examples/return_marked.json
+.. literalinclude:: ../../../samples/json/return_marked.json
    :language: json
    :linenos:
 
@@ -173,7 +173,7 @@ Return marked example
 Sequence Example
 ----------------
 
-.. literalinclude:: ../../../examples/sequence.json
+.. literalinclude:: ../../../samples/json/sequence.json
    :language: json
    :linenos:
 
@@ -183,7 +183,7 @@ Sequence Example
 Terminal example
 ----------------
 
-.. literalinclude:: ../../../examples/terminal.json
+.. literalinclude:: ../../../samples/json/terminal.json
    :language: json
    :linenos:
 
@@ -193,7 +193,7 @@ Terminal example
 Terminal marked example
 -----------------------
 
-.. literalinclude:: ../../../examples/terminal_marked.json
+.. literalinclude:: ../../../samples/json/terminal_marked.json
    :language: json
    :linenos:
 

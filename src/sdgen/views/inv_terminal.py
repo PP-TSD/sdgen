@@ -39,7 +39,7 @@ class InvTerminal(View):
         Default: yellow
     """
     padding = 1
-    inner_padding = 2
+    inner_padding = 3
     fill = "black"
     outline = "black"
     marked_fill = "red"

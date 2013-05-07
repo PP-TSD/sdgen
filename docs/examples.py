@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 import json
 import os
 import sys
@@ -34,7 +34,7 @@ TEMPLATE_IMAGE = """
 GENERATED_DIR = '_generated'
 EXAMPLES_GENERATED_DIR = os.path.join('source', GENERATED_DIR)
 EXAMPLES_TXT = os.path.join('source', '_static', 'examples.txt')
-EXAMPLES_DIR = os.path.join('..', 'examples')
+EXAMPLES_DIR = os.path.join('..', 'samples', 'json')
 EXAMPLES_EXT = '.json'
 
 

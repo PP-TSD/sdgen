@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-
 # -*- coding: utf-8 -*-
-
 import sys
-sys.path.append('../src/') # remove this if sdgen is accessible in your os
-from sdgen import *
+import os
+sys.path.append(os.path.join('..', '..', 'src'))
+
+import sdgen
 
 data = {
     "view": "Group",
-    "name": "Complex detour diagram",
+    "name": "Detour example",
     "children": [
         {"view": "Terminal", "value": "A"},
         {
@@ -16,14 +16,7 @@ data = {
             "children": [
                 {
                     "children": [
-                        {
-                            'children': [
-                                {"view": "Terminal", "value": "B"},
-                                {"view": "Terminal", "value": "C"}
-                            ],
-                            "name": "B C",
-                            "view": "NonTerminal"
-                        }
+                        {"view": "Terminal", "value": "B"}
                     ],
                     "name": "Quantity Above B",
                     "view": "QuantityAbove",
@@ -37,5 +30,4 @@ data = {
 
 if __name__ == '__main__':
     path = sys.argv[1] if len(sys.argv) == 2 else "."
-    result = to_png(data, path)
-    print result[0][1].encode('utf-8')
+    result = sdgen.to_png(data, path, overwrite=True)
