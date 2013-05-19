@@ -27,20 +27,20 @@ class Loop(View):
 
         Space between loop-arrow and subfield.
         Default: 10
-        
+
    .. attribute:: left_length : float
 
         Length of left arrow and left side of loop-arrow.
-        Default: 20
-        
+        Default: 15
+
    .. attribute:: rigth_length : float
 
         Length of right arrow and right side of loop-arrow.
-        Default: 20
+        Default: 15
     """
     padding = 10
-    left_length = 30
-    right_length = 30
+    left_length = 15
+    right_length = 15
     # field starts with arrow
     arrowhead = True
 
@@ -50,7 +50,7 @@ class Loop(View):
         :param subfield: Rendered subfield.
         :type subfield: :class:`sdgen.utils.image_wrapper.ImageWrapper`
         :rtype: dict
-        """ 
+        """
         raise NotImplementedError()
 
     def get_arrow_position(self, subfield):
@@ -59,7 +59,7 @@ class Loop(View):
         :param subfield: Rendered subfield.
         :type subfield: :class:`sdgen.utils.image_wrapper.ImageWrapper`
         :rtype: tuple
-        """ 
+        """
         raise NotImplementedError()
 
     def get_connection_class(self):
@@ -75,7 +75,7 @@ class Loop(View):
         :param left_arrow_width: Width of arrow in the left side of subfield.
         :type left_arrow_width: float
         :rtype: tuple
-        """ 
+        """
         raise NotImplementedError()
 
     def add_children(self, children):
@@ -135,7 +135,7 @@ class Loop(View):
             (subfield, self.get_subfield_position(left_arrow.get_width())),
             (right_arrow, (subfield.get_width() + left_arrow.get_width(),
                            right_arrow_y))
-        ])        
+        ])
         rendered_fields = self.render_view(flattener)
 
         # set handlers to begin of left arrow and end of right arrow

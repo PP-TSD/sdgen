@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
         conf = {
             'png': {
-                'dpi': 200
+                'ppi': 225
             }
         }
         r = to_png(m, OUTPUT_DIR, conf=conf, overwrite=True)

@@ -11,27 +11,42 @@ class Sequence(View):
     Arrows can be specified by putting
     :class:`sdgen.views.connections.connection.Connection` in children.
     If connection is not specified, default is used.
+
+    .. attribute:: arrows_surround : bool
+
+        Sequence could have in and out connection arrows.
+        Default: False
     """
+    arrows_surround = False
 
     def add_children(self, children):
-        extended_children = []
+        new_children = []
         for el1, el2 in self._pairs(children):
             el1_conn = isinstance(el1, Connection)
             el2_conn = isinstance(el2, Connection)
-            # if one of siblings is connection or this is the last element
-            if el1_conn != el2_conn or el2 is None:
+            # if one of siblings is connection
+            if el1_conn != el2_conn:
+                if el1 is None:
+                    continue
                 if el1_conn and el2 and el2.arrowhead:
                     el1.sharp = False
-                extended_children.append(el1)
-            # if siblings are not separated by connection, create connection
-            elif not (el1_conn or el2_conn):
-                extended_children.append(el1)
-                extended_children.append(Connection(mark=self.marked, sharp=not el2.arrowhead))
-            # in both cases only e1 is added to list, e2 will be added in next
-            # loop iteration
-        self.arrowhead = extended_children[0].arrowhead
+                new_children.append(el1)
+            else:
+                # if siblings are not separated by connection or this is last
+                if not (el1_conn or el2_conn) and el1 is not None:
+                    new_children.append(el1)
+                # borders connections shouldn't be added if not arrows_surrond
+                if (el1 is None or el2 is None) and not self.arrows_surround:
+                    continue
+                # check if connection should be sharp
+                sharp = not el2.arrowhead if el2 else True
+                new_children.append(Connection(mark=self.marked, sharp=sharp))
 
-        super(Sequence, self).add_children(extended_children)
+        if new_children:
+            self.arrowhead = new_children[0].arrowhead
+        else:
+            self.arrowhead = self.arrows_surround
+        super(Sequence, self).add_children(new_children)
 
     def render(self):
         # render ImageWrappers of fields
@@ -52,13 +67,14 @@ class Sequence(View):
         positioned_fields = list(next_field())
 
         # get y coordinate of last fields and add it's right handler
-        right_handler = positioned_fields[-1][1][1] + positioned_fields[-1][0].get_handler('right')
+        right_handler = (positioned_fields[-1][1][1] +
+            positioned_fields[-1][0].get_handler('right'))
         field = Flattener(list(next_field()))
 
         handlers = {
-                    "left": top_max_height,
-                    "right": right_handler
-                    }
+            "left": top_max_height,
+            "right": right_handler
+        }
         rendered_fields = self.render_view(field)
         rendered_fields[0].update_handlers(handlers)
         return rendered_fields

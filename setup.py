@@ -9,7 +9,7 @@ def read(file_name):
 
 setup(
     name="sdgen",
-    version='0.0.3',
+    version='0.0.4',
     author=read("AUTHORS"),
     keywords="syntax diagram generator",
     url="https://github.com/PP-TSD/sdgen",

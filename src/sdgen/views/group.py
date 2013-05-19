@@ -2,7 +2,6 @@
 from sdgen.fields import Character
 from sdgen.fields import Rectangle
 from sdgen.fields import Flattener
-from connections import Connection
 from sequence import Sequence
 from _view import View
 
@@ -11,8 +10,8 @@ class Group(View):
     """
     Group view.
 
-    Contains header in top-left corner and children putted in sequence. Group is
-    placed in rectangled border.
+    Contains header in top-left corner and children putted in sequence. Group
+    is placed in rectangled border.
 
     .. attribute:: padding : float
 
@@ -77,26 +76,11 @@ class Group(View):
     border_size = 1
 
     def add_children(self, children):
-        extended_children = []
-        if children:
-            #first connection
-            if isinstance(children[0], Connection):
-                children[0].sharp = not children[1].arrowhead if len(children) > 1 and children[1] else True
-                extended_children.append(children[0])
-                children = children[1:]
-            else:
-                extended_children.append(Connection(mark=self.marked, sharp=not children[0].arrowhead))
-            #last connection
-            if children:
-                if isinstance(children[-1], Connection):
-                    extended_children.append(children[-1])
-                    children = children[:-1]
-                else:
-                    extended_children.append(Connection(mark=self.marked))
-            sequence = Sequence(mark=self.marked)
-            sequence.add_children(children)
-            extended_children.insert(1, sequence)
-        super(Group, self).add_children(extended_children)
+        # add all children to sequence (it is transparent for user)
+        # and set this sequence as it's only child:
+        sequence = Sequence(mark=self.marked, arrows_surround=True)
+        sequence.add_children(children)
+        super(Group, self).add_children([sequence])
 
     def render(self):
         # render ImageWrappers of fields
@@ -116,27 +100,36 @@ class Group(View):
             font_size=self.header_font_size, font_type=self.header_font_type,
             marked=False))
 
+        # default sizes if group doesn't have children (wait, what?)
+        width = header.get_width() + 2 * border_size
+        height = header.get_height() + 2 * border_size
+
         params = []
 
         if fields:
-            left_arrow, sequence, right_arrow = fields
+            # sequence is it's child
+            sequence, = fields
             # width and height of image
-            width = max(sum(map(lambda f: f.get_width(), fields)) + 2 * (padding + border_size), header.get_width())
-            height = header.get_height() + sequence.get_height() + 2 * (padding + border_size)
+            width = max(
+                # compute width of all subfields (plus paddings and borders)
+                sequence.get_width() + 2 * (padding + border_size),
+                width
+            )
+            # take header_height, child height and paddings
+            height = (header.get_height() + sequence.get_height() +
+                2 * (padding + border_size))
 
-            # position of box with children and children
-            subfields_y = header.get_height() + padding + border_size
-            left_arrow_x = border_size + padding
-            left_arrow_y = subfields_y + sequence.get_handler('left') - left_arrow.get_handler('right')
-            sequence_x = left_arrow_x + left_arrow.get_width()
-            right_arrow_x = sequence_x + sequence.get_width()
-            right_arrow_y = subfields_y + sequence.get_handler('right') - right_arrow.get_handler('left')
+            # position of sequence with children
+            sequence_y = header.get_height() + padding + border_size
+            sequence_x = border_size + padding
 
-            params.extend([(left_arrow, (left_arrow_x, left_arrow_y)),
-                           (sequence, (sequence_x, subfields_y)),
-                           (right_arrow, (right_arrow_x, right_arrow_y))])
+            params = [(sequence, (sequence_x, sequence_y))]
 
-        background = self.render_image(self.get_field(Rectangle, (width, height), thickness=self.border_size, marked=False))
+        # render background (rectangle with frame)
+        background = self.render_image(self.get_field(Rectangle,
+            (width, height), thickness=self.border_size, marked=False))
+
+        # add frame and header to the top of fields layers
         params[0:0] = [(background, (0, 0)), (header, (border_size, ) * 2)]
 
         field = Flattener(params)

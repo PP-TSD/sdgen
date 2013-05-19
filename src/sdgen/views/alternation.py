@@ -14,7 +14,7 @@ class Alternation(View):
     .. attribute:: arrow_width : float
 
         Width of alternation arrow (in points).
-        Default: 50
+        Default: 25
 
     .. attribute:: padding : float
 
@@ -36,7 +36,7 @@ class Alternation(View):
         Horizontal padding of each children element (in points).
         Default: 12
     """
-    arrow_width = 50
+    arrow_width = 25
     padding = 5
     left_padding = 0
     right_padding = 0
@@ -63,8 +63,8 @@ class Alternation(View):
                 right = children[i + 2],
                 i += 2
             else:
-                left = self.get_field(AlternationConnection)
-                right = self.get_field(AlternationConnection)
+                left = self.get_field(AlternationConnection, arrow_width=self.arrow_width)
+                right = self.get_field(AlternationConnection, arrow_width=self.arrow_width)
                 child = children[i]
 
             extended.append(child)
@@ -121,9 +121,6 @@ class Alternation(View):
             subimages.append((self.render_subview(right_arrow),
                               (total_width + left_box_size[0] - hline_length, 0)))
             top_offside += rendered.get_height() + padding
-
-        background = self.render_image(Rectangle((total_width + 2 * arrow_width + left_padding + right_padding, total_height),
-                        thickness=0))
 
         flattener = Flattener(subimages)
 

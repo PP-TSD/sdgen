@@ -11,16 +11,16 @@ from _arrow import Arrow
 
 @antialiasing
 class AlternationArrow(Arrow):
-    arrow_width = 50
+    arrow_width = 25
 
     def __init__(self, size, handlers, left_length=0, right_length=0,*args, **kwargs):
         """
         Generate alternation arrow (curve arrow with marker)
-        
+
         Args:
             size (tuple): size of rect which opaque arrows set
             handlers (dict): wanted arrow handlers
-        
+
         Kwargs:
             left_length (float): length of horizontal line in left of arrow (pt)
             right_length (float): length of horizontal line in right of arrow
@@ -31,7 +31,7 @@ class AlternationArrow(Arrow):
         self.left_length = left_length
         self.right_length = right_length
         self.handlers = handlers
-    
+
     def to_png(self):
         # values in pixels
         left_length = self.pt_to_px(self.left_length)
@@ -45,12 +45,12 @@ class AlternationArrow(Arrow):
 
         image = Image.new('RGBA', (width, height))
         draw = ImageDraw.Draw(image)
-        
+
         bezier_points = [(left_length, left_handler),
                          (left_length + arrow_width, left_handler),
                          (left_length, right_handler),
                          (left_length + arrow_width, right_handler)]
-        
+
         bezier = make_bezier(bezier_points)
         samples = float(max(left_length, right_length) + height)
         half_thickness = thickness / 2.0
@@ -64,7 +64,7 @@ class AlternationArrow(Arrow):
                             (left_length + arrow_width, right_handler,
                              width - marker, right_handler)]:
             draw.line(line_points, width=thickness, fill=self.fill)
-        
+
         if right_length > marker:
             for polygon_points in [[(width, right_handler),
                                    (width - marker, right_handler - marker / 3),

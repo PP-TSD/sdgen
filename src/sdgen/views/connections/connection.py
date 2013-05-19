@@ -20,7 +20,7 @@ class Connection(View):
     .. attribute:: length : str
 
         Length of an arrow.
-        Default: 30
+        Default: 15
 
     .. attribute:: sharp : bool
 
@@ -29,7 +29,7 @@ class Connection(View):
     """
     thickness = 3
     marker = "normal"
-    length = 30
+    length = 15
     sharp = True
 
     def render(self):

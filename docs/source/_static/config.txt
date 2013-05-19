@@ -26,10 +26,10 @@ PNG configuration
 
 For rendering PNG images, two options are available:
 
-* dpi - specifies resolution of generated image.
-    Default: 120
+* ppi - specifies resolution of generated image. For best results should be multiplicity of 75.
+    Default: 150
 
-* scale - specifies scale of generated image. Scale should be in range (0, 1].
+* scale - specifies scale of generated image. Scale should be greater than 0.
     Default: 1
 
 Fonts paths
@@ -84,7 +84,7 @@ Example configuration
             "length": 30
         },
         "png": {
-            "dpi": 75,
+            "ppi": 75,
             "scale": 1
         },
         "fonts": {

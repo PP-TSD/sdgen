@@ -9,8 +9,8 @@ import ImageFont
 from sdgen.config import config, render_config, safeget
 
 
-dpi = None
-dpi_inv = None
+ppi = None
+ppi_inv = None
 fonts_paths = {}
 styles_combinations = {}
 # aliases for font styles
@@ -45,20 +45,20 @@ def pt_to_px(points):
     """
     Converts points to pixels.
     """
-    global dpi
-    if not dpi:
-        dpi = int(safeget(render_config, "render.dpi", 75)) / 75.0
-    return int(points * dpi)
+    global ppi
+    if not ppi:
+        ppi = int(safeget(render_config, "render.ppi", 75)) / 75.0
+    return int(points * ppi)
 
 
 def px_to_pt(points):
     """
     Converts pixels to points.
     """
-    global dpi_inv
-    if not dpi_inv:
-        dpi_inv = 75.0 / int(safeget(render_config, "render.dpi", 75))
-    return float(points) * dpi_inv
+    global ppi_inv
+    if not ppi_inv:
+        ppi_inv = 75.0 / int(safeget(render_config, "render.ppi", 75))
+    return float(points) * ppi_inv
 
 
 def normalize_str(text):

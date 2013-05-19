@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
         conf = {
             'png': {
-                'dpi': 100
+                'ppi': 150
             }
         }
 

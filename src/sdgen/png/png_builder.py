@@ -31,7 +31,7 @@ class PNGBuilder(Builder):
         View.renderer = "to_png"
 
         default_png_config = {
-            'dpi': 150,
+            'ppi': 150,
             'scale': 1
         }
         png_config = safeget(render_config, "png", default_png_config)
@@ -47,17 +47,11 @@ class PNGBuilder(Builder):
         for (file_nr, img) in enumerate(image):
             img_name, raw_image = img.get_image_with_name()
 
-            # dpi
-            dpi = png_config.get("dpi")
-            if dpi:
-                dpi = int(dpi)
-                raw_image.info["dpi"] = (dpi, dpi)
-
             # scale
             ratio = png_config.get("scale")
             if ratio:
                 ratio = float(ratio)
-                assert 0 < ratio <= 1
+                assert 0 < ratio, "Ratio should be greater then 0."
                 if ratio != 1:
                     new_dimensions = tuple([int(x * ratio) for x in raw_image.size])
                     raw_image = raw_image.resize(new_dimensions, Image.ANTIALIAS)

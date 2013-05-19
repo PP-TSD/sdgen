@@ -11,7 +11,7 @@ from group import Group
 class NonTerminal(View):
     """
     NonTerminal view render self as group in new image.
-    
+
     Represent itself as rectangle with name of external group with children
     of this view.
 

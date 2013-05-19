@@ -107,7 +107,7 @@ class View(ConfigurableMixin):
         :returns: tuple of i and i+1 element from input list in each iteration
         :rtype: tuple
         """
-        list_ = list_ + [None]
+        list_ = [None] + list_ + [None]
         i = iter(list_)
         prev = i.next()
         for item in i:
