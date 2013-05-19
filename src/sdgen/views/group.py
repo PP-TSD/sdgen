@@ -2,7 +2,7 @@
 from sdgen.fields import Character
 from sdgen.fields import Rectangle
 from sdgen.fields import Flattener
-from sequence import Sequence
+from sdgen.views.sequence import Sequence
 from _view import View
 
 
@@ -78,7 +78,7 @@ class Group(View):
     def add_children(self, children):
         # add all children to sequence (it is transparent for user)
         # and set this sequence as it's only child:
-        sequence = Sequence(mark=self.marked, arrows_surround=True)
+        sequence = Sequence(mark=self.marked)
         sequence.add_children(children)
         super(Group, self).add_children([sequence])
 

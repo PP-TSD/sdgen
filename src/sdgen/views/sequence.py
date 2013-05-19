@@ -11,17 +11,15 @@ class Sequence(View):
     Arrows can be specified by putting
     :class:`sdgen.views.connections.connection.Connection` in children.
     If connection is not specified, default is used.
-
-    .. attribute:: arrows_surround : bool
-
-        Sequence could have in and out connection arrows.
-        Default: False
     """
-    arrows_surround = False
+    arrowhead = True
 
     def add_children(self, children):
         new_children = []
         for el1, el2 in self._pairs(children):
+            if isinstance(el1, Sequence):
+                el1.trim_arrows()
+
             el1_conn = isinstance(el1, Connection)
             el2_conn = isinstance(el2, Connection)
             # if one of siblings is connection
@@ -35,18 +33,19 @@ class Sequence(View):
                 # if siblings are not separated by connection or this is last
                 if not (el1_conn or el2_conn) and el1 is not None:
                     new_children.append(el1)
-                # borders connections shouldn't be added if not arrows_surrond
-                if (el1 is None or el2 is None) and not self.arrows_surround:
-                    continue
                 # check if connection should be sharp
                 sharp = not el2.arrowhead if el2 else True
                 new_children.append(Connection(mark=self.marked, sharp=sharp))
 
-        if new_children:
-            self.arrowhead = new_children[0].arrowhead
-        else:
-            self.arrowhead = self.arrows_surround
         super(Sequence, self).add_children(new_children)
+
+    def trim_arrows(self):
+        """ Delete sourrounding arrows """
+        self.subfields = self.subfields[1:-1]
+        if self.subfields[0]:
+            self.arrowhead = self.subfields[0].arrowhead
+        else:
+            self.arrowhead = False
 
     def render(self):
         # render ImageWrappers of fields

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from sdgen.views._view import View
 from sdgen.views.connections.connection import Connection
+from sdgen.views.sequence import Sequence
 from sdgen.fields.flattener import Flattener
 
 
@@ -101,6 +102,10 @@ class Loop(View):
             extended.append(child)
         for item in iterator:
             extended.append(item)
+
+        # trim sequence
+        if isinstance(extended[1], Sequence):
+            extended[1].trim_arrows()
 
         # generate headless arrow if subfield starts with arrow
         extended[0].sharp = not extended[1].arrowhead
