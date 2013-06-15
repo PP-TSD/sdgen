@@ -82,6 +82,11 @@ class Loop(View):
     def add_children(self, children):
         extended = []
         connection_class = self.get_connection_class()
+
+        # check if loop has only one child which is not Connection
+        subviews = [v for v in children if not isinstance(v, Connection)]
+        assert len(subviews) == 1, u'Loop-like field can have only one child (besides Connections)'
+
         # children schema. If child is not present in children it will be
         # rendered with default options.
         iterator = iter([Connection(length=self.left_length,

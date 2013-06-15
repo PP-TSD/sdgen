@@ -16,14 +16,20 @@ data = {
                 {
                     'children': [
                         {
-                            'children': [
-                                {"view": "Terminal", "value": "B"}
-                            ],
-                            "name": "Quantity Above B",
-                            "view": "QuantityAbove",
-                            "value": "0..11"
-                        },
-                        {"view": "Terminal", "value": "C"}
+                            "view": "Sequence",
+                            "children": [
+                                {
+                                    'children': [
+                                        {"view": "Terminal", "value": "B"}
+                                    ],
+                                    "name": "Quantity Above B",
+                                    "view": "QuantityAbove",
+                                    "value": "0..11"
+                                },
+                                {"view": "Terminal", "value": "C"}
+                            ]
+                        }
+
                     ],
                     "name": "Return BC",
                     "view": "Return"
