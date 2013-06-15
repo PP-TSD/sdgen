@@ -16,7 +16,7 @@ class InvTerminal(View):
     .. attribute:: inner_padding : float
 
         Padding between element and | separator.
-        Default: 3
+        Default: 1
 
     .. attribute:: fill : str
 
@@ -38,8 +38,8 @@ class InvTerminal(View):
         Border color when element is marked.
         Default: yellow
     """
-    padding = 3
-    inner_padding = 3
+    padding = 2
+    inner_padding = 1
     fill = "black"
     outline = "black"
     marked_fill = "red"
