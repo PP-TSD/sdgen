@@ -9,7 +9,7 @@ from _field import Field
 
 
 class Rectangle(Field):
-    thickness = 1
+    thickness = 3
     fill = "transparent"
     outline = "black"
     marked_outline = "red"
