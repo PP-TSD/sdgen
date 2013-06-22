@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-sys.path.append(os.path.join('..', 'src'))
+sys.path.append(os.path.join('..', '..', 'src'))
 
 from sdgen import to_png
 
