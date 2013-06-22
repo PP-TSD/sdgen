@@ -25,5 +25,5 @@ data = {
 }
 
 if __name__ == '__main__':
-    path = sys.argv[1] if len(sys.argv) == 2 else "."
+    path = sys.argv[1] if len(sys.argv) == 2 else "output"
     result = sdgen.to_png(data, path, overwrite=True)

@@ -8,7 +8,7 @@ import sdgen
 
 data = {
     "view": "Group",
-    "name": "Complex detour diagram",
+    "name": "Detour example",
     "children": [
         {"view": "Terminal", "value": "A"},
         {
@@ -16,14 +16,7 @@ data = {
             "children": [
                 {
                     "children": [
-                        {
-                            'children': [
-                                {"view": "Terminal", "value": "B"},
-                                {"view": "Terminal", "value": "C"}
-                            ],
-                            "name": "B C",
-                            "view": "NonTerminal"
-                        }
+                        {"view": "Terminal", "value": "B"}
                     ],
                     "name": "Quantity Above B",
                     "view": "QuantityAbove",
@@ -36,5 +29,5 @@ data = {
 }
 
 if __name__ == '__main__':
-    path = sys.argv[1] if len(sys.argv) == 2 else "."
+    path = sys.argv[1] if len(sys.argv) == 2 else "output"
     result = sdgen.to_png(data, path, overwrite=True)
