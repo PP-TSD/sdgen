@@ -31,7 +31,7 @@ class Group(View):
     .. attribute:: border_size : float
 
         Thickness of border (in points).
-        Default: 1
+        Default: 3
 
     .. attribute:: header_padding : float
 
@@ -73,7 +73,7 @@ class Group(View):
     header_font_size = 14
     arrow_height = 1
     arrow_width = 10
-    border_size = 1
+    border_size = 3
 
     def add_children(self, children):
         # add all children to sequence (it is transparent for user)
