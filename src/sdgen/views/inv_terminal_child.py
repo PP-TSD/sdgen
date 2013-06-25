@@ -13,6 +13,10 @@ class InvTerminalChild(Terminal):
     marked_font_color = "yellow"
     marked_background = "transparent"
 
+    def __init__(self, *args, **kwargs):
+        super(InvTerminalChild, self).__init__(*args, **kwargs)
+        self.is_space = False
+
     def render(self):
         text = self.get_field(Character,
                               self.value,

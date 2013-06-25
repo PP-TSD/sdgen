@@ -27,14 +27,14 @@ class Terminal(View):
 
     def __init__(self, *args, **kwargs):
         super(Terminal, self).__init__(*args, **kwargs)
-        if self.value == ' ':
-            self.value = "Space"
+        self.is_space = self.value == ' '
 
     def render(self):
         kwargs = {
             "marked": self.marked
         }
-        if self.value == "Space":
+        if self.is_space:
+            self.value = 'space'
             kwargs["font_typeface"] = "italic"
         text = self.render_image(self.get_field(Character, self.value, **kwargs))
         border = self.render_image(self.get_field(RoundedRectangle, tuple(p + self.padding * 2.0 for p in text.get_size())))
