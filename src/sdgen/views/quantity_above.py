@@ -14,6 +14,7 @@ class QuantityAbove(View):
 
     def add_children(self, children):
         super(QuantityAbove, self).add_children(children)
+        self.arrowhead = self.subfields[0].arrowhead
         assert len(self.subfields) == 1
 
     def render(self):
