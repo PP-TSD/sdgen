@@ -1,5 +1,7 @@
 .PHONY: code json
 
+all: clean generate
+
 generate: generate-code generate-json
 
 clean: clean-code clean-json
