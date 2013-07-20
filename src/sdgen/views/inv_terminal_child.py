@@ -19,7 +19,7 @@ class InvTerminalChild(Terminal):
 
     def render(self):
         text = self.get_field(Character,
-                              self.value,
+                              self.prepare_text(self.value),
                               font_color=self.font_color,
                               background=self.background,
                               marked_font_color=self.marked_font_color,

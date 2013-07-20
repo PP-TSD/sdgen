@@ -29,6 +29,9 @@ class Terminal(View):
         super(Terminal, self).__init__(*args, **kwargs)
         self.is_space = self.value == ' '
 
+    def prepare_text(self, text):
+        return text.replace(' ', u'␣')
+
     def render(self):
         kwargs = {
             "marked": self.marked
@@ -36,12 +39,17 @@ class Terminal(View):
         if self.is_space:
             self.value = 'space'
             kwargs["font_typeface"] = "italic"
-        text = self.render_image(self.get_field(Character, self.value, **kwargs))
-        border = self.render_image(self.get_field(RoundedRectangle, tuple(p + self.padding * 2.0 for p in text.get_size())))
+        text = self.render_image(
+            self.get_field(Character,
+                self.prepare_text(self.value), **kwargs))
+        border = self.render_image(
+            self.get_field(RoundedRectangle,
+                            tuple(p + self.padding * 2.0
+                                for p in text.get_size())))
 
         terminal = Flattener([
             (border, (0,0)),
             (text, ((border.get_width() - text.get_width()) / 2,
-                        (border.get_height() - text.get_height()) / 2))
+                    (border.get_height() - text.get_height()) / 2))
         ])
         return self.render_view(terminal)
