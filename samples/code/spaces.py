@@ -14,7 +14,9 @@ data = {
         {
             'children': [
                 {"view": "Terminal", "value": " B "},
-                {"view": "Terminal", "value": " C   "}
+                {"view": "Terminal", "value": " C   "},
+                {"view": "Terminal", "value": " E F  "},
+                {"view": "Terminal", "value": "G H I"},
             ],
             "name": "Alternation BC    ",
             "view": "Alternation"
