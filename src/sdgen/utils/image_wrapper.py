@@ -26,8 +26,10 @@ class ImageWrapper(object):
         self.height = height
         self.name = name
         self.handlers = {
-            "left": height/2.0,
-            "right": height/2.0,
+            "left": height/2.0,  # left-y coordinate
+            "right": height/2.0,  # right-y coordinate
+            "left-x": 0,  # left-x coordinate,
+            "right-x": width  # right-x coordinate
         }
         if isinstance(handlers, dict):
             self.handlers.update(handlers)
@@ -57,7 +59,7 @@ class ImageWrapper(object):
         Returns:
             dict: y coordinate of all handlers.
         """
-        return self.handlers
+        return dict((k, v) for (k, v) in self.handlers.items() if not k.endswith('-x'))
 
     def get_handler(self, handler):
         """

@@ -62,7 +62,7 @@ class Sequence(View):
             for field in fields:
                 yield field, (x, diff + top_max_height - field.get_handler('left'))
                 diff += field.get_handler('right') - field.get_handler('left')
-                x += field.get_width()
+                x += field.get_handler('right-x')
         positioned_fields = list(next_field())
 
         # get y coordinate of last fields and add it's right handler
@@ -70,10 +70,14 @@ class Sequence(View):
             positioned_fields[-1][0].get_handler('right'))
         field = Flattener(list(next_field()))
 
+        rendered_fields = self.render_view(field)
+
         handlers = {
             "left": top_max_height,
-            "right": right_handler
+            "right": right_handler,
+            'left-x': fields[0].get_handler('left-x'),
+            'right-x': rendered_fields[0].get_width() - (fields[0].get_width() - fields[0].get_handler('right-x'))
         }
-        rendered_fields = self.render_view(field)
         rendered_fields[0].update_handlers(handlers)
+
         return rendered_fields

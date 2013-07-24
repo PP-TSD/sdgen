@@ -35,7 +35,9 @@ class QuantityAbove(View):
                                     (subfield, (subfield_x, subfield_y))])
         handlers = {
             "left": subfield_y + subfield.get_handler('left'),
-            "right": subfield_y + subfield.get_handler('right')
+            "right": subfield_y + subfield.get_handler('right'),
+            'left-x': subfield_x,
+            'right-x': subfield_x + subfield.get_width(),
         }
         rendered_fields = self.render_view(quantity_above)
         rendered_fields[0].update_handlers(handlers)

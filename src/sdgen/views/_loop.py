@@ -120,9 +120,15 @@ class Loop(View):
     def render(self):
         # render defined subfield
         left_arrow, subfield, right_arrow, loop_arrow = self.subfields
+        subfield = self.render_subview(subfield)
+
+        # extend left arrow length by subfield left-x handler (helps for example)
+        # in quantity above if quantity is wider than its children
+        left_arrow.length += subfield.get_handler('left-x')
+        right_arrow.length += subfield.get_width() - subfield.get_handler('right-x')
+
         left_arrow = self.render_subview(left_arrow)
         right_arrow = self.render_subview(right_arrow)
-        subfield = self.render_subview(subfield)
 
         subfield_handlers = self.get_absolute_subfield_handlers(subfield)
 
@@ -138,12 +144,13 @@ class Loop(View):
         right_arrow_y = (subfield_position[1] + subfield.get_handler('right') -
                          right_arrow.get_handler('left'))
 
+        left_arrow_x = left_arrow.get_width() - subfield.get_handler('left-x')
         # create container with subimages on their positions
         flattener = Flattener([
             (loop_arrow, self.get_arrow_position(subfield)),
             (left_arrow, (0, left_arrow_y)),
-            (subfield, self.get_subfield_position(left_arrow.get_width())),
-            (right_arrow, (subfield.get_width() + left_arrow.get_width(),
+            (subfield, self.get_subfield_position(left_arrow_x)),
+            (right_arrow, (subfield.get_handler('right-x') + left_arrow_x,
                            right_arrow_y))
         ])
         rendered_fields = self.render_view(flattener)
