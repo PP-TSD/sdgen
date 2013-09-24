@@ -1,0 +1,74 @@
+{
+    "view": "Group",
+    "name": "Value",
+    "children": [
+        {
+            "view": "InvTerminal",
+            "name": "Inv Terminal BCD",
+            "children": [
+                {"view": "Terminal", "value": "+"},
+                {"view": "Terminal", "value": "−"}
+            ]
+        },
+        {
+            "view": "NonTerminal",
+            "name": "Number",
+            "children": [
+                {
+                    "view": "Alternation",
+                    "name": "Alternation BC",
+                    "children": [
+                        {
+                            "view": "QuantityAbove",
+                            "name": "a",
+                            "value": "1..",
+                            "children": [
+                                {
+                                    "name": "Inv Terminal BCD",
+                                    "view": "InvTerminal",
+                                    "children": [
+                                            { "view": "Terminal", "value": "0..9" }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "view": "Sequence",
+                            "children": [
+                                {
+                                    "view": "QuantityAbove",
+                                    "name": "a",
+                                    "value": "1..",
+                                    "children": [
+                                        {
+                                            "name": "Inv Terminal BCD",
+                                            "view": "InvTerminal",
+                                            "children": [
+                                                    { "view": "Terminal", "value": "0..9" }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                { "view": "Terminal", "value": "." },
+                                {
+                                    "view": "QuantityAbove",
+                                    "name": "a",
+                                    "value": "1..",
+                                    "children": [
+                                        {
+                                            "name": "Inv Terminal BCD",
+                                            "view": "InvTerminal",
+                                            "children": [
+                                                    { "view": "Terminal", "value": "0..9" }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
