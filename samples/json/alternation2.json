@@ -1,0 +1,23 @@
+{
+    "view": "Sequence",
+    "name": "Alternation2",
+    "children":
+    [
+        {
+            "children":
+            [
+                 {
+                    "children": [
+                         {"view": "Terminal", "value": "a..z"}
+                    ],
+                    "name": "Inv Terminal BCD",
+                    "view": "InvTerminal"
+                 },
+                 {"view": "Terminal", "value": "$"},
+                 {"view": "Terminal", "value": "@"}
+            ],
+            "name": "Alternation BC",
+            "view": "Alternation"
+        }
+    ]
+}
