@@ -4,6 +4,7 @@ from sdgen.fields import Flattener
 from connections.alternation_connection import AlternationConnection
 from connections.connection import Connection
 from _view import View
+from sequence import Sequence
 
 
 class Alternation(View):
@@ -42,6 +43,7 @@ class Alternation(View):
     right_padding = 0
     subfields_padding = 12
     arrowhead = True
+    trim_subfields_outer_arrows = True
 
     def add_children(self, children):
         assert children, "Alternation children lists shouldn't be empty"

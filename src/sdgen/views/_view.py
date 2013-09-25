@@ -48,6 +48,7 @@ class View(ConfigurableMixin):
     renderer = None  # Field function name called to render subfield image, for example 'to_png'
     save_as_subimage = False  # True if separate rendered image for view
     arrowhead = False  # True if view starts with arrow
+    trim_subfields_outer_arrows = False
 
     # default configuration
     thickness = 3
@@ -94,6 +95,11 @@ class View(ConfigurableMixin):
         :param children: list of views to extend current children
         :type children: list
         """
+        from sequence import Sequence
+        if self.trim_subfields_outer_arrows and children:
+            for child in children:
+                if isinstance(child, Sequence):
+                    child.trim_arrows()
         self.subfields.extend(children)
 
     def _pairs(self, list_):
