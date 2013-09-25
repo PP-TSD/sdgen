@@ -1,11 +1,11 @@
 {
     "view": "Group",
-    "name": "Group",
+    "name": "Empty group",
     "children": [
 
         {
             "view": "NonTerminal",
-            "name": "Number"
+            "name": "Empty number"
         }
     ]
 }
