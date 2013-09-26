@@ -36,6 +36,9 @@ class NonTerminal(View):
     padding = 5
 
     def render_subimage(self):
+        # #10: not render non-terminal (as separate image) if is empty
+        if not self.subfields:
+            return []
         # create a group view, that should be saved as separated image
         config = copy.deepcopy(self._passed_config)
         if 'view' in config:
