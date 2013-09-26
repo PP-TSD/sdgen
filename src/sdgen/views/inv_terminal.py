@@ -38,7 +38,7 @@ class InvTerminal(View):
         Border color when element is marked.
         Default: yellow
     """
-    padding = 2
+    padding = 5
     inner_padding = 1
     fill = "black"
     outline = "black"
@@ -61,7 +61,7 @@ class InvTerminal(View):
         super(InvTerminal, self).add_children(replaced_children)
 
     def render(self):
-        padding = self.pt_to_px(self.padding)
+        padding = self.padding
         fields = map(self.render_subview, self.subfields)
 
         top_max_height = max([max(x.get_handlers().values()) for x in fields])
@@ -94,5 +94,5 @@ class InvTerminal(View):
                 x += field.get_width() + self.inner_padding
         positioned_fields = list(next_field())
 
-        field = Flattener([(background, (0,0))] + positioned_fields)
+        field = Flattener([(background, (0, 0))] + positioned_fields)
         return self.render_view(field)
