@@ -10,7 +10,13 @@ class QuantityAbove(View):
 
     QuantityAbove must has only one children!
     """
-    padding = 3
+
+    padding = 0
+    quantity_padding = 0
+    quantity_font_color = "black"
+    quantity_font_typeface = "bold"
+    quantity_font_type = "Liberation Serif"
+    quantity_font_size = 14
 
     def add_children(self, children):
         super(QuantityAbove, self).add_children(children)
@@ -18,7 +24,12 @@ class QuantityAbove(View):
         assert len(self.subfields) == 1
 
     def render(self):
-        quantity = self.render_image(self.get_field(Character, self.value))
+        quantity = self.render_image(self.get_field(Character, self.value,
+                render_config_key='header', font_color=self.quantity_font_color,
+                padding=self.quantity_padding,
+                font_typeface=self.quantity_font_typeface,
+                font_size=self.quantity_font_size, font_type=self.quantity_font_type,
+                marked=False))
         subfield = self.render_subview(self.subfields[0])
 
         width = max(quantity.get_width(), subfield.get_width())

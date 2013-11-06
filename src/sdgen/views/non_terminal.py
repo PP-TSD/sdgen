@@ -28,10 +28,10 @@ class NonTerminal(View):
     .. attribute:: font_type : str
 
         Header font family.
-        Default: Times New Roman
+        Default: Liberation Serif
     """
     save_as_subimage = True
-    font_type = "Times New Roman"
+    font_type = "Liberation Serif"
     font_typeface = "bold italic"
     padding = 5
 
