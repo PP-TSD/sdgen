@@ -33,7 +33,7 @@ class View(ConfigurableMixin):
     .. attribute:: font_name : str
 
         Font family name.
-        Default: Arial
+        Default: FreeMono
 
     .. attribute:: font_size : float
 
@@ -53,7 +53,7 @@ class View(ConfigurableMixin):
     # default configuration
     thickness = 3
     padding = 10
-    font_name = "Arial"
+    font_name = "FreeMono"
     font_size = 12
     font_typeface = "regular"
     marked_background = "yellow"

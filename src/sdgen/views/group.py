@@ -56,7 +56,7 @@ class Group(View):
     .. attribute:: header_font_type : str
 
         Header font family.
-        Default: Arial
+        Default: Liberation Serif
 
     .. attribute:: header_font_size : float
 
@@ -64,12 +64,12 @@ class Group(View):
         Default: 14
     """
 
-    padding = 10
-    header_padding = 10
+    padding = 3
+    header_padding = 3
     header_font_color = "white"
     header_background = "black"
     header_font_typeface = "bold italic"
-    header_font_type = "Arial"
+    header_font_type = "Liberation Serif"
     header_font_size = 14
     arrow_height = 1
     arrow_width = 10

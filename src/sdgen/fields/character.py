@@ -13,9 +13,9 @@ from _field import Field
 
 class Character(Field):
     render_config_key = "character"
-    font_type = "DejaVu Serif"
+    font_type = "FreeMono"
     font_size = 12
-    font_typeface = "Book"
+    font_typeface = "bold"
     font_color = "black"
     marked_font_color = "red"
     padding = 3
