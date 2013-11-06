@@ -38,10 +38,12 @@ class ReturnArrow(LoopArrow):
         center = (points[0] + points[2]) / 2.0, (points[1] + points[3]) / 2.0
         return [
                 # marker coordinates
-                [relative(center, (-self.marker / 2.0, 0)),
-                 relative(center, (self.marker / 2.0, -self.marker / 3.0)),
-                 relative(center, (self.marker / 2.0, self.marker / 3.0))]
-                ]
+            [
+                relative(center, (-self.marker / 2.0, 0)),
+                relative(center, ( self.marker / 2.0, -self.marker / 2.0)),
+                relative(center, ( self.marker / 2.0,  self.marker / 2.0))
+            ]
+        ]
 
     def get_handlers(self, height):
         return {

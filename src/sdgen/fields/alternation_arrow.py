@@ -60,18 +60,19 @@ class AlternationArrow(Arrow):
                           point[0] + half_thickness, point[1] + half_thickness),
                          fill = self.fill, outline = self.fill)
 
-        for line_points in [(0, left_handler, left_length, left_handler),
-                            (left_length + arrow_width, right_handler,
-                             width - marker, right_handler)]:
+        for line_points in [
+                               (0, left_handler, left_length, left_handler),
+                               (left_length + arrow_width, right_handler, width - marker / 2, right_handler)
+                           ]:
             draw.line(line_points, width=thickness, fill=self.fill)
 
         if right_length > marker:
-            for polygon_points in [[(width, right_handler),
-                                   (width - marker, right_handler - marker / 3),
-                                   (width - marker, right_handler + marker / 3)
-                                   ]]:
+            for polygon_points in [[
+                                      (width, right_handler),
+                                      (width - marker, right_handler - marker / 2),
+                                      (width - marker, right_handler + marker / 2)
+                                  ]]:
                 # polygon_points is a list of tuple with coordinates
-                draw.polygon(polygon_points,
-                         fill=self.fill,
-                         )
+                draw.polygon(polygon_points, fill=self.fill)
+
         return ImageWrapper(image, self.px_to_pt(width), self.px_to_pt(height), handlers=self.handlers)
