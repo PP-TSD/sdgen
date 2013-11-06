@@ -11,7 +11,7 @@ from _field import Field
 
 @antialiasing
 class RoundedRectangle(Field):
-    thickness = 3
+    thickness = 2
     fill = "transparent"
     outline = "black"
     marked_outline = "red"

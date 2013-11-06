@@ -73,7 +73,7 @@ class Group(View):
     header_font_size = 14
     arrow_height = 1
     arrow_width = 10
-    border_size = 3
+    border_size = 2
 
     def add_children(self, children):
         # add all children to sequence (it is transparent for user)

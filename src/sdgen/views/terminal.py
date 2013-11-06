@@ -44,9 +44,11 @@ class Terminal(View):
             self.get_field(Character,
                 self.prepare_text(self.value), **kwargs))
         border = self.render_image(
-            self.get_field(RoundedRectangle,
-                            tuple(p + self.padding * 2.0
-                                for p in text.get_size())))
+            self.get_field(
+                RoundedRectangle,
+                tuple(p + self.padding * 2.0 for p in text.get_size())
+            )
+        )
 
         terminal = Flattener([
             (border, (0,0)),
