@@ -38,6 +38,7 @@ class Terminal(View):
         }
         if self.is_space:
             self.value = 'space'
+            kwargs["font_type"] = "Liberation Serif"
             kwargs["font_typeface"] = "italic"
         text = self.render_image(
             self.get_field(Character,
