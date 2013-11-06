@@ -21,7 +21,7 @@ class PNGBuilder(Builder):
             data:
 
         Kwargs:
-            font_type (str): Name of font type, ex. 'arial'.
+            font_type (str): Name of font type, ex. 'FreeMono'.
             size (int): Font size in points.
             typeface (str): Font typeface, ex. 'bold italic'.
 
