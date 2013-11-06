@@ -25,9 +25,9 @@ if __name__ == '__main__':
         name = m['name']
 
         conf = {
-            'png': {
-                'ppi': 225
-            }
+             'png': {
+                 'ppi': 300
+             }
         }
         r = to_png(m, OUTPUT_DIR, conf=conf, overwrite=True)
 
