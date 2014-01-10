@@ -3,8 +3,8 @@
 from sdgen.fields.rounded_rectangle import RoundedRectangle
 from sdgen.fields.flattener import Flattener
 from _view import View
-from terminal import Terminal
-from inv_terminal_child import InvTerminalChild
+from terminal import Terminal, Header
+from inv_terminal_child import InvTerminalChild, InvHeaderChild
 from inv_terminal_delimiter import InvTerminalDelimiter
 
 
@@ -52,8 +52,14 @@ class InvTerminal(View):
         """
         replaced_children = []
         for child in children:
-            assert isinstance(child, Terminal)
-            inv_terminal_child = InvTerminalChild(name=child.name,
+            if isinstance(child, Header):
+                clazz = InvHeaderChild
+            elif isinstance(child, Terminal):
+                clazz = InvTerminalChild
+            else:
+                assert 1 == 2 and "Unknown type of child"
+
+            inv_terminal_child = clazz(name=child.name,
                                                   value=child.value,
                                                   mark=child.marked,
                                                   **child._passed_config)
@@ -71,6 +77,9 @@ class InvTerminal(View):
         # insert delimiters into fileds
         for i in range(len(fields)-1, 0, -1):
             fields[i:i] = [delimiter]
+
+        if isinstance(self.subfields[0], InvHeaderChild):
+            fields.remove(delimiter)
 
         width = sum(map(lambda f: f.get_width(), fields)) + 2 * padding + (len(fields)-1) * self.inner_padding
         height = max(map(lambda f: f.get_height(), fields)) + 2 * padding

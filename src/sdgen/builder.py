@@ -13,7 +13,8 @@ views_classes = {
     "NonTerminal": non_terminal.NonTerminal,
     "QuantityAbove": quantity_above.QuantityAbove,
     "Sequence": sequence.Sequence,
-    "Terminal": terminal.Terminal
+    "Terminal": terminal.Terminal,
+    "Header": terminal.Header,
 }
 
 

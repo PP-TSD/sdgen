@@ -25,3 +25,6 @@ class InvTerminalChild(Terminal):
                               marked_font_color=self.marked_font_color,
                               marked_background=self.marked_background)
         return self.render_view(text)
+
+class InvHeaderChild(InvTerminalChild):
+    pass

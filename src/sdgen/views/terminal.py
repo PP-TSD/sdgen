@@ -56,3 +56,6 @@ class Terminal(View):
                     (border.get_height() - text.get_height()) / 2))
         ])
         return self.render_view(terminal)
+
+class Header(Terminal):
+    pass
