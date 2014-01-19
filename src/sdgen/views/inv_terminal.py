@@ -78,7 +78,7 @@ class InvTerminal(View):
         for i in range(len(fields)-1, 0, -1):
             fields[i:i] = [delimiter]
 
-        if isinstance(self.subfields[0], InvHeaderChild):
+        if len(fields) > 1 and isinstance(self.subfields[0], InvHeaderChild):
             fields.remove(delimiter)
 
         width = sum(map(lambda f: f.get_width(), fields)) + 2 * padding + (len(fields)-1) * self.inner_padding
