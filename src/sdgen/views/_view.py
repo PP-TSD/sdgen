@@ -77,7 +77,12 @@ class View(ConfigurableMixin):
 
         self.name = name
         self.value = value
-        self.marked = True if mark in (True, 'yes') else False
+
+        self.marked = {
+                True: True,
+                "yes": True,
+                "frame": "frame"
+        }.get(mark, False)
 
     def add_child(self, child):
         """

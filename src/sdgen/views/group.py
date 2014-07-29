@@ -78,11 +78,18 @@ class Group(View):
     def add_children(self, children):
         # add all children to sequence (it is transparent for user)
         # and set this sequence as it's only child:
-        sequence = Sequence(mark=self.marked)
+
+        if self.marked == "frame":
+            sequence = Sequence(mark=False)
+        else:
+            sequence = Sequence(mark=self.marked)
+
         sequence.add_children(children)
         super(Group, self).add_children([sequence])
 
     def render(self):
+        is_marked = True if self.marked == "frame" else False
+
         # render ImageWrappers of fields
         padding = self.padding
         width = 0
@@ -93,12 +100,13 @@ class Group(View):
         border_size = self.border_size
 
         # black rect with title
+
         header = self.render_image(self.get_field(Character, self.name,
             render_config_key='header', font_color=self.header_font_color,
             background=self.header_background, padding=self.header_padding,
             font_typeface=self.header_font_typeface,
             font_size=self.header_font_size, font_type=self.header_font_type,
-            marked=False))
+            marked=is_marked))
 
         # default sizes if group doesn't have children (wait, what?)
         width = header.get_width() + 2 * border_size
@@ -127,7 +135,7 @@ class Group(View):
 
         # render background (rectangle with frame)
         background = self.render_image(self.get_field(Rectangle,
-            (width, height), thickness=self.border_size, marked=False))
+            (width, height), thickness=self.border_size, marked=is_marked))
 
         # add frame and header to the top of fields layers
         params[0:0] = [(background, (0, 0)), (header, (border_size, ) * 2)]

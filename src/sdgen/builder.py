@@ -34,7 +34,12 @@ class Builder(object):
         if not view_name or view_name not in views_classes:
             return None
         view = views_classes[view_name](**data)
-        mark_child = 'mark' in data and data['mark'] in (True, 'yes')
+
+        if view_name == 'Group' and 'mark' in data and data['mark'] == 'frame':
+            mark_child = False # "frame"
+        else:
+            mark_child = 'mark' in data and data['mark'] in (True, 'yes')
+
         if data.get('children'):
             children = []
             for child in data['children']:

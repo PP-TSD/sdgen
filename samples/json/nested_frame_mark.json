@@ -1,0 +1,68 @@
+{
+    "view": "Group",
+    "name": "Nested group which frame is marked",
+    "children":
+    [
+        {
+            "view": "QuantityAbove",
+            "value": "3",
+            "children":
+            [
+                {
+                    "name": "Inv Terminal BCD",
+                    "view": "InvTerminal",
+                    "children":
+                    [
+                        { "view": "Terminal", "value": "A..Z" }
+                    ]
+                }
+            ]
+        },
+        {
+            "view": "QuantityAbove",
+            "value": "2",
+            "children":
+            [
+                {
+                    "view": "Group",
+                    "name": "Header",
+                    "mark": "frame",
+                    "children":
+                    [
+                        {
+                            "view": "QuantityAbove",
+                            "value": "2",
+                            "children":
+                            [
+                                {
+                                    "view": "InvTerminal",
+                                    "name": "Inv Terminal BCD",
+                                    "children":
+                                    [
+                                        { "view": "Terminal", "value": "A..Z" }
+                                    ]
+                                }
+                            ]
+                        },
+                        {"view": "Terminal", "value": "-"}
+                    ]
+                }
+            ]
+        },
+        {
+            "view": "QuantityAbove",
+            "value": "3",
+            "children":
+            [
+                {
+                    "view": "InvTerminal",
+                    "name": "Inv Terminal BCD",
+                    "children":
+                    [
+                        {"view": "Terminal", "value": "A..Z"}
+                    ]
+                }
+            ]
+        }
+    ]
+}
